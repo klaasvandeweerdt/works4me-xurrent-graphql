@@ -1,0 +1,40 @@
+﻿using Works4me.Xurrent.GraphQL.Attributes;
+
+namespace Works4me.Xurrent.GraphQL
+{
+    /// <summary>
+    /// Fields SkillPool can be ordered on.
+    /// </summary>
+    public enum SkillPoolOrderField
+    {
+        /// <summary>
+        /// Order by <c>CreatedAt</c>.
+        /// </summary>
+        [XurrentEnum("createdAt")]
+        CreatedAt,
+
+        /// <summary>
+        /// Order by <c>Disabled</c>.
+        /// </summary>
+        [XurrentEnum("disabled")]
+        Disabled,
+
+        /// <summary>
+        /// Order by <c>ManagerName</c>.
+        /// </summary>
+        [XurrentEnum("managerName")]
+        ManagerName,
+
+        /// <summary>
+        /// Order by <c>Name</c>.
+        /// </summary>
+        [XurrentEnum("name")]
+        Name,
+
+        /// <summary>
+        /// Order by <c>UpdatedAt</c>.
+        /// </summary>
+        [XurrentEnum("updatedAt")]
+        UpdatedAt
+    }
+}
