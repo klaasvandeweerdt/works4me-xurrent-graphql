@@ -18,6 +18,7 @@ using Works4me.Xurrent.GraphQL.Mutations;
 using System.Reflection;
 using Works4me.Xurrent.GraphQL.Attributes;
 using System.Collections.Immutable;
+using Microsoft.Extensions.Logging;
 
 namespace Works4me.Xurrent.GraphQL
 {
@@ -142,8 +143,9 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="accountId">The account ID associated with this client.</param>
         /// <param name="environment">The environment (e.g., production, staging) to target.</param>
         /// <param name="environmentRegion">The region of the environment (e.g., EU, US) to target.</param>
-        public XurrentClient(AuthenticationToken authenticationToken, string accountId, EnvironmentType environment, EnvironmentRegion environmentRegion)
-            : this(new AuthenticationTokenCollection(authenticationToken), accountId, EndpointUrlBuilder.GetBaseUrl(environmentRegion, environment))
+        /// <param name="logger">The logger instance to use for diagnostic and trace output, or <c>null</c> to disable logging.</param>
+        public XurrentClient(AuthenticationToken authenticationToken, string accountId, EnvironmentType environment, EnvironmentRegion environmentRegion, ILogger<XurrentClient>? logger = null)
+            : this(new AuthenticationTokenCollection(authenticationToken), accountId, EndpointUrlBuilder.GetBaseUrl(environmentRegion, environment), logger)
         {
             _disposeAuthenticationTokens = true;
         }
@@ -154,8 +156,9 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="authenticationToken">The authentication token to use for requests.</param>
         /// <param name="accountId">The account ID associated with this client.</param>
         /// <param name="domainName">The domain name of the Xurrent API endpoint.</param>
-        public XurrentClient(AuthenticationToken authenticationToken, string accountId, string domainName)
-            : this(new AuthenticationTokenCollection(authenticationToken), accountId, domainName)
+        /// <param name="logger">The logger instance to use for diagnostic and trace output, or <c>null</c> to disable logging.</param>
+        public XurrentClient(AuthenticationToken authenticationToken, string accountId, string domainName, ILogger<XurrentClient>? logger = null)
+            : this(new AuthenticationTokenCollection(authenticationToken), accountId, domainName, logger)
         {
             _disposeAuthenticationTokens = true;
         }
@@ -167,8 +170,9 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="accountId">The account ID associated with this client.</param>
         /// <param name="environment">The environment (e.g., production, staging) to target.</param>
         /// <param name="environmentRegion">The region of the environment (e.g., EU, US) to target.</param>
-        public XurrentClient(AuthenticationTokenCollection authenticationTokens, string accountId, EnvironmentType environment, EnvironmentRegion environmentRegion)
-            : this(authenticationTokens, accountId, EndpointUrlBuilder.GetBaseUrl(environmentRegion, environment))
+        /// <param name="logger">The logger instance to use for diagnostic and trace output, or <c>null</c> to disable logging.</param>
+        public XurrentClient(AuthenticationTokenCollection authenticationTokens, string accountId, EnvironmentType environment, EnvironmentRegion environmentRegion, ILogger<XurrentClient>? logger = null)
+            : this(authenticationTokens, accountId, EndpointUrlBuilder.GetBaseUrl(environmentRegion, environment), logger)
         {
         }
 
@@ -178,7 +182,8 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="authenticationTokens">The collection of authentication tokens to use.</param>
         /// <param name="accountId">The account ID associated with this client.</param>
         /// <param name="domainName">The domain name of the Xurrent API endpoint.</param>
-        public XurrentClient(AuthenticationTokenCollection authenticationTokens, string accountId, string domainName)
+        /// <param name="logger">The logger instance to use for diagnostic and trace output, or <c>null</c> to disable logging.</param>
+        public XurrentClient(AuthenticationTokenCollection authenticationTokens, string accountId, string domainName, ILogger<XurrentClient>? logger = null)
         {
             if (string.IsNullOrWhiteSpace(accountId))
                 throw new ArgumentException($"'{nameof(accountId)}' cannot be null or empty.", nameof(accountId));
@@ -204,6 +209,8 @@ namespace Works4me.Xurrent.GraphQL
 #else
             _httpClient = new(new ServicePointLifetimeHandler(TimeSpan.FromMinutes(5), new HttpClientHandler()), disposeHandler: true);
 #endif
+
+            _logger = logger;
 
             _httpImportExportClient = new();
 

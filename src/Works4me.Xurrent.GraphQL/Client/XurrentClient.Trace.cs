@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Net.Http;
 using System.Text.Json.Serialization;
 using System.Text.Json;
@@ -8,13 +7,16 @@ using System.Collections.Generic;
 using System.Linq;
 using Works4me.Xurrent.GraphQL.Utilities;
 using Works4me.Xurrent.GraphQL.Extensions;
+using Microsoft.Extensions.Logging;
 
 namespace Works4me.Xurrent.GraphQL
 {
     public partial class XurrentClient
     {
-        private readonly bool traceEnabled = Trace.Listeners is not null && Trace.Listeners.Count > 0;
-        private readonly JsonSerializerOptions traceSerializationoptions = new() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull, WriteIndented = false };
+        private readonly ILogger<XurrentClient>? _logger;
+        private readonly JsonSerializerOptions _traceSerializationOptions = new() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull, WriteIndented = false };
+        private static readonly Action<ILogger, Guid, XurrentTraceMessage, Exception?> _logInfo = LoggerMessage.Define<Guid, XurrentTraceMessage>(LogLevel.Information, default, "{TraceId}: {@Trace}");
+        private static readonly Action<ILogger, Guid, XurrentTraceMessage, Exception?> _logError = LoggerMessage.Define<Guid, XurrentTraceMessage>(LogLevel.Error, default, "{TraceId}: {@Trace}");
 
         /// <summary>
         /// Writes a trace message containing details of the HTTP request or response for diagnostic purposes.
@@ -26,7 +28,7 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="responseMessage">The optional <see cref="HttpResponseMessage"/> to log.</param>
         private void WriteDebug(Guid logIdentifier, HttpRequestMessage requestMessage, string? content = null, TimeSpan? responseTime = null, HttpResponseMessage? responseMessage = null)
         {
-            if (!traceEnabled)
+            if (_logger is null)
                 return;
 
             bool isResponse = responseTime is not null;
@@ -44,12 +46,29 @@ namespace Works4me.Xurrent.GraphQL
 
             try
             {
-                Trace.WriteLine(JsonSerializer.Serialize(message, traceSerializationoptions));
-                Trace.Flush();
+                if (responseMessage is not null)
+                {
+                    int statusCode = (int)responseMessage.StatusCode;
+                    if (statusCode >= 200 && statusCode < 300)
+                        _logInfo(_logger, logIdentifier, message, null);
+                    else
+                        _logError(_logger, logIdentifier, message, null);
+                }
+                else
+                {
+                    _logInfo(_logger, logIdentifier, message, null);
+                }
             }
             catch (Exception ex) when (ex is JsonException or IOException or UnauthorizedAccessException)
             {
+                _logError(_logger, logIdentifier, message, ex);
             }
+        }
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return JsonSerializer.Serialize(this, _traceSerializationOptions);
         }
     }
 }

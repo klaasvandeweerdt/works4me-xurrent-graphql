@@ -26,7 +26,7 @@ A .NET Framework and .NET client for accessing the [Xurrent GraphQL API](https:/
   - [Multiple Authentication Tokens](#multiple-authentication-tokens)
   - [Rate and Cost Limits](#rate-and-cost-limits)
   - [Response Timing](#response-timing)
-  - [Trace Capabilities](#trace-capabilities)
+  - [Logging Capabilities](#logging-capabilities)
 - [Examples](#examples)
   - [Queries](#queries)
   - [Mutations](#mutations-1)
@@ -286,15 +286,17 @@ See [Rate and Cost Limits Examples](#rate-and-cost-limits-values) for practical 
 The Xurrent GraphQL API limits the number of requests to 20 per 2 seconds. The SDK tracks responses and ensures the limit is not exceeded.  
 These limits are associated with each authentication token, which has to represent a unique user or application in Xurrent.
 
-### Trace Capabilities
+### Logging Capabilities
 
-The [Trace class](https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.trace) is used to produce detailed information about each GraphQL query or mutation.  
-[Trace Listeners](https://learn.microsoft.com/en-us/dotnet/framework/debug-trace-profile/trace-listeners) can be configured to capture this information for debugging or auditing purposes.
+All details are logged using [ILogger](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.ilogger) as structured `XurrentTraceMessage` objects.
 
-Each request generates two entries with identical identifiers:
+You can configure any [logging provider](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging-providers) (e.g., console, file, Seq, Application Insights) to capture this information for debugging, monitoring, or auditing.
 
-- The first entry includes the account ID, HTTP verb, URL, and request content.
-- The second entry includes the API response HTTP code and the time in milliseconds.
+Each request generates two log entries with the same unique identifier:
+- The first entry logs the account ID, HTTP verb, URL, and request content.
+- The second entry logs the HTTP response status code and the response time in milliseconds.
+
+Logs are structured and include all relevant context through the `XurrentTraceMessage` type.
 
 # Examples
 
@@ -904,10 +906,15 @@ Console.WriteLine($"  Remaining : {token.CostLimit.Remaining}");
 Console.WriteLine($"  Reset     : {token.CostLimit.Reset:f}");
 ```
 
-### Trace Output
+### Log Output
 
-When trace output is enabled, the SDK generates detailed logs for each API request and response. Below is an example trace output.
+The SDK emits structured trace data for each request and response using `ILogger`. Each log entry is represented as a `XurrentTraceMessage` object, available under `Works4me.Xurrent.GraphQL`.
 
+Each request results in two log entries sharing the same ID:
+- One for the HTTP request (method, URI, payload, etc.).
+- One for the HTTP response (status code, response time, and optional retry delay).
+
+- Example output:
 
 ```
 {"id":"62733dd0-8f65-415e-bfff-1b20b7b19be5","method":"POST","uri":"https://oauth.xurrent.qa/token","content":"***"}
@@ -918,11 +925,89 @@ When trace output is enabled, the SDK generates detailed logs for each API reque
 
 {"id":"569bb2de-c67f-4483-b9a5-85a37164362d","method":"POST","uri":"https://graphql.xurrent.qa","content":"{\"query\":\"query {people(first:30 after: \\"eyJvZmZzZXQiOjI5LCJjdXJzb3IiOlsxNjc2MjgzODMyMDAwLDMyMjY2NzZdfQ\\" view: all){nodes{id name} pageInfo{endCursor hasNextPage}}}\"}","account_id":"account-id"}
 {"id":"569bb2de-c67f-4483-b9a5-85a37164362d","response_code":200,"response_time_in_ms":101}
-
-{"id":"5ed36005-d1d0-4991-aeef-6dc5d609493e","method":"POST","uri":"https://graphql.xurrent.qa","content":"{\"query\":\"query {people(first:30 after: \\"eyJvZmZzZXQiOjU5LCJjdXJzb3IiOlsxNzQxNzQwNjM1MDAwLDQ2OTA5MjZdfQ\\" view: all){nodes{id name} pageInfo{endCursor hasNextPage}}}\"}","account_id":"account-id"}
-{"id":"5ed36005-d1d0-4991-aeef-6dc5d609493e","response_code":200,"response_time_in_ms":80}
 ```
 
-**Note**: The raw GraphQL query still uses the `first` parameter to indicate item count per connection. The SDK abstracts this through the `ItemsPerRequest` property in its public interface.
+#### Minimal Console Logger Example
 
-Trace output uses .NET's `System.Diagnostics.Trace`. To enable this, configure trace listeners as described in the [.NET Trace Listener documentation](https://learn.microsoft.com/en-us/dotnet/framework/debug-trace-profile/trace-listeners).
+To display log entries as raw JSON in the console, configure a basic logger:
+
+```csharp
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using Works4me.Xurrent.GraphQL;
+
+using ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
+{
+    builder.ClearProviders();
+    builder.SetMinimumLevel(LogLevel.Information);
+    builder.AddProvider(new JsonConsoleLoggerProvider());
+});
+ILogger<XurrentClient> logger = loggerFactory.CreateLogger<XurrentClient>();
+
+AuthenticationToken token = new("ClientId", "ClientSecret");
+XurrentClient client = new(token, "account-id", EnvironmentType.Demo, EnvironmentRegion.EU, logger);
+```
+
+And define the logger implementation:
+
+```csharp
+using Works4me.Xurrent.GraphQL;
+
+internal class JsonConsoleLoggerProvider : ILoggerProvider
+{
+    public ILogger CreateLogger(string categoryName) => new JsonConsoleLogger();
+    public void Dispose() { }
+}
+
+internal class JsonConsoleLogger : ILogger
+{
+    private readonly JsonSerializerOptions _traceSerializationOptions = new() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull, WriteIndented = false };
+
+    public bool IsEnabled(LogLevel logLevel) => true;
+
+    IDisposable ILogger.BeginScope<TState>(TState state) => default!;
+
+    public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
+    {
+        if (state is IReadOnlyList<KeyValuePair<string, object?>> kvps)
+        {
+            foreach (KeyValuePair<string, object?> kv in kvps)
+            {
+                if (kv.Key == "@Trace" && kv.Value is XurrentTraceMessage msg)
+                {
+                    if (msg.ResponseCode is not null)
+                    {
+                        Console.WriteLine($"Response ID   : {msg.Id}");
+                        Console.WriteLine($"Response      : {msg.ResponseCode}");
+                        Console.WriteLine($"Response Time : {msg.ResponseTimeInMilliseconds}ms");
+                        Console.WriteLine($"Retry After   : {msg.RetryAfterInMilliseconds ?? 0}ms");
+                        Console.WriteLine();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Request ID    : {msg.Id}");
+                        Console.WriteLine($"Method        : {msg.Method}");
+                        Console.WriteLine($"URI           : {msg.Uri}");
+                        Console.WriteLine($"Account       : {msg.AccountId}");
+                        Console.WriteLine($"Content       : {msg.Content}");
+                        Console.WriteLine();
+                    }
+                    return;
+                }
+            }
+        }
+
+        Console.WriteLine(formatter(state, exception));
+
+        if (exception is not null)
+            Console.WriteLine(exception);
+    }
+}
+
+```
+
+> The `@Trace` key is a special syntax used by `Microsoft.Extensions.Logging` to indicate structured logging.
+>
+> When you log an object using a message template like `{@Trace}`, the logger serializes the full contents of the object instead of just calling `.ToString()`.
+>
+> This makes individual properties available to structured log providers such as Serilog, Seq, or Application Insights, enabling advanced filtering, searching, and indexing.

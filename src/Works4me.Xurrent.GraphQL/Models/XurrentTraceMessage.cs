@@ -7,10 +7,10 @@ namespace Works4me.Xurrent.GraphQL
     /// <summary>
     /// Represents a trace message used to log HTTP request and response details.
     /// </summary>
-    public sealed class XurrentTraceMessage
+    public class XurrentTraceMessage
     {
         /// <summary>
-        /// Gets or sets the unique identifier for this trace entry.
+        /// Gets or sets the identifier for this trace entry.
         /// </summary>
         [JsonPropertyName("id")]
         public Guid? Id { get; set; }
