@@ -10,15 +10,15 @@
 		<AnalysisLevel>latest-all</AnalysisLevel>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<Title>$(AssemblyName)</Title>
-		<Version>1.0</Version>
+		<Version>1.0.1</Version>
 		<Authors>Klaas Vandeweerdt</Authors>
 		<Description>A .NET client for accessing the Xurrent GraphQL API.</Description>
 		<Copyright>Copyright © 2025 Klaas Vandeweerdt</Copyright>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>4me;Xurrent;Works4me;GraphQL</PackageTags>
-		<AssemblyVersion>1.0.0</AssemblyVersion>
-		<FileVersion>1.0.0</FileVersion>
+		<AssemblyVersion>1.0.1</AssemblyVersion>
+		<FileVersion>1.0.1</FileVersion>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 		<PackageProjectUrl>https://github.com/klaasvandeweerdt/works4me-xurrent-graphql</PackageProjectUrl>
