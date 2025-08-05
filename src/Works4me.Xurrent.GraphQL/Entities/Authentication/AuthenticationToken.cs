@@ -217,13 +217,26 @@ namespace Works4me.Xurrent.GraphQL
             _lock.EnterWriteLock();
             try
             {
-                _retryAfter = seconds is null ? null : DateTimeOffset.UtcNow.AddSeconds(seconds.Value);
+                if (seconds is null)
+                {
+                    _retryAfter = null;
+                    return;
+                }
+
+                DateTimeOffset now = DateTimeOffset.UtcNow;
+                if (_retryAfter is not null && _retryAfter > now)
+                {
+                    _retryAfter = _retryAfter.Value.AddSeconds(seconds.Value);
+                }
+                else
+                {
+                    _retryAfter = now.AddSeconds(seconds.Value);
+                }
             }
             finally
             {
                 _lock.ExitWriteLock();
             }
-
         }
 
         /// <summary>
