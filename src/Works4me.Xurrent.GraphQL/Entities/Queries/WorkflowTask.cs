@@ -281,7 +281,7 @@ namespace Works4me.Xurrent.GraphQL
         /// The Status field is used to select the current status of the task.
         /// </summary>
         [XurrentField("status")]
-        public TaskStatus? Status { get; internal set; }
+        public WorkflowTaskStatus? Status { get; internal set; }
 
         /// <summary>
         /// A short description of the objective of the task.

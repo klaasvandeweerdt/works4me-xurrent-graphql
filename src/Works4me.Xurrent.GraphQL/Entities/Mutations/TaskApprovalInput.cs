@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private string? _id;
         private string? _approverId;
         private long? _plannedEffort;
-        private TaskStatus? _status;
+        private WorkflowTaskStatus? _status;
 
         /// <summary>
         /// Identifier of the object to update using these values. For new objects it should be <c>null</c>.
@@ -46,7 +46,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// The status of the approval.
         /// </summary>
         [XurrentField("status")]
-        public TaskStatus? Status
+        public WorkflowTaskStatus? Status
         {
             get => _status;
             set => _status = Set("status", value);

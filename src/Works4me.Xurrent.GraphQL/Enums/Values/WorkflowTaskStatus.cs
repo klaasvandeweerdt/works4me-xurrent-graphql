@@ -5,7 +5,7 @@ namespace Works4me.Xurrent.GraphQL
     /// <summary>
     /// The task status values.
     /// </summary>
-    public enum TaskStatus
+    public enum WorkflowTaskStatus
     {
         /// <summary>
         /// Accepted.

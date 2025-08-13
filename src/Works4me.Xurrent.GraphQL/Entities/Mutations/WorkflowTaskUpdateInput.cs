@@ -36,7 +36,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private long? _plannedEffort;
         private long? _requiredApprovals;
         private DateTime? _startAt;
-        private TaskStatus? _status;
+        private WorkflowTaskStatus? _status;
         private string? _subject;
         private string? _supplierId;
         private string? _supplierRequestID;
@@ -329,7 +329,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// The Status field is used to select the current status of the task.
         /// </summary>
         [XurrentField("status")]
-        public TaskStatus? Status
+        public WorkflowTaskStatus? Status
         {
             get => _status;
             set => _status = Set("status", value);
