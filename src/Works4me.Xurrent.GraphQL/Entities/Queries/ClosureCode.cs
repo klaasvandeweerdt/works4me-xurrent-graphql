@@ -11,7 +11,7 @@ namespace Works4me.Xurrent.GraphQL
     /// </summary>
     [DebuggerDisplay("{Id}")]
     [XurrentEntity("ClosureCode")]
-    public sealed class ClosureCode : IDataItem, INode, IRecord
+    public sealed class ClosureCode : IDataItem, IHasTranslations, INode, IRecord
     {
         /// <summary>
         /// The account this record belongs to.
@@ -86,6 +86,13 @@ namespace Works4me.Xurrent.GraphQL
         [XurrentField("sourceID")]
         public string? SourceID { get; internal set; }
 
+        [XurrentField("translations")]
+        internal PagedResponse<Translation>? TranslationsCollection { get; set; }
+        /// <summary>
+        /// Translations associated with this object.
+        /// </summary>
+        public ReadOnlyDataCollection<Translation>? Translations { get => TranslationsCollection?.Data is null ? null : new ReadOnlyDataCollection<Translation>(TranslationsCollection.Data); }
+
         /// <summary>
         /// The date and time of the last update of the record. If the record has no updates it contains the <c>createdAt</c> value.
         /// </summary>
@@ -111,6 +118,7 @@ namespace Works4me.Xurrent.GraphQL
             if (data is ClosureCode closureCode)
             {
                 InformationAttachmentsCollection?.Data?.AddRange(closureCode.InformationAttachments);
+                TranslationsCollection?.Data?.AddRange(closureCode.Translations);
             }
         }
 
@@ -123,6 +131,10 @@ namespace Works4me.Xurrent.GraphQL
         {
             if (InformationAttachmentsCollection is not null)
                 foreach (ExecutionPageInfo pageInfo in InformationAttachmentsCollection.GetPageInfo("informationAttachments", depth))
+                    yield return pageInfo;
+
+            if (TranslationsCollection is not null)
+                foreach (ExecutionPageInfo pageInfo in TranslationsCollection.GetPageInfo("translations", depth))
                     yield return pageInfo;
         }
     }

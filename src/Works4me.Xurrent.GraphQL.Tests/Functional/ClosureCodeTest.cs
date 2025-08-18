@@ -15,6 +15,8 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
             ReadOnlyDataCollection<ClosureCode> closureCodes = await _client.GetAsync(new ClosureCodeQuery()
                 .View(DefaultView.None)
                 .SelectAll()
+                .SelectTranslations(new TranslationQuery()
+                    .ItemsPerRequest(1))
                 .SelectInformationAttachments(new AttachmentQuery()
                     .SelectAll()));
 

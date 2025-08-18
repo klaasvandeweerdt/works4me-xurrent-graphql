@@ -40,5 +40,18 @@ namespace Works4me.Xurrent.GraphQL
 
             return Select("informationAttachments", query, true);
         }
+
+        /// <summary>
+        /// Translations associated with this object.
+        /// </summary>
+        /// <param name="query">The translations query.</param>
+        /// <returns>The same <see cref="ClosureCodeQuery"/>, updated to include the "Translations" sub-query.</returns>
+        public ClosureCodeQuery SelectTranslations(TranslationQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return Select("translations", query, true);
+        }
     }
 }

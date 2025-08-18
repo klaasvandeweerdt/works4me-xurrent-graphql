@@ -35,7 +35,7 @@ namespace Works4me.Xurrent.GraphQL
         /// <summary>
         /// The field of the record from which the translation is obtained.
         /// </summary>
-        [XurrentField("field")]
+        [XurrentField("field", IsDefaultQueryProperty = true)]
         public string? Field { get; internal set; }
 
         /// <summary>
@@ -48,19 +48,19 @@ namespace Works4me.Xurrent.GraphQL
         /// The language in which the text is specified.<br />
         /// The list with possible values is available on the <a href="https://developer.xurrent.com/graphql/scalar/language/">Xurrent developer site</a>.<br />
         /// </summary>
-        [XurrentField("language")]
+        [XurrentField("language", IsDefaultQueryProperty = true)]
         public string? Language { get; internal set; }
 
         /// <summary>
         /// The record from which the translation is obtained.
         /// </summary>
-        [XurrentField("owner")]
+        [XurrentField("owner", IsDefaultQueryProperty = true)]
         public IHasTranslations? Owner { get; internal set; }
 
         /// <summary>
         /// The text of the translation.
         /// </summary>
-        [XurrentField("text")]
+        [XurrentField("text", IsDefaultQueryProperty = true)]
         public string? Text { get; internal set; }
 
         /// <summary>
