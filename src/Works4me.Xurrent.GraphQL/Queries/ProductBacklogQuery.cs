@@ -117,7 +117,7 @@ namespace Works4me.Xurrent.GraphQL
         /// Adds a free-form search filter to this <see cref="ProductBacklogQuery"/>.
         /// </summary>
         /// <param name="value">The filter value.</param>
-        /// <returns>The same <see cref="ProductBacklogQuery">ProductBacklogQuery</see>, updated to include the "QueryFilter" sub-query.</returns>
+        /// <returns>The same <see cref="ProductBacklogQuery">ProductBacklogQuery</see>, updated to include the "Search" sub-query.</returns>
         public ProductBacklogQuery Search(string value)
         {
             return AddQueryFilter(value);

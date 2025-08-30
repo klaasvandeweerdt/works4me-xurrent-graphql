@@ -149,7 +149,7 @@ namespace Works4me.Xurrent.GraphQL
         /// Adds a free-form search filter to this <see cref="AffectedSlaQuery"/>.
         /// </summary>
         /// <param name="value">The filter value.</param>
-        /// <returns>The same <see cref="AffectedSlaQuery">AffectedSlaQuery</see>, updated to include the "QueryFilter" sub-query.</returns>
+        /// <returns>The same <see cref="AffectedSlaQuery">AffectedSlaQuery</see>, updated to include the "Search" sub-query.</returns>
         public AffectedSlaQuery Search(string value)
         {
             return AddQueryFilter(value);

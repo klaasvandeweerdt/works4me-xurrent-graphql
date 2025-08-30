@@ -248,7 +248,7 @@ namespace Works4me.Xurrent.GraphQL
         /// Adds a free-form search filter to this <see cref="AutomationRuleQuery"/>.
         /// </summary>
         /// <param name="value">The filter value.</param>
-        /// <returns>The same <see cref="AutomationRuleQuery">AutomationRuleQuery</see>, updated to include the "QueryFilter" sub-query.</returns>
+        /// <returns>The same <see cref="AutomationRuleQuery">AutomationRuleQuery</see>, updated to include the "Search" sub-query.</returns>
         public AutomationRuleQuery Search(string value)
         {
             return AddQueryFilter(value);

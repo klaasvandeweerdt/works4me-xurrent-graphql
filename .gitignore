@@ -416,3 +416,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Un-ignore (include) the Entity Release folder
+!/src/Works4me.Xurrent.GraphQL.PowerShell/Commands/Entities/Release/

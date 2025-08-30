@@ -16,10 +16,12 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private string? _uiExtensionId;
         private string? _cardDescription;
         private string? _compliance;
+        private Collection<AttachmentInput>? _complianceAttachments;
         private string? _description;
         private Collection<AttachmentInput>? _descriptionAttachments;
         private bool? _disabled;
         private string? _features;
+        private Collection<AttachmentInput>? _featuresAttachments;
         private Collection<string>? _oauthAuthorizationEndpoints;
         private WebhookPolicyJwtAlg? _policyJwtAlg;
         private string? _policyJwtAudience;
@@ -104,6 +106,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         }
 
         /// <summary>
+        /// The attachments used in the <c>compliance</c> field.
+        /// </summary>
+        [XurrentField("complianceAttachments")]
+        public Collection<AttachmentInput>? ComplianceAttachments
+        {
+            get => _complianceAttachments;
+            set => _complianceAttachments = Set("complianceAttachments", value);
+        }
+
+        /// <summary>
         /// Description of the app offering.
         /// </summary>
         [XurrentField("description")]
@@ -141,6 +153,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _features;
             set => _features = Set("features", value);
+        }
+
+        /// <summary>
+        /// The attachments used in the <c>features</c> field.
+        /// </summary>
+        [XurrentField("featuresAttachments")]
+        public Collection<AttachmentInput>? FeaturesAttachments
+        {
+            get => _featuresAttachments;
+            set => _featuresAttachments = Set("featuresAttachments", value);
         }
 
         /// <summary>

@@ -1934,7 +1934,7 @@ namespace Works4me.Xurrent.GraphQL
             if (query is null)
                 throw new ArgumentNullException(nameof(query));
 
-            return MutationAsync<WorkflowTaskCreatePayload, WorkflowTaskCreateInput>(GetAccountId(), new TaskCreateMutation(data, query), ct);
+            return MutationAsync<WorkflowTaskCreatePayload, WorkflowTaskCreateInput>(GetAccountId(), new WorkflowTaskCreateMutation(data, query), ct);
         }
 
         /// <param name="data">The input data for the task template mutation.</param>
@@ -1948,7 +1948,7 @@ namespace Works4me.Xurrent.GraphQL
             if (query is null)
                 throw new ArgumentNullException(nameof(query));
 
-            return MutationAsync<WorkflowTaskTemplateCreatePayload, WorkflowTaskTemplateCreateInput>(GetAccountId(), new TaskTemplateCreateMutation(data, query), ct);
+            return MutationAsync<WorkflowTaskTemplateCreatePayload, WorkflowTaskTemplateCreateInput>(GetAccountId(), new WorkflowTaskTemplateCreateMutation(data, query), ct);
         }
 
         /// <param name="data">The input data for the task template mutation.</param>
@@ -1962,7 +1962,7 @@ namespace Works4me.Xurrent.GraphQL
             if (query is null)
                 throw new ArgumentNullException(nameof(query));
 
-            return MutationAsync<WorkflowTaskTemplateUpdatePayload, WorkflowTaskTemplateUpdateInput>(GetAccountId(), new TaskTemplateUpdateMutation(data, query), ct);
+            return MutationAsync<WorkflowTaskTemplateUpdatePayload, WorkflowTaskTemplateUpdateInput>(GetAccountId(), new WorkflowTaskTemplateUpdateMutation(data, query), ct);
         }
 
         /// <param name="data">The input data for the task mutation.</param>
@@ -1976,7 +1976,7 @@ namespace Works4me.Xurrent.GraphQL
             if (query is null)
                 throw new ArgumentNullException(nameof(query));
 
-            return MutationAsync<WorkflowTaskUpdatePayload, WorkflowTaskUpdateInput>(GetAccountId(), new TaskUpdateMutation(data, query), ct);
+            return MutationAsync<WorkflowTaskUpdatePayload, WorkflowTaskUpdateInput>(GetAccountId(), new WorkflowTaskUpdateMutation(data, query), ct);
         }
 
         /// <param name="data">The input data for the workflow template mutation.</param>

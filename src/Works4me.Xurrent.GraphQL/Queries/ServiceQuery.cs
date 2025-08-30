@@ -328,7 +328,7 @@ namespace Works4me.Xurrent.GraphQL
         /// Adds a free-form search filter to this <see cref="ServiceQuery"/>.
         /// </summary>
         /// <param name="value">The filter value.</param>
-        /// <returns>The same <see cref="ServiceQuery">ServiceQuery</see>, updated to include the "QueryFilter" sub-query.</returns>
+        /// <returns>The same <see cref="ServiceQuery">ServiceQuery</see>, updated to include the "Search" sub-query.</returns>
         public ServiceQuery Search(string value)
         {
             return AddQueryFilter(value);

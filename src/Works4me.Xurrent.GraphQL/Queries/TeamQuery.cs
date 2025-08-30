@@ -211,7 +211,7 @@ namespace Works4me.Xurrent.GraphQL
         /// Adds a free-form search filter to this <see cref="TeamQuery"/>.
         /// </summary>
         /// <param name="value">The filter value.</param>
-        /// <returns>The same <see cref="TeamQuery">TeamQuery</see>, updated to include the "QueryFilter" sub-query.</returns>
+        /// <returns>The same <see cref="TeamQuery">TeamQuery</see>, updated to include the "Search" sub-query.</returns>
         public TeamQuery Search(string value)
         {
             return AddQueryFilter(value);

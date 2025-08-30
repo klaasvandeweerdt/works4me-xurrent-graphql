@@ -32,7 +32,7 @@ namespace Works4me.Xurrent.GraphQL
         /// Adds a free-form search filter to this <see cref="ShortUrlQuery"/>.
         /// </summary>
         /// <param name="value">The filter value.</param>
-        /// <returns>The same <see cref="ShortUrlQuery">ShortUrlQuery</see>, updated to include the "QueryFilter" sub-query.</returns>
+        /// <returns>The same <see cref="ShortUrlQuery">ShortUrlQuery</see>, updated to include the "Search" sub-query.</returns>
         public ShortUrlQuery Search(string value)
         {
             return AddQueryFilter(value);

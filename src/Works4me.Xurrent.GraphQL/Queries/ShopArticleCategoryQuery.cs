@@ -71,7 +71,7 @@ namespace Works4me.Xurrent.GraphQL
         /// Adds a free-form search filter to this <see cref="ShopArticleCategoryQuery"/>.
         /// </summary>
         /// <param name="value">The filter value.</param>
-        /// <returns>The same <see cref="ShopArticleCategoryQuery">ShopArticleCategoryQuery</see>, updated to include the "QueryFilter" sub-query.</returns>
+        /// <returns>The same <see cref="ShopArticleCategoryQuery">ShopArticleCategoryQuery</see>, updated to include the "Search" sub-query.</returns>
         public ShopArticleCategoryQuery Search(string value)
         {
             return AddQueryFilter(value);
