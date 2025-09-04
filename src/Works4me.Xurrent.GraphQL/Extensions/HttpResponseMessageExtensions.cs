@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Threading.Tasks;
 using Works4me.Xurrent.GraphQL.Utilities;
 
 namespace Works4me.Xurrent.GraphQL.Extensions
@@ -14,7 +15,7 @@ namespace Works4me.Xurrent.GraphQL.Extensions
         /// </summary>
         /// <param name="responseMessage">The HTTP response message to validate.</param>
         /// <exception cref="XurrentExecutionException">Thrown if the response status is not successful or if the content type is not JSON.</exception>
-        public static void ThrowIfInvalidResponse(this HttpResponseMessage responseMessage)
+        public async static Task ThrowIfInvalidResponse(this HttpResponseMessage responseMessage)
         {
             try
             {
@@ -22,7 +23,17 @@ namespace Works4me.Xurrent.GraphQL.Extensions
             }
             catch (HttpRequestException ex)
             {
-                throw new XurrentExecutionException($"Invalid response, {responseMessage.ReasonPhrase}.", ex);
+                string? content = null;
+
+                if (responseMessage.Content is not null)
+                    content = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+                if (content is not null)
+                    content = $": {content}";
+                else
+                    content = ".";
+
+                throw new XurrentExecutionException($"Invalid response, {responseMessage.ReasonPhrase}{content}", ex);
             }
 
             string? mediaType = responseMessage.Content.Headers.ContentType?.MediaType;

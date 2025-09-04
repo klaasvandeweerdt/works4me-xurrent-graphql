@@ -36,16 +36,12 @@ namespace Works4me.Xurrent.GraphQL.Tests.Unit.Models
         }
 
         [Fact]
-        public void Indexer_Get_Throws_WhenMissing()
+        public void Indexer_Get_ReturnsValue_WhenMissing()
         {
             CustomFieldCollection collection = new();
 
-            KeyNotFoundException ex = Assert.Throws<KeyNotFoundException>(() =>
-            {
-                JsonElement? val = collection["missing"];
-            });
-
-            Assert.Contains("missing", ex.Message);
+            JsonElement? value = collection["test"];
+            Assert.Null(value);
         }
 
         [Fact]

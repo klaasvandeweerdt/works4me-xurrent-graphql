@@ -25,7 +25,7 @@ namespace Works4me.Xurrent.GraphQL.Extensions
 
         /// <summary>
         /// Gets the value of the specified <paramref name="type"/> from a <see cref="JsonElement"/>.<br />
-        /// Handles common primitive types, strings, arrays, objects, and certain date/time types.<br />
+        /// Handles common primitive types, strings, arrays, objects, and date/time types mirrored by <c>ToJsonElement</c>.<br />
         /// Returns <c>null</c> if the JSON value is null or undefined.<br />
         /// </summary>
         /// <param name="element">The <see cref="JsonElement"/> to extract the value from.</param>
@@ -39,22 +39,37 @@ namespace Works4me.Xurrent.GraphQL.Extensions
 
             if (type == typeof(string))
                 return element.GetString();
+            if (type == typeof(char))
+            {
+                string? s = element.GetString();
+                if (string.IsNullOrEmpty(s))
+                    throw new InvalidOperationException("Cannot convert empty JSON string to char.");
+                return s![0];
+            }
             if (type == typeof(int))
                 return element.GetInt32();
             if (type == typeof(long))
                 return element.GetInt64();
             if (type == typeof(short))
                 return element.GetInt16();
+            if (type == typeof(sbyte))
+                return element.GetSByte();
             if (type == typeof(byte))
                 return element.GetByte();
-            if (type == typeof(bool))
-                return element.GetBoolean();
+            if (type == typeof(uint))
+                return element.GetUInt32();
+            if (type == typeof(ulong))
+                return element.GetUInt64();
+            if (type == typeof(ushort))
+                return element.GetUInt16();
             if (type == typeof(double))
                 return element.GetDouble();
             if (type == typeof(float))
                 return element.GetSingle();
             if (type == typeof(decimal))
                 return element.GetDecimal();
+            if (type == typeof(bool))
+                return element.GetBoolean();
             if (type == typeof(DateTime))
                 return DateTime.Parse(element.GetString()!, CultureInfo.InvariantCulture);
             if (type == typeof(DateTimeOffset))

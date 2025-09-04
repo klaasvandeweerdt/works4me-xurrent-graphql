@@ -461,7 +461,7 @@ namespace Works4me.Xurrent.GraphQL
                 }
 
                 token.UpdateLimitsFromHeaders(responseMessage.Headers);
-                responseMessage.ThrowIfInvalidResponse();
+                await responseMessage.ThrowIfInvalidResponse().ConfigureAwait(false);
 
 #if NET5_0_OR_GREATER
                 using (Stream responseStream = await responseMessage.Content.ReadAsStreamAsync(ct).ConfigureAwait(false))
@@ -525,7 +525,7 @@ namespace Works4me.Xurrent.GraphQL
                                 stopwatch.Stop();
                                 WriteDebug(logId, requestMessage, null, stopwatch.Elapsed, responseMessage);
 
-                                responseMessage.ThrowIfInvalidResponse();
+                                await responseMessage.ThrowIfInvalidResponse().ConfigureAwait(false);
 
 #if NET5_0_OR_GREATER
                                 using (Stream responseStream = await responseMessage.Content.ReadAsStreamAsync(ct).ConfigureAwait(false))
