@@ -172,6 +172,19 @@ namespace Works4me.Xurrent.GraphQL
         }
 
         /// <summary>
+        /// The external customer organizations which requests people in this organization are allowed to see. Only applicable if customer privacy is activated.
+        /// </summary>
+        /// <param name="query">The permitted customers query.</param>
+        /// <returns>The same <see cref="OrganizationQuery"/>, updated to include the "PermittedCustomers" sub-query.</returns>
+        public OrganizationQuery SelectPermittedCustomers(OrganizationQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return Select("permittedCustomers", query, true);
+        }
+
+        /// <summary>
         /// Files and inline images linked to the Remarks field.
         /// </summary>
         /// <param name="query">The remarks attachments query.</param>

@@ -13,10 +13,9 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
         [Fact]
         public async Task Create()
         {
-            NoteCreatePayload noteCreatePayload = await _client.MutationAsync(new NoteCreateInput($"{DateTime.Now:HH:mm:ss.fff} - Hello World !!!")
+            NoteCreatePayload noteCreatePayload = await _client.MutationAsync(new NoteCreateInput($"{DateTime.Now:HH:mm:ss.fff} - Hello World !!!", Client.GetConfigValue("NoteTest.Id"))
             {
-                Internal = true,
-                OwnerId = Client.GetConfigValue("NoteTest.Id")
+                Internal = true
             }, new NoteQuery()
                 .Select(NoteField.Id)
                 .SelectNoteReactions(new NoteReactionQuery()));

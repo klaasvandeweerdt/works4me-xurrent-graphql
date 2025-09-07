@@ -28,6 +28,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private Collection<AttachmentInput>? _remarksAttachments;
         private string? _substituteId;
         private Collection<string>? _timeAllocationIds;
+        private Collection<string>? _permittedCustomerIds;
         private Collection<AddressInput>? _newAddresses;
         private Collection<ContactInput>? _newContacts;
         private string _name;
@@ -224,6 +225,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _timeAllocationIds;
             set => _timeAllocationIds = Set("timeAllocationIds", value);
+        }
+
+        /// <summary>
+        /// The external customer organizations which requests people in this organization are allowed to see. Only applicable if customer privacy is activated.
+        /// </summary>
+        [XurrentField("permittedCustomerIds")]
+        public Collection<string>? PermittedCustomerIds
+        {
+            get => _permittedCustomerIds;
+            set => _permittedCustomerIds = Set("permittedCustomerIds", value);
         }
 
         /// <summary>

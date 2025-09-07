@@ -13,7 +13,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private Collection<AttachmentInput>? _attachments;
         private bool? _internal;
         private bool? _suppressNoteAddedNotifications;
-        private string? _ownerId;
+        private string _ownerId;
 
         /// <summary>
         /// A unique identifier for the client performing the mutation.
@@ -69,7 +69,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// The record that the note should be added to.
         /// </summary>
         [XurrentField("ownerId")]
-        public string? OwnerId
+        public string OwnerId
         {
             get => _ownerId;
             set => _ownerId = Set("ownerId", value);
@@ -81,14 +81,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         public NoteCreateInput()
         {
             _text = string.Empty;
+            _ownerId = string.Empty;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NoteCreateInput"/> class.
         /// </summary>
-        public NoteCreateInput(string text)
+        public NoteCreateInput(string text, string ownerId)
         {
             _text = Set("text", text);
+            _ownerId = Set("ownerId", ownerId);
         }
     }
 }

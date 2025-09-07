@@ -137,6 +137,13 @@ namespace Works4me.Xurrent.GraphQL
         /// </summary>
         public ReadOnlyDataCollection<Person>? People { get => PeopleCollection?.Data is null ? null : new ReadOnlyDataCollection<Person>(PeopleCollection.Data); }
 
+        [XurrentField("permittedCustomers")]
+        internal PagedResponse<Organization>? PermittedCustomersCollection { get; set; }
+        /// <summary>
+        /// The external customer organizations which requests people in this organization are allowed to see. Only applicable if customer privacy is activated.
+        /// </summary>
+        public ReadOnlyDataCollection<Organization>? PermittedCustomers { get => PermittedCustomersCollection?.Data is null ? null : new ReadOnlyDataCollection<Organization>(PermittedCustomersCollection.Data); }
+
         /// <summary>
         /// The hyperlink to the image file for the record.
         /// </summary>
@@ -241,6 +248,7 @@ namespace Works4me.Xurrent.GraphQL
                 ContractsCollection?.Data?.AddRange(organization.Contracts);
                 CustomFieldsAttachmentsCollection?.Data?.AddRange(organization.CustomFieldsAttachments);
                 PeopleCollection?.Data?.AddRange(organization.People);
+                PermittedCustomersCollection?.Data?.AddRange(organization.PermittedCustomers);
                 RemarksAttachmentsCollection?.Data?.AddRange(organization.RemarksAttachments);
                 RisksCollection?.Data?.AddRange(organization.Risks);
                 ServiceLevelAgreementsCollection?.Data?.AddRange(organization.ServiceLevelAgreements);
@@ -277,6 +285,10 @@ namespace Works4me.Xurrent.GraphQL
 
             if (PeopleCollection is not null)
                 foreach (ExecutionPageInfo pageInfo in PeopleCollection.GetPageInfo("people", depth))
+                    yield return pageInfo;
+
+            if (PermittedCustomersCollection is not null)
+                foreach (ExecutionPageInfo pageInfo in PermittedCustomersCollection.GetPageInfo("permittedCustomers", depth))
                     yield return pageInfo;
 
             if (RemarksAttachmentsCollection is not null)
