@@ -1,10 +1,12 @@
-﻿using Works4me.Xurrent.GraphQL.Attributes;
+﻿using System.Diagnostics;
+using Works4me.Xurrent.GraphQL.Attributes;
 
 namespace Works4me.Xurrent.GraphQL.Mutations
 {
     /// <summary>
     /// Represent an <see href="https://developer.xurrent.com/graphql/object/effortclassrateidinput/">EffortClassRateIDInput</see> in Xurrent.
     /// </summary>
+    [DebuggerDisplay("{Id}")]
     public sealed class EffortClassRateIDInput : PropertyChangeSet
     {
         private string? _id;

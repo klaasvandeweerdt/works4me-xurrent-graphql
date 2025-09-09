@@ -1,10 +1,12 @@
-﻿using Works4me.Xurrent.GraphQL.Attributes;
+﻿using System.Diagnostics;
+using Works4me.Xurrent.GraphQL.Attributes;
 
 namespace Works4me.Xurrent.GraphQL.Mutations
 {
     /// <summary>
     /// Represent a <see href="https://developer.xurrent.com/graphql/object/webhookpolicyupdateinput/">WebhookPolicyUpdateInput</see> in Xurrent.
     /// </summary>
+    [DebuggerDisplay("{Id}")]
     public sealed class WebhookPolicyUpdateInput : PropertyChangeSet
     {
         private string? _clientMutationId;

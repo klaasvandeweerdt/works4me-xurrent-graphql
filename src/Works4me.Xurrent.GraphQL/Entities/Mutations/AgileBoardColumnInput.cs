@@ -1,10 +1,12 @@
-﻿using Works4me.Xurrent.GraphQL.Attributes;
+﻿using System.Diagnostics;
+using Works4me.Xurrent.GraphQL.Attributes;
 
 namespace Works4me.Xurrent.GraphQL.Mutations
 {
     /// <summary>
     /// Represent an <see href="https://developer.xurrent.com/graphql/object/agileboardcolumninput/">AgileBoardColumnInput</see> in Xurrent.
     /// </summary>
+    [DebuggerDisplay("{Id}")]
     public sealed class AgileBoardColumnInput : PropertyChangeSet
     {
         private string? _id;

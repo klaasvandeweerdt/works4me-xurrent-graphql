@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text.Json;
 using Works4me.Xurrent.GraphQL.Attributes;
 
@@ -7,6 +8,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
     /// <summary>
     /// Represent an <see href="https://developer.xurrent.com/graphql/object/uiextensionupdateinput/">UiExtensionUpdateInput</see> in Xurrent.
     /// </summary>
+    [DebuggerDisplay("{Id}")]
     public sealed class UiExtensionUpdateInput : PropertyChangeSet
     {
         private string? _clientMutationId;

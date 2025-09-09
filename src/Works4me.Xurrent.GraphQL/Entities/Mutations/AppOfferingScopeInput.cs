@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using Works4me.Xurrent.GraphQL.Attributes;
 
 namespace Works4me.Xurrent.GraphQL.Mutations
@@ -6,6 +7,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
     /// <summary>
     /// Represent an <see href="https://developer.xurrent.com/graphql/object/appofferingscopeinput/">AppOfferingScopeInput</see> in Xurrent.
     /// </summary>
+    [DebuggerDisplay("{Id}")]
     public sealed class AppOfferingScopeInput : PropertyChangeSet
     {
         private string? _id;

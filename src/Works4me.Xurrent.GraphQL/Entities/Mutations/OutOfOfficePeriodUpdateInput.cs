@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Works4me.Xurrent.GraphQL.Attributes;
 
 namespace Works4me.Xurrent.GraphQL.Mutations
@@ -6,6 +7,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
     /// <summary>
     /// Represent an <see href="https://developer.xurrent.com/graphql/object/outofofficeperiodupdateinput/">OutOfOfficePeriodUpdateInput</see> in Xurrent.
     /// </summary>
+    [DebuggerDisplay("{Id}")]
     public sealed class OutOfOfficePeriodUpdateInput : PropertyChangeSet
     {
         private string? _clientMutationId;

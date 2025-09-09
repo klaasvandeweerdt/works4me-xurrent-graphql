@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Works4me.Xurrent.GraphQL.Attributes;
 
 namespace Works4me.Xurrent.GraphQL.Mutations
@@ -6,6 +7,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
     /// <summary>
     /// Represent a <see href="https://developer.xurrent.com/graphql/object/productcategoryupdateinput/">ProductCategoryUpdateInput</see> in Xurrent.
     /// </summary>
+    [DebuggerDisplay("{Id}")]
     public sealed class ProductCategoryUpdateInput : PropertyChangeSet
     {
         private string? _clientMutationId;

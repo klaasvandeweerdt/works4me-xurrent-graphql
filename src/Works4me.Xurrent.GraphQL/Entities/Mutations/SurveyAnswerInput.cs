@@ -1,10 +1,12 @@
-﻿using Works4me.Xurrent.GraphQL.Attributes;
+﻿using System.Diagnostics;
+using Works4me.Xurrent.GraphQL.Attributes;
 
 namespace Works4me.Xurrent.GraphQL.Mutations
 {
     /// <summary>
     /// Represent a <see href="https://developer.xurrent.com/graphql/object/surveyanswerinput/">SurveyAnswerInput</see> in Xurrent.
     /// </summary>
+    [DebuggerDisplay("{Id}")]
     public sealed class SurveyAnswerInput : PropertyChangeSet
     {
         private string? _id;
