@@ -6,8 +6,8 @@ namespace Works4me.Xurrent.GraphQL.Mutations
     /// <summary>
     /// Represent an <see href="https://developer.xurrent.com/graphql/object/attachmentinput/">AttachmentInput</see> in Xurrent.
     /// </summary>
-        [DebuggerDisplay("{Key}")]
-        public sealed class AttachmentInput : PropertyChangeSet
+    [DebuggerDisplay("{Key}")]
+    public sealed class AttachmentInput : PropertyChangeSet
     {
         private bool? _inline;
         private string _key;

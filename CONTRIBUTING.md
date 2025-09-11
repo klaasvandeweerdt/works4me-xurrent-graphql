@@ -1,4 +1,4 @@
-# Contributing to Works4me.Xurrent.GraphQL
+# Contributing to the Works4me.Xurrent.GraphQL SDK
 
 First off, thank you for taking the time to contribute to this project! Your feedback is appreciated.
 
@@ -14,7 +14,7 @@ This repository is **read-only for code contributions**. However, we warmly welc
 
 ## Reporting Bugs
 
-If you find a bug, please open an [issue](https://github.com/klaasvandeweerdt/works4me-xurrent-graphql-private/issues) and include the following information:
+If you find a bug, please open an [issue](https://github.com/klaasvandeweerdt/works4me-xurrent-graphql/issues) and include the following information:
 
 - A clear and concise description of the bug
 - Steps to reproduce the behavior
@@ -23,7 +23,7 @@ If you find a bug, please open an [issue](https://github.com/klaasvandeweerdt/wo
 
 ## Feature Requests
 
-We are open to suggestions! Please submit your idea through an [issue](https://github.com/klaasvandeweerdt/works4me-xurrent-graphql-private/issues) and provide:
+We are open to suggestions! Please submit your idea through an [issue](https://github.com/klaasvandeweerdt/works4me-xurrent-graphql/issues) and provide:
 
 - A clear description of the feature
 - The problem it solves or the improvement it brings
