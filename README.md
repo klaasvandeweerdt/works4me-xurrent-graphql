@@ -1,6 +1,6 @@
 ﻿# .NET SDK for Xurrent GraphQL
 
-A .NET Framework and .NET client for accessing the [Xurrent GraphQL API](https://developer.xurrent.com/graphql/).
+A .NET Framework and .NET client for accessing the [Xurrent GraphQL API](https://developer.xurrent.com/graphql/), [Bulk API](https://developer.xurrent.com/v1/bulk/) and [Events API](https://developer.xurrent.com/v1/requests/events/).
 
 ## Table of Contents
 

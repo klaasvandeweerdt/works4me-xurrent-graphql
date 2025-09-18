@@ -92,6 +92,12 @@ namespace Works4me.Xurrent.GraphQL
         Substitute,
 
         /// <summary>
+        /// Filter on Supported by.
+        /// </summary>
+        [XurrentEnum("supportedBy")]
+        SupportedBy,
+
+        /// <summary>
         /// Updated in supplied range.
         /// </summary>
         [XurrentEnum("updatedAt")]
