@@ -10,20 +10,21 @@
 		<AnalysisLevel>latest-all</AnalysisLevel>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<Title>$(AssemblyName)</Title>
-		<Version>1.0.3</Version>
+		<Version>1.0.3.1</Version>
 		<Authors>Klaas Vandeweerdt</Authors>
 		<Description>A .NET client for accessing the Xurrent GraphQL API.</Description>
 		<Copyright>Copyright © 2025 Klaas Vandeweerdt</Copyright>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>4me;Xurrent;Works4me;GraphQL</PackageTags>
-		<AssemblyVersion>1.0.3</AssemblyVersion>
-		<FileVersion>1.0.3</FileVersion>
+		<AssemblyVersion>1.0.3.1</AssemblyVersion>
+		<FileVersion>1.0.3.1</FileVersion>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 		<PackageProjectUrl>https://github.com/klaasvandeweerdt/works4me-xurrent-graphql</PackageProjectUrl>
 		<PackageIcon>Icon.png</PackageIcon>
 		<RepositoryUrl>https://github.com/klaasvandeweerdt/works4me-xurrent-graphql</RepositoryUrl>
+		<UserSecretsId>8083c0d1-0edc-4c1b-a50f-6a78bcd624ff</UserSecretsId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
@@ -35,13 +36,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.8" />
-		<PackageReference Include="System.Text.Json" Version="9.0.8" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.9" />
+		<PackageReference Include="System.Text.Json" Version="9.0.9" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)'=='net472' Or '$(TargetFramework)'=='netstandard2.0'">
 		<PackageReference Include="Microsoft.Bcl.HashCode" Version="6.0.0" />
-		<PackageReference Include="System.Collections.Immutable" Version="9.0.8" />
+		<PackageReference Include="System.Collections.Immutable" Version="9.0.9" />
 		<PackageReference Include="System.Net.Http" Version="4.3.4" />
 	</ItemGroup>
 
