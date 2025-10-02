@@ -16,6 +16,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private Collection<AttachmentInput>? _descriptionAttachments;
         private bool? _disabled;
         private string? _title;
+        private bool? _darkModeSafe;
         private bool? _activate;
         private string? _css;
         private JsonElement? _formDefinition;
@@ -92,6 +93,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _title;
             set => _title = Set("title", value);
+        }
+
+        /// <summary>
+        /// Legacy UI extensions that define a custom color — whether through color, background, or background-color — will default to light mode, even when the user has dark mode enabled. Enable this only if you are certain that your UI extension is also compatible with dark mode.
+        /// </summary>
+        [XurrentField("darkModeSafe")]
+        public bool? DarkModeSafe
+        {
+            get => _darkModeSafe;
+            set => _darkModeSafe = Set("darkModeSafe", value);
         }
 
         /// <summary>

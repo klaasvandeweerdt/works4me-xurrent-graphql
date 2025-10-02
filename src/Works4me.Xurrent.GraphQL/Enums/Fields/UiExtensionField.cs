@@ -38,6 +38,12 @@ namespace Works4me.Xurrent.GraphQL
         CreatedBy,
 
         /// <summary>
+        /// The dark mode safe field.
+        /// </summary>
+        [XurrentEnum("darkModeSafe")]
+        DarkModeSafe,
+
+        /// <summary>
         /// The description field.
         /// </summary>
         [XurrentEnum("description")]

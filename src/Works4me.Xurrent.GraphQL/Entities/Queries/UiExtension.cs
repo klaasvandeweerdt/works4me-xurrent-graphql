@@ -44,6 +44,12 @@ namespace Works4me.Xurrent.GraphQL
         public Person? CreatedBy { get; internal set; }
 
         /// <summary>
+        /// Whether the UI extension will display in dark mode. If disabled, the UI extension will always appear in light mode, even when the user has dark mode enabled.
+        /// </summary>
+        [XurrentField("darkModeSafe")]
+        public bool? DarkModeSafe { get; internal set; }
+
+        /// <summary>
         /// Description of the UI Extension.
         /// </summary>
         [XurrentField("description")]
