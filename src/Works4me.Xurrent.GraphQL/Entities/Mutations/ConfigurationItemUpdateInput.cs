@@ -107,7 +107,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         }
 
         /// <summary>
-        /// The hyperlink to the image file for the record.
+        /// The hyperlink to the image file for the record. This may be a <a href="https://developer.mozilla.org/en-US/docs/Web/URI/Reference/Schemes/data">'data URL'</a>, allowing the image to be supplied directly without requiring a separate upload first.
         /// </summary>
         [XurrentField("pictureUri")]
         public Uri? PictureUri

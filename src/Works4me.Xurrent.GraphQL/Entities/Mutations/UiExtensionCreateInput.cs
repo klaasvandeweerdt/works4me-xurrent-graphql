@@ -96,7 +96,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         }
 
         /// <summary>
-        /// Legacy UI extensions that define a custom color — whether through color, background, or background-color — will default to light mode, even when the user has dark mode enabled. Enable this only if you are certain that your UI extension is also compatible with dark mode.
+        /// Legacy UI extensions that define a custom color, whether through color, background, or background-color, will default to light mode, even when the user has dark mode enabled. Enable this only if you are certain that your UI extension is also compatible with dark mode.
         /// </summary>
         [XurrentField("darkModeSafe")]
         public bool? DarkModeSafe

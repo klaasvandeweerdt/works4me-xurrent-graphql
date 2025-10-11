@@ -26,6 +26,12 @@ namespace Works4me.Xurrent.GraphQL
         CreatedBy,
 
         /// <summary>
+        /// Include only if Dark mode safe matches supplied value.
+        /// </summary>
+        [XurrentEnum("darkModeSafe")]
+        DarkModeSafe,
+
+        /// <summary>
         /// Include only if Disabled matches supplied value.
         /// </summary>
         [XurrentEnum("disabled")]
