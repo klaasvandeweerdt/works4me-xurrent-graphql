@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL
         /// <summary>
         /// Initialize a new <see cref="WorkflowPhaseQuery"/> instance.
         /// </summary>
-        public WorkflowPhaseQuery() : base(string.Empty, true)
+        public WorkflowPhaseQuery() : base(string.Empty, false)
         {
         }
     }

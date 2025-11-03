@@ -75,12 +75,24 @@ namespace Works4me.Xurrent.GraphQL
         [XurrentField("productOwner")]
         public Person? ProductOwner { get; internal set; }
 
+        /// <summary>
+        /// Optional request template that should be used as default when creating new requests directly on this product backlog.
+        /// </summary>
+        [XurrentField("requestTemplate")]
+        public RequestTemplate? RequestTemplate { get; internal set; }
+
         [XurrentField("scrumWorkspaces")]
         internal PagedResponse<ScrumWorkspace>? ScrumWorkspacesCollection { get; set; }
         /// <summary>
         /// Scrum workspaces taking items from this backlog when planning their sprints.
         /// </summary>
         public ReadOnlyDataCollection<ScrumWorkspace>? ScrumWorkspaces { get => ScrumWorkspacesCollection?.Data is null ? null : new ReadOnlyDataCollection<ScrumWorkspace>(ScrumWorkspacesCollection.Data); }
+
+        /// <summary>
+        /// Optional service instance that should be used as default when creating new requests directly on this product backlog.
+        /// </summary>
+        [XurrentField("serviceInstance")]
+        public ServiceInstance? ServiceInstance { get; internal set; }
 
         /// <summary>
         /// An identifier for the client application submitting the resource or the name of an external system.

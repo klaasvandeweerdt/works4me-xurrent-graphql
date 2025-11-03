@@ -89,6 +89,18 @@ namespace Works4me.Xurrent.GraphQL
         public Uri? PictureUri { get; internal set; }
 
         /// <summary>
+        /// Optional request template that should be used as default when creating new requests directly on this agile board.
+        /// </summary>
+        [XurrentField("requestTemplate")]
+        public RequestTemplate? RequestTemplate { get; internal set; }
+
+        /// <summary>
+        /// Optional service instance that should be used as default when creating new requests directly on this agile board.
+        /// </summary>
+        [XurrentField("serviceInstance")]
+        public ServiceInstance? ServiceInstance { get; internal set; }
+
+        /// <summary>
         /// An identifier for the client application submitting the resource or the name of an external system.
         /// </summary>
         [XurrentField("source")]

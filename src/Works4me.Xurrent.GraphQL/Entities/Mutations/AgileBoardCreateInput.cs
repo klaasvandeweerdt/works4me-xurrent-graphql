@@ -18,6 +18,8 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private bool? _disabled;
         private string? _managerId;
         private Collection<string>? _customerRepresentativeSlaIds;
+        private string? _serviceInstanceId;
+        private string? _requestTemplateId;
         private Collection<AgileBoardColumnInput>? _newColumns;
         private string _name;
 
@@ -109,6 +111,26 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _customerRepresentativeSlaIds;
             set => _customerRepresentativeSlaIds = Set("customerRepresentativeSlaIds", value);
+        }
+
+        /// <summary>
+        /// Identifier of the service instance that should be used as default when creating new requests directly on this agile board.
+        /// </summary>
+        [XurrentField("serviceInstanceId")]
+        public string? ServiceInstanceId
+        {
+            get => _serviceInstanceId;
+            set => _serviceInstanceId = Set("serviceInstanceId", value);
+        }
+
+        /// <summary>
+        /// Identifier of the request template that should be used as default when creating new requests directly on this agile board.
+        /// </summary>
+        [XurrentField("requestTemplateId")]
+        public string? RequestTemplateId
+        {
+            get => _requestTemplateId;
+            set => _requestTemplateId = Set("requestTemplateId", value);
         }
 
         /// <summary>

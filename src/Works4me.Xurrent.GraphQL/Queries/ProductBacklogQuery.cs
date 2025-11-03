@@ -101,6 +101,19 @@ namespace Works4me.Xurrent.GraphQL
         }
 
         /// <summary>
+        /// Optional request template that should be used as default when creating new requests directly on this product backlog.
+        /// </summary>
+        /// <param name="query">The request template query.</param>
+        /// <returns>The same <see cref="ProductBacklogQuery"/>, updated to include the "RequestTemplate" sub-query.</returns>
+        public ProductBacklogQuery SelectRequestTemplate(RequestTemplateQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return Select("requestTemplate", query, false);
+        }
+
+        /// <summary>
         /// Scrum workspaces taking items from this backlog when planning their sprints.
         /// </summary>
         /// <param name="query">The scrum workspaces query.</param>
@@ -111,6 +124,19 @@ namespace Works4me.Xurrent.GraphQL
                 throw new ArgumentNullException(nameof(query));
 
             return Select("scrumWorkspaces", query, true);
+        }
+
+        /// <summary>
+        /// Optional service instance that should be used as default when creating new requests directly on this product backlog.
+        /// </summary>
+        /// <param name="query">The service instance query.</param>
+        /// <returns>The same <see cref="ProductBacklogQuery"/>, updated to include the "ServiceInstance" sub-query.</returns>
+        public ProductBacklogQuery SelectServiceInstance(ServiceInstanceQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return Select("serviceInstance", query, false);
         }
 
         /// <summary>

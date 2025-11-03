@@ -94,6 +94,32 @@ namespace Works4me.Xurrent.GraphQL
         }
 
         /// <summary>
+        /// Optional request template that should be used as default when creating new requests directly on this agile board.
+        /// </summary>
+        /// <param name="query">The request template query.</param>
+        /// <returns>The same <see cref="AgileBoardQuery"/>, updated to include the "RequestTemplate" sub-query.</returns>
+        public AgileBoardQuery SelectRequestTemplate(RequestTemplateQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return Select("requestTemplate", query, false);
+        }
+
+        /// <summary>
+        /// Optional service instance that should be used as default when creating new requests directly on this agile board.
+        /// </summary>
+        /// <param name="query">The service instance query.</param>
+        /// <returns>The same <see cref="AgileBoardQuery"/>, updated to include the "ServiceInstance" sub-query.</returns>
+        public AgileBoardQuery SelectServiceInstance(ServiceInstanceQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return Select("serviceInstance", query, false);
+        }
+
+        /// <summary>
         /// Adds a free-form search filter to this <see cref="AgileBoardQuery"/>.
         /// </summary>
         /// <param name="value">The filter value.</param>

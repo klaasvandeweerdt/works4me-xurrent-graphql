@@ -38,6 +38,18 @@ namespace Works4me.Xurrent.GraphQL
         Name,
 
         /// <summary>
+        /// Filter on Request template.
+        /// </summary>
+        [XurrentEnum("requestTemplate")]
+        RequestTemplate,
+
+        /// <summary>
+        /// Filter on Service instance.
+        /// </summary>
+        [XurrentEnum("serviceInstance")]
+        ServiceInstance,
+
+        /// <summary>
         /// Filter on Source.
         /// </summary>
         [XurrentEnum("source")]

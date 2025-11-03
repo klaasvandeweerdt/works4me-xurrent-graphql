@@ -62,6 +62,18 @@ namespace Works4me.Xurrent.GraphQL
         PictureUri,
 
         /// <summary>
+        /// The request template field.
+        /// </summary>
+        [XurrentEnum("requestTemplate")]
+        RequestTemplate,
+
+        /// <summary>
+        /// The service instance field.
+        /// </summary>
+        [XurrentEnum("serviceInstance")]
+        ServiceInstance,
+
+        /// <summary>
         /// The source field.
         /// </summary>
         [XurrentEnum("source")]
