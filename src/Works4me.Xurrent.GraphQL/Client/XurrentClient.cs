@@ -34,7 +34,8 @@ namespace Works4me.Xurrent.GraphQL
         private readonly AuthenticationTokenCollection _authenticationTokens;
         private readonly RateLimiter _rateLimiter;
         private readonly SemaphoreSlim _refreshLock = new(1, 1);
-        private readonly object _accountIdLock = new();
+        private readonly object _settingsLock = new();
+        private readonly object _disposeLock = new();
         private readonly XurrentClientBulkOperations _bulkOperations;
 
         private readonly string _url;
@@ -55,7 +56,7 @@ namespace Works4me.Xurrent.GraphQL
         {
             get
             {
-                lock (_accountIdLock) 
+                lock (_settingsLock) 
                 {
                     return _accountId; 
                 }
@@ -64,8 +65,11 @@ namespace Works4me.Xurrent.GraphQL
             {
                 if (string.IsNullOrWhiteSpace(value))
                     throw new ArgumentException($"'{nameof(value)}' cannot be null or empty.", nameof(value));
-
-                _accountId = value;
+                
+                lock (_settingsLock)
+                {
+                    _accountId = value;
+                }
             }
         }
 
@@ -81,13 +85,22 @@ namespace Works4me.Xurrent.GraphQL
         /// <exception cref="XurrentQueryException">Thrown if the value is less than 1 or greater than 10000.</exception>
         public int MaximumRequestsPerQuery
         {
-            get => _maxRequestsPerQuery;
+            get
+            {
+                lock (_settingsLock)
+                {
+                    return _maxRequestsPerQuery;
+                }
+            }
             set
             {
                 if (value < 1 || value > 10000)
                     throw new XurrentQueryException($"Invalid maximum requests: {value}. {nameof(MaximumRequestsPerQuery)} must be between 1 and 10000, inclusive.");
 
-                _maxRequestsPerQuery = value;
+                lock (_settingsLock)
+                {
+                    _maxRequestsPerQuery = value;
+                }
             }
         }
 
@@ -98,13 +111,22 @@ namespace Works4me.Xurrent.GraphQL
         /// <exception cref="XurrentQueryException">Thrown if the value is less than 1 or greater than 100.</exception>
         public int DefaultItemsPerRequest
         {
-            get => _defaultItemsPerRequest;
+            get
+            {
+                lock (_settingsLock)
+                {
+                    return _defaultItemsPerRequest;
+                }
+            }
             set
             {
                 if (value < 1 || value > 100)
                     throw new XurrentQueryException($"Invalid item per request: {value}. {nameof(DefaultItemsPerRequest)} must be between 1 and 100, inclusive.");
 
-                _defaultItemsPerRequest = value;
+                lock (_settingsLock)
+                {
+                    _defaultItemsPerRequest = value;
+                }
             }
         }
 
@@ -115,13 +137,22 @@ namespace Works4me.Xurrent.GraphQL
         /// <value>The default value is 2. Must be between 1 and 13, inclusive.</value>
         public int MaximumConnectionDepth
         {
-            get => _maxConnectionDepth;
+            get
+            {
+                lock (_settingsLock)
+                {
+                    return _maxConnectionDepth;
+                }
+            }
             set
             {
                 if (value < 1 || value > 13)
                     throw new XurrentQueryException($"Invalid maximum query depth: {value}. {nameof(MaximumConnectionDepth)} must be between 1 and 13, inclusive.");
 
-                _maxConnectionDepth = value;
+                lock (_settingsLock)
+                {
+                    _maxConnectionDepth = value;
+                }
             }
         }
 
@@ -482,7 +513,7 @@ namespace Works4me.Xurrent.GraphQL
         /// <returns>The current account ID.</returns>
         internal string GetAccountId()
         {
-            lock (_accountIdLock)
+            lock (_settingsLock)
             {
                 return _accountId;
             }
@@ -562,18 +593,24 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="disposing"><c>true</c> if called from <see cref="Dispose()"/>; otherwise, <c>false</c>.</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (!_disposedValue)
+            lock (_disposeLock)
             {
-                if (disposing)
-                {
-                    _httpClient?.Dispose();
-                    _httpImportExportClient?.Dispose();
-                    _refreshLock?.Dispose();
-                    if (_disposeAuthenticationTokens)
-                        _authenticationTokens?.Dispose();
-                }
+                if (_disposedValue)
+                    throw new ObjectDisposedException(nameof(XurrentClient));
 
-                _disposedValue = true;
+                if (!_disposedValue)
+                {
+                    if (disposing)
+                    {
+                        _httpClient?.Dispose();
+                        _httpImportExportClient?.Dispose();
+                        _refreshLock?.Dispose();
+                        if (_disposeAuthenticationTokens)
+                            _authenticationTokens?.Dispose();
+                    }
+
+                    _disposedValue = true;
+                }
             }
         }
 

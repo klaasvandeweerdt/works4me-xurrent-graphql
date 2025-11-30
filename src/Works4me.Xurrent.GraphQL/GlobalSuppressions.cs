@@ -29,6 +29,7 @@ using System.Diagnostics.CodeAnalysis;
 
 #if NET5_0_OR_GREATER
 
-[assembly: SuppressMessage("Maintainability", "CA1510:Use ArgumentNullException throw helper", Justification = "Suppressed due to multi-target framework compatibility. The project builds for .NET 6, .NET 4.7.2, and .NET Standard 2.0, which do not support ArgumentNullException.ThrowIfNull. Ensures compatibility across all target frameworks.")]
+[assembly: SuppressMessage("Maintainability", "CA1510:Use ArgumentNullException throw helper", Justification = "Suppressed due to multi-target framework compatibility. The project builds for .NET 8, .NET 4.7.2, and .NET Standard 2.0, which do not support ArgumentNullException.ThrowIfNull. Ensures compatibility across all target frameworks.")]
+[assembly: SuppressMessage("Maintainability", "CA1513:Use ObjectDisposedException throw helper", Justification = "Suppressed due to multi-target framework compatibility. The project builds for .NET 8, .NET 4.7.2, and .NET Standard 2.0, which do not support ArgumentNullException.ThrowIfNull. Ensures compatibility across all target frameworks.")]
 
 #endif

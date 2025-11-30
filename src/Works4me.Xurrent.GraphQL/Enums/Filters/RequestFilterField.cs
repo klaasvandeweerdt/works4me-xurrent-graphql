@@ -488,6 +488,12 @@ namespace Works4me.Xurrent.GraphQL
         WorkflowCategory,
 
         /// <summary>
+        /// Filter on Workflow phase.
+        /// </summary>
+        [XurrentEnum("workflowPhase")]
+        WorkflowPhase,
+
+        /// <summary>
         /// Filter on Workflow status.
         /// </summary>
         [XurrentEnum("workflowStatus")]

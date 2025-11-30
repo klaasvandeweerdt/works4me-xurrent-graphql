@@ -74,6 +74,12 @@ namespace Works4me.Xurrent.GraphQL
         ProjectManager,
 
         /// <summary>
+        /// Filter on Request.
+        /// </summary>
+        [XurrentEnum("request")]
+        Request,
+
+        /// <summary>
         /// Filter on Request category.
         /// </summary>
         [XurrentEnum("requestCategory")]

@@ -14,7 +14,6 @@ namespace Works4me.Xurrent.GraphQL
     public partial class XurrentClient
     {
         private readonly ILogger<XurrentClient>? _logger;
-        private readonly JsonSerializerOptions _traceSerializationOptions = new() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull, WriteIndented = false };
         private static readonly Action<ILogger, Guid, XurrentTraceMessage, Exception?> _logInfo = LoggerMessage.Define<Guid, XurrentTraceMessage>(LogLevel.Information, default, "{TraceId}: {@Trace}");
         private static readonly Action<ILogger, Guid, XurrentTraceMessage, Exception?> _logError = LoggerMessage.Define<Guid, XurrentTraceMessage>(LogLevel.Error, default, "{TraceId}: {@Trace}");
 
@@ -63,12 +62,6 @@ namespace Works4me.Xurrent.GraphQL
             {
                 _logError(_logger, logIdentifier, message, ex);
             }
-        }
-
-        /// <inheritdoc />
-        public override string ToString()
-        {
-            return JsonSerializer.Serialize(this, _traceSerializationOptions);
         }
     }
 }
