@@ -21,6 +21,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private bool? _assignToServiceOwner;
         private TaskCategory? _category;
         private bool? _copyNotesToWorkflow;
+        private bool? _copyNotesToRequest;
         private bool? _disabled;
         private string? _effortClassId;
         private TaskImpact? _impact;
@@ -158,6 +159,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _copyNotesToWorkflow;
             set => _copyNotesToWorkflow = Set("copyNotesToWorkflow", value);
+        }
+
+        /// <summary>
+        /// Whether the Copy note to request box of tasks that were created based on the template needs to be checked by default. (The Copy notes to request checkbox is called "Copy notes to request by default" when the task template is in Edit mode.).
+        /// </summary>
+        [XurrentField("copyNotesToRequest")]
+        public bool? CopyNotesToRequest
+        {
+            get => _copyNotesToRequest;
+            set => _copyNotesToRequest = Set("copyNotesToRequest", value);
         }
 
         /// <summary>

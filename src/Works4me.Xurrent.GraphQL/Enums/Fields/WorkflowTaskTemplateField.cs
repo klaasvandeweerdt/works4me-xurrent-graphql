@@ -50,6 +50,12 @@ namespace Works4me.Xurrent.GraphQL
         Category,
 
         /// <summary>
+        /// The copy notes to request field.
+        /// </summary>
+        [XurrentEnum("copyNotesToRequest")]
+        CopyNotesToRequest,
+
+        /// <summary>
         /// The copy notes to workflow field.
         /// </summary>
         [XurrentEnum("copyNotesToWorkflow")]

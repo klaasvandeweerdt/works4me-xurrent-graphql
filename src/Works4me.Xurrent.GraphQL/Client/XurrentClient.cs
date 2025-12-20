@@ -25,7 +25,7 @@ namespace Works4me.Xurrent.GraphQL
     /// <summary>
     /// Provides the primary client for interacting with the Xurrent GraphQL API, including query, mutation, paging, and attachment operations.
     /// </summary>
-    public partial class XurrentClient : IDisposable
+    public sealed partial class XurrentClient : IDisposable
     {
         private readonly JsonSerializerOptions _defaultJsonOptions;
         private readonly HttpClient _httpClient;
@@ -591,7 +591,7 @@ namespace Works4me.Xurrent.GraphQL
         /// Releases the unmanaged and managed resources used by this client.
         /// </summary>
         /// <param name="disposing"><c>true</c> if called from <see cref="Dispose()"/>; otherwise, <c>false</c>.</param>
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
             lock (_disposeLock)
             {

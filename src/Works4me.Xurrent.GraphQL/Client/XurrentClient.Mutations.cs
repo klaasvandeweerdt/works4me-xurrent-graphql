@@ -1049,6 +1049,16 @@ namespace Works4me.Xurrent.GraphQL
             return MutationAsync<RequestUpdatePayload, RequestUpdateInput>(GetAccountId(), new RequestUpdateMutation(data, query), ct);
         }
 
+        /// <param name="data">The input data for the success mutation.</param>
+        /// <param name="ct">The <see cref="CancellationToken"/> for request cancellation.</param>
+        public Task<RequestUpdateVisibilityPayload> MutationAsync(RequestUpdateVisibilityInput data, CancellationToken ct = default)
+        {
+            if (data is null)
+                throw new ArgumentNullException(nameof(data));
+
+            return MutationAsync<RequestUpdateVisibilityPayload, RequestUpdateVisibilityInput>(GetAccountId(), new RequestUpdateVisibilityMutation(data), ct);
+        }
+
         /// <param name="data">The input data for the reservation mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
         /// <param name="ct">The <see cref="CancellationToken"/> for request cancellation.</param>

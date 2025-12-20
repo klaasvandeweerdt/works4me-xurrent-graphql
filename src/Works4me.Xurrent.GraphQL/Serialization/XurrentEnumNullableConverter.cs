@@ -25,7 +25,14 @@ namespace Works4me.Xurrent.GraphQL.Serialization
             if (reader.TokenType == JsonTokenType.Null)
                 return null;
 
-            return _inner.Read(ref reader, typeof(TEnum), options);
+            try
+            {
+                return _inner.Read(ref reader, typeof(TEnum), options);
+            }
+            catch (JsonException)
+            {
+                return null;
+            }
         }
 
         /// <summary>

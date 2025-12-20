@@ -13,6 +13,7 @@ namespace Works4me.Xurrent.GraphQL
     {
         private readonly List<AuthenticationToken> _tokens = new();
         private readonly ReaderWriterLockSlim _lock = new();
+        private readonly object _disposeLock = new();
         private bool _disposedValue;
 
         /// <summary>
@@ -222,14 +223,19 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         private void Dispose(bool disposing)
         {
-            if (!_disposedValue)
+            lock (_disposeLock)
             {
-                if (disposing)
-                {
-                    _lock?.Dispose();
-                }
+                if (_disposedValue)
+                    throw new ObjectDisposedException(nameof(AuthenticationToken));
 
-                _disposedValue = true;
+                if (!_disposedValue)
+                {
+                    if (disposing)
+                    {
+                        _lock?.Dispose();
+                    }
+                    _disposedValue = true;
+                }
             }
         }
 

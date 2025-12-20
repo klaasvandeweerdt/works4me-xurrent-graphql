@@ -77,6 +77,12 @@ namespace Works4me.Xurrent.GraphQL
         public ReadOnlyDataCollection<ConfigurationItem>? ConfigurationItems { get => ConfigurationItemsCollection?.Data is null ? null : new ReadOnlyDataCollection<ConfigurationItem>(ConfigurationItemsCollection.Data); }
 
         /// <summary>
+        /// Whether the Copy note to request box of tasks that were created based on the template needs to be checked by default. (The Copy notes to request checkbox is called "Copy notes to request by default" when the task template is in Edit mode.).
+        /// </summary>
+        [XurrentField("copyNotesToRequest")]
+        public bool? CopyNotesToRequest { get; internal set; }
+
+        /// <summary>
         /// Whether the Copy note to workflow box of tasks that were created based on the template needs to be checked by default. (The Copy notes to workflow checkbox is called "Copy notes to workflow by default" when the task template is in Edit mode.).
         /// </summary>
         [XurrentField("copyNotesToWorkflow")]
