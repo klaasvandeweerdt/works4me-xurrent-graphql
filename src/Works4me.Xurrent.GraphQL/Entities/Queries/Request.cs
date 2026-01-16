@@ -387,7 +387,7 @@ namespace Works4me.Xurrent.GraphQL
         public string? Subject { get; internal set; }
 
         /// <summary>
-        /// AI Summary created for the current request account.  Be aware that the AI summary might not always be fully up to date, because it can take a while for an AI Summary to be generated after adding a new note.
+        /// AI Summary created for the current request account. Be aware that the AI summary might not always be fully up to date, as it is generated manually in the user interface.
         /// </summary>
         [XurrentField("summary")]
         public string? Summary { get; internal set; }

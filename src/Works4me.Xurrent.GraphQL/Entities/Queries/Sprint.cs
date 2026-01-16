@@ -51,6 +51,12 @@ namespace Works4me.Xurrent.GraphQL
         public string Id { get; internal set; } = string.Empty;
 
         /// <summary>
+        /// Name of the sprint.
+        /// </summary>
+        [XurrentField("name", IsDefaultQueryProperty = true)]
+        public string? Name { get; internal set; }
+
+        /// <summary>
         /// Sequence number of this sprint.
         /// </summary>
         [XurrentField("number")]

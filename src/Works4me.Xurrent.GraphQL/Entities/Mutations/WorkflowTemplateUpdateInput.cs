@@ -24,6 +24,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private RecurrenceInput? _recurrence;
         private string? _serviceId;
         private string? _subject;
+        private bool? _preventRequestCompletion;
         private Collection<WorkflowTemplateTaskTemplateInput>? _newTaskTemplateRelations;
         private string _id;
         private Collection<string>? _taskTemplateRelationsToDelete;
@@ -166,6 +167,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _subject;
             set => _subject = Set("subject", value);
+        }
+
+        /// <summary>
+        /// Whether permissions to complete linked requests are restricted for workflows based on this template.
+        /// </summary>
+        [XurrentField("preventRequestCompletion")]
+        public bool? PreventRequestCompletion
+        {
+            get => _preventRequestCompletion;
+            set => _preventRequestCompletion = Set("preventRequestCompletion", value);
         }
 
         /// <summary>

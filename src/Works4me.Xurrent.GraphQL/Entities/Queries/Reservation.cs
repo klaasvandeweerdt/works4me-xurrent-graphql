@@ -11,7 +11,7 @@ namespace Works4me.Xurrent.GraphQL
     /// </summary>
     [DebuggerDisplay("{Id}")]
     [XurrentEntity("Reservation")]
-    public sealed class Reservation : IDataItem, INode, IRecord
+    public sealed class Reservation : IDataItem, IHasLifeCycleState, INode, IRecord
     {
         /// <summary>
         /// The account this record belongs to.
@@ -67,6 +67,12 @@ namespace Works4me.Xurrent.GraphQL
         /// </summary>
         [XurrentField("id", IsDefaultQueryProperty = true)]
         public string Id { get; internal set; } = string.Empty;
+
+        /// <summary>
+        /// Current state of the record.
+        /// </summary>
+        [XurrentField("lifeCycleState")]
+        public LifeCycleState? LifeCycleState { get; internal set; }
 
         /// <summary>
         /// A short description of the reservation.

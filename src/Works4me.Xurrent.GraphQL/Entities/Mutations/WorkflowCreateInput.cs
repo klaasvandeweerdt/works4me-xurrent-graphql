@@ -27,6 +27,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private WorkflowStatus? _status;
         private string? _subject;
         private string? _templateId;
+        private bool? _preventRequestCompletion;
         private Collection<string>? _requestIds;
         private Collection<string>? _problemIds;
 
@@ -208,6 +209,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _templateId;
             set => _templateId = Set("templateId", value);
+        }
+
+        /// <summary>
+        /// Whether permissions to complete linked requests are restricted.
+        /// </summary>
+        [XurrentField("preventRequestCompletion")]
+        public bool? PreventRequestCompletion
+        {
+            get => _preventRequestCompletion;
+            set => _preventRequestCompletion = Set("preventRequestCompletion", value);
         }
 
         /// <summary>

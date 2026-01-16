@@ -102,6 +102,12 @@ namespace Works4me.Xurrent.GraphQL
         public ReadOnlyDataCollection<WorkflowTemplatePhase>? Phases { get => PhasesCollection?.Data is null ? null : new ReadOnlyDataCollection<WorkflowTemplatePhase>(PhasesCollection.Data); }
 
         /// <summary>
+        /// Whether permissions to complete linked requests are restricted for workflows based on this template.
+        /// </summary>
+        [XurrentField("preventRequestCompletion")]
+        public bool? PreventRequestCompletion { get; internal set; }
+
+        /// <summary>
         /// Recurrency for the workflow template.
         /// </summary>
         [XurrentField("recurrence")]

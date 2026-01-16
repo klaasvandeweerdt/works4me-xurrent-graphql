@@ -39,6 +39,7 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="projectTaskQuery">The project task query.</param>
         /// <param name="releaseQuery">The release query.</param>
         /// <param name="requestQuery">The request query.</param>
+        /// <param name="reservationQuery">The reservation query.</param>
         /// <param name="riskQuery">The risk query.</param>
         /// <param name="shopOrderLineQuery">The shop order line query.</param>
         /// <param name="workflowTaskQuery">The workflow task query.</param>
@@ -53,6 +54,7 @@ namespace Works4me.Xurrent.GraphQL
             ProjectTaskQuery? projectTaskQuery = null,
             ReleaseQuery? releaseQuery = null,
             RequestQuery? requestQuery = null,
+            ReservationQuery? reservationQuery = null,
             RiskQuery? riskQuery = null,
             ShopOrderLineQuery? shopOrderLineQuery = null,
             WorkflowTaskQuery? workflowTaskQuery = null,
@@ -66,6 +68,7 @@ namespace Works4me.Xurrent.GraphQL
             query = query.SelectOnType("trashed", projectTaskQuery ?? new(), false);
             query = query.SelectOnType("trashed", releaseQuery ?? new(), false);
             query = query.SelectOnType("trashed", requestQuery ?? new(), false);
+            query = query.SelectOnType("trashed", reservationQuery ?? new(), false);
             query = query.SelectOnType("trashed", riskQuery ?? new(), false);
             query = query.SelectOnType("trashed", shopOrderLineQuery ?? new(), false);
             query = query.SelectOnType("trashed", workflowTaskQuery ?? new(), false);
@@ -172,6 +175,21 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="query">The trashed query.</param>
         /// <returns>The same <see cref="TrashQuery"/>, updated to include the "Trashed" sub-query.</returns>
         public TrashQuery SelectTrashed(RequestQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return SelectOnType("trashed", query, false);
+        }
+
+        /// <summary>
+        /// The trashed record, e.g. Request.<br />
+        /// Use this method along with other <c>SelectTrashed()</c> calls to cast different object types.<br />
+        /// If a specific type is not queried via <c>SelectTrashed()</c>, it defaults to a <c>null</c> value.<br />
+        /// </summary>
+        /// <param name="query">The trashed query.</param>
+        /// <returns>The same <see cref="TrashQuery"/>, updated to include the "Trashed" sub-query.</returns>
+        public TrashQuery SelectTrashed(ReservationQuery query)
         {
             if (query is null)
                 throw new ArgumentNullException(nameof(query));

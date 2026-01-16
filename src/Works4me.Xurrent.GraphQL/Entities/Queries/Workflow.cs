@@ -142,6 +142,12 @@ namespace Works4me.Xurrent.GraphQL
         [XurrentField("plannedEffort")]
         public long? PlannedEffort { get; internal set; }
 
+        /// <summary>
+        /// Whether permissions to complete linked requests are restricted.
+        /// </summary>
+        [XurrentField("preventRequestCompletion")]
+        public bool? PreventRequestCompletion { get; internal set; }
+
         [XurrentField("problems")]
         internal PagedResponse<Problem>? ProblemsCollection { get; set; }
         /// <summary>

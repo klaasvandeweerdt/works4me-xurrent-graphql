@@ -26,6 +26,12 @@ namespace Works4me.Xurrent.GraphQL
         Id,
 
         /// <summary>
+        /// Filter on Name.
+        /// </summary>
+        [XurrentEnum("name")]
+        Name,
+
+        /// <summary>
         /// Filter on Scrum workspace.
         /// </summary>
         [XurrentEnum("scrumWorkspace")]

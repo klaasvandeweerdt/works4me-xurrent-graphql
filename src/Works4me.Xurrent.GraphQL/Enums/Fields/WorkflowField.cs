@@ -98,6 +98,12 @@ namespace Works4me.Xurrent.GraphQL
         PlannedEffort,
 
         /// <summary>
+        /// The prevent request completion field.
+        /// </summary>
+        [XurrentEnum("preventRequestCompletion")]
+        PreventRequestCompletion,
+
+        /// <summary>
         /// The project field.
         /// </summary>
         [XurrentEnum("project")]

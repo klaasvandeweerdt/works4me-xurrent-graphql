@@ -56,6 +56,12 @@ namespace Works4me.Xurrent.GraphQL
         Id,
 
         /// <summary>
+        /// The life cycle state field.
+        /// </summary>
+        [XurrentEnum("lifeCycleState")]
+        LifeCycleState,
+
+        /// <summary>
         /// The name field.
         /// </summary>
         [XurrentEnum("name")]

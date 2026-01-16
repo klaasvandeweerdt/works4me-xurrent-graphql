@@ -38,6 +38,12 @@ namespace Works4me.Xurrent.GraphQL
         Id,
 
         /// <summary>
+        /// The name field.
+        /// </summary>
+        [XurrentEnum("name")]
+        Name,
+
+        /// <summary>
         /// The number field.
         /// </summary>
         [XurrentEnum("number")]

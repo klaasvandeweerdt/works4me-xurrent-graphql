@@ -68,6 +68,12 @@ namespace Works4me.Xurrent.GraphQL
         Note,
 
         /// <summary>
+        /// The prevent request completion field.
+        /// </summary>
+        [XurrentEnum("preventRequestCompletion")]
+        PreventRequestCompletion,
+
+        /// <summary>
         /// The recurrence field.
         /// </summary>
         [XurrentEnum("recurrence")]

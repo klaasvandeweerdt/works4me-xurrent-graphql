@@ -13,6 +13,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private string? _source;
         private string? _sourceID;
         private DateTime? _endAt;
+        private string? _name;
         private long? _number;
         private string? _description;
         private Collection<AttachmentInput>? _descriptionAttachments;
@@ -59,6 +60,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _endAt;
             set => _endAt = Set("endAt", value);
+        }
+
+        /// <summary>
+        /// Name of the sprint.
+        /// </summary>
+        [XurrentField("name")]
+        public string? Name
+        {
+            get => _name;
+            set => _name = Set("name", value);
         }
 
         /// <summary>
