@@ -145,6 +145,13 @@ namespace Works4me.Xurrent.GraphQL
         [XurrentField("requiresShipping")]
         public bool? RequiresShipping { get; internal set; }
 
+        [XurrentField("serviceOfferings")]
+        internal PagedResponse<ServiceOffering>? ServiceOfferingsCollection { get; set; }
+        /// <summary>
+        /// The service offerings linked to the shop article.
+        /// </summary>
+        public ReadOnlyDataCollection<ServiceOffering>? ServiceOfferings { get => ServiceOfferingsCollection?.Data is null ? null : new ReadOnlyDataCollection<ServiceOffering>(ServiceOfferingsCollection.Data); }
+
         /// <summary>
         /// The shop description of the shop article.
         /// </summary>
@@ -213,6 +220,7 @@ namespace Works4me.Xurrent.GraphQL
         {
             if (data is ShopArticle shopArticle)
             {
+                ServiceOfferingsCollection?.Data?.AddRange(shopArticle.ServiceOfferings);
                 TranslationsCollection?.Data?.AddRange(shopArticle.Translations);
             }
         }
@@ -224,6 +232,10 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="depth">The maximum recursion depth for retrieving page information.</param>
         IEnumerable<ExecutionPageInfo> IDataItem.GetPageInfo(int depth)
         {
+            if (ServiceOfferingsCollection is not null)
+                foreach (ExecutionPageInfo pageInfo in ServiceOfferingsCollection.GetPageInfo("serviceOfferings", depth))
+                    yield return pageInfo;
+
             if (TranslationsCollection is not null)
                 foreach (ExecutionPageInfo pageInfo in TranslationsCollection.GetPageInfo("translations", depth))
                     yield return pageInfo;

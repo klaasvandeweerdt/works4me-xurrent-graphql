@@ -128,7 +128,7 @@ namespace Works4me.Xurrent.GraphQL
         /// <returns>A task representing the asynchronous operation, with the downloaded file as a stream.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="exportState"/> is null.</exception>
         /// <exception cref="XurrentExecutionException">Thrown when the export is in a failed or incomplete state, or the URL is missing, or the HTTP request fails.</exception>
-        internal async Task<Stream> DownloadAsync(BulkExportResponse exportState, CancellationToken ct = default)
+        public async Task<Stream> DownloadAsync(BulkExportResponse exportState, CancellationToken ct = default)
         {
             return await _client.DownloadAsync(exportState, ct).ConfigureAwait(false);
         }

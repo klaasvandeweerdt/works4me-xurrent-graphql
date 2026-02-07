@@ -70,7 +70,7 @@ namespace Works4me.Xurrent.GraphQL
 
             string fileExtension = Path.GetExtension(fileName).TrimStart('.');
             if (attachmentStorage.AllowedExtensions.Count > 0 && !attachmentStorage.AllowedExtensions.Contains(fileExtension, StringComparer.InvariantCultureIgnoreCase))
-                throw new XurrentException($"File extension “{fileExtension}” is not allowed.");
+                throw new XurrentException($"File extension \"{fileExtension}\" is not allowed.");
 
             if (stream.Length >= attachmentStorage.SizeLimit)
                 throw new XurrentException($"File size exceeded, the maximum size is {attachmentStorage.SizeLimit} bytes.");

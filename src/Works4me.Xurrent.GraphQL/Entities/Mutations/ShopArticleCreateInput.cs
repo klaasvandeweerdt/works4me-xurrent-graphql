@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using Works4me.Xurrent.GraphQL.Attributes;
 
 namespace Works4me.Xurrent.GraphQL.Mutations
@@ -31,6 +32,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private decimal? _recurringPrice;
         private Currency? _recurringPriceCurrency;
         private ShopArticleRecurringPeriod? _recurringPeriod;
+        private Collection<string>? _serviceOfferingIds;
         private string _name;
 
         /// <summary>
@@ -262,6 +264,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _recurringPeriod;
             set => _recurringPeriod = Set("recurringPeriod", value);
+        }
+
+        /// <summary>
+        /// The service offering ids linked to the shop article.
+        /// </summary>
+        [XurrentField("serviceOfferingIds")]
+        public Collection<string>? ServiceOfferingIds
+        {
+            get => _serviceOfferingIds;
+            set => _serviceOfferingIds = Set("serviceOfferingIds", value);
         }
 
         /// <summary>

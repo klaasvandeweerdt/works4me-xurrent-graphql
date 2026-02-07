@@ -5,7 +5,7 @@ namespace Works4me.Xurrent.GraphQL
     /// <summary>
     /// Represents the status of a Xurrent import operation.
     /// </summary>
-    public class BulkImportResponse
+    public sealed class BulkImportResponse
     {
         /// <summary>
         /// Gets the current state of the import operation.

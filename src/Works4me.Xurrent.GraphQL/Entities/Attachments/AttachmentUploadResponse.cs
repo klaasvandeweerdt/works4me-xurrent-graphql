@@ -3,7 +3,7 @@
     /// <summary>
     /// An attachment upload response.
     /// </summary>
-    public class AttachmentUploadResponse
+    public sealed class AttachmentUploadResponse
     {
         /// <summary>
         /// The S3 file storage reference key.

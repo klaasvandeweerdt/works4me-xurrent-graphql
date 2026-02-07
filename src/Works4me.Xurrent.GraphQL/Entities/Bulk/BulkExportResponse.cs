@@ -6,7 +6,7 @@ namespace Works4me.Xurrent.GraphQL
     /// <summary>
     /// The Xurrent export status.
     /// </summary>
-    public class BulkExportResponse
+    public sealed class BulkExportResponse
     {
         /// <summary>
         /// The state.

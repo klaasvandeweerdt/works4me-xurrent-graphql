@@ -5,7 +5,7 @@ namespace Works4me.Xurrent.GraphQL
     /// <summary>
     /// Represents the results of an import operation.
     /// </summary>
-    public class ImportResults
+    public sealed class ImportResults
     {
         /// <summary>
         /// Gets or sets the number of created items.

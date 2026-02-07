@@ -94,6 +94,19 @@ namespace Works4me.Xurrent.GraphQL
         }
 
         /// <summary>
+        /// The service offerings linked to the shop article.
+        /// </summary>
+        /// <param name="query">The service offerings query.</param>
+        /// <returns>The same <see cref="ShopArticleQuery"/>, updated to include the "ServiceOfferings" sub-query.</returns>
+        public ShopArticleQuery SelectServiceOfferings(ServiceOfferingQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return Select("serviceOfferings", query, true);
+        }
+
+        /// <summary>
         /// Translations associated with this object.
         /// </summary>
         /// <param name="query">The translations query.</param>

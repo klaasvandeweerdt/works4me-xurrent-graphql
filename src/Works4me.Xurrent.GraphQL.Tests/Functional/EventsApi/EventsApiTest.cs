@@ -16,7 +16,7 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional.EventsApi
                 .Category(RequestCategory.Incident)
                 .Note("An event note")
                 .Subject("SDK Test")
-                .Source("Xurrent.Sdk.GraphQL")
+                .Source("Works4me.Xurrent.GraphQL")
                 .SourceID("1")
                 .ServiceInstance(Convert.ToInt32(Client.GetConfigValue("EventApi.ServiceInstance")))
                 .Impact(RequestImpact.Medium)

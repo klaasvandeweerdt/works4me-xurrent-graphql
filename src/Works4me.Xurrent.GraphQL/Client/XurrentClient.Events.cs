@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL
     public partial class XurrentClient
     {
         /// <summary>
-        /// Creates a new event using the <see href="https://developer.4me.com/v1/requests/events/">4me events API</see>.
+        /// Creates a new event using the <see href="https://developer.xurrent.com/v1/requests/events/">Xurrent events API</see>.
         /// <para>
         /// <b>Note:</b> Only the <see cref="Request.Id"/> (<c>nodeID</c>) and <see cref="Request.RequestId"/> (<c>id</c>) are set in the returned <see cref="Request"/> object.
         /// Other properties may be missing, as the response is not fully mapped.
