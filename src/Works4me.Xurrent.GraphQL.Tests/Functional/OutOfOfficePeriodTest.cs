@@ -16,13 +16,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
         {
             ReadOnlyDataCollection<OutOfOfficePeriod> outOfOfficePeriods = await _client.GetAsync(new OutOfOfficePeriodQuery()
                 .View(OutOfOfficePeriodView.All)
-                .SelectAll());
+                .SelectAll(), TestContext.Current.CancellationToken);
 
             Assert.NotNull(outOfOfficePeriods);
 
             if (outOfOfficePeriods.Count > 0)
             {
-                outOfOfficePeriods = await _client.GetAsync(new OutOfOfficePeriodQuery().WithId(outOfOfficePeriods.GetRandomItem().Id));
+                outOfOfficePeriods = await _client.GetAsync(new OutOfOfficePeriodQuery().WithId(outOfOfficePeriods.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(outOfOfficePeriods);
             }
         }
@@ -30,7 +30,7 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
         [Fact]
         public async Task CreateAndDelete()
         {
-            Person? result = await _client.GetAsync(new MeQuery().Select(PersonField.Id));
+            Person? result = await _client.GetAsync(new MeQuery().Select(PersonField.Id), TestContext.Current.CancellationToken);
 
             Assert.NotNull(result);
             Assert.NotNull(result.Id);
@@ -42,13 +42,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 StartAt = now.AddDays(10),
                 EndAt = now.AddDays(11),
                 Reason = "Works4me.Xurrent.GraphQL Test"
-            }, new OutOfOfficePeriodQuery());
+            }, new OutOfOfficePeriodQuery(), TestContext.Current.CancellationToken);
 
             Assert.NotNull(createdOoO);
             Assert.NotNull(createdOoO.OutOfOfficePeriod);
             Assert.NotNull(createdOoO.OutOfOfficePeriod.Id);
 
-            OutOfOfficePeriodDeleteMutationPayload deletedOoO = await _client.MutationAsync(new OutOfOfficePeriodDeleteMutationInput(createdOoO.OutOfOfficePeriod.Id));
+            OutOfOfficePeriodDeleteMutationPayload deletedOoO = await _client.MutationAsync(new OutOfOfficePeriodDeleteMutationInput(createdOoO.OutOfOfficePeriod.Id), TestContext.Current.CancellationToken);
 
             Assert.NotNull(deletedOoO);
             Assert.True(deletedOoO.Success);

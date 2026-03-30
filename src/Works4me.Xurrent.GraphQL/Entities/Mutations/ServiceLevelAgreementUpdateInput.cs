@@ -48,9 +48,11 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private Collection<string>? _skillPoolIds;
         private Collection<EffortClassRateIDInput>? _newEffortClassRateIDs;
         private Collection<StandardServiceRequestActivityIDInput>? _newStandardServiceRequestActivityIDs;
+        private Collection<RfcTypeActivityIDInput>? _newRfcTypeActivityIDs;
         private string _id;
         private Collection<string>? _standardServiceRequestActivityIDsToDelete;
         private Collection<string>? _effortClassRateIDsToDelete;
+        private Collection<string>? _rfcTypeActivityIDsToDelete;
 
         /// <summary>
         /// A unique identifier for the client performing the mutation.
@@ -315,6 +317,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         }
 
         /// <summary>
+        /// Represents the activityIDs for request for change types. The Activity ID is the unique identifier by which an activity that is performed in the context of a service offering is known in the billing system of the service provider.
+        /// </summary>
+        [XurrentField("newRfcTypeActivityIDs")]
+        public Collection<RfcTypeActivityIDInput>? NewRfcTypeActivityIDs
+        {
+            get => _newRfcTypeActivityIDs;
+            set => _newRfcTypeActivityIDs = Set("newRfcTypeActivityIDs", value);
+        }
+
+        /// <summary>
         /// The node ID of the record to update.
         /// </summary>
         [XurrentField("id")]
@@ -325,7 +337,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         }
 
         /// <summary>
-        /// Identifiers of effort class rateIDs to remove from the SLA.
+        /// Identifiers of standard service request activityIDs to remove from the SLA.
         /// </summary>
         [XurrentField("standardServiceRequestActivityIDsToDelete")]
         public Collection<string>? StandardServiceRequestActivityIDsToDelete
@@ -342,6 +354,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _effortClassRateIDsToDelete;
             set => _effortClassRateIDsToDelete = Set("effortClassRateIDsToDelete", value);
+        }
+
+        /// <summary>
+        /// Identifiers of RFC type activityIDs to remove from the SLA.
+        /// </summary>
+        [XurrentField("rfcTypeActivityIDsToDelete")]
+        public Collection<string>? RfcTypeActivityIDsToDelete
+        {
+            get => _rfcTypeActivityIDsToDelete;
+            set => _rfcTypeActivityIDsToDelete = Set("rfcTypeActivityIDsToDelete", value);
         }
 
         /// <summary>

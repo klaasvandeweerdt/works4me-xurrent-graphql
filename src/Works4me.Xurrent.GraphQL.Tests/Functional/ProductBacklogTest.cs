@@ -25,13 +25,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                     requestQuery: new RequestQuery()
                         .Select(RequestField.Id))
                 .SelectScrumWorkspaces(new ScrumWorkspaceQuery()
-                    .Select(ScrumWorkspaceField.Id)));
+                    .Select(ScrumWorkspaceField.Id)), TestContext.Current.CancellationToken);
 
             Assert.NotNull(productBacklogs);
 
             if (productBacklogs.Count > 0)
             {
-                productBacklogs = await _client.GetAsync(new ProductBacklogQuery().WithId(productBacklogs.GetRandomItem().Id));
+                productBacklogs = await _client.GetAsync(new ProductBacklogQuery().WithId(productBacklogs.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(productBacklogs);
             }
         }

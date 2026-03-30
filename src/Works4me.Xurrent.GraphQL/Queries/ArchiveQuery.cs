@@ -32,6 +32,7 @@ namespace Works4me.Xurrent.GraphQL
         /// The archived record.<br />
         /// A new instance of the respective query type is created when the parameter is not provided or <c>null</c>.<br />
         /// </summary>
+        /// <param name="ciStagedChangeQuery">The ci staged change query.</param>
         /// <param name="configurationItemQuery">The configuration item query.</param>
         /// <param name="personQuery">The person query.</param>
         /// <param name="problemQuery">The problem query.</param>
@@ -47,6 +48,7 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="workflowQuery">The workflow query.</param>
         /// <returns>The same <see cref="ArchiveQuery"/>, updated to include the sub-queries.</returns>
         public ArchiveQuery SelectArchivedAll(
+            CiStagedChangeQuery? ciStagedChangeQuery = null,
             ConfigurationItemQuery? configurationItemQuery = null,
             PersonQuery? personQuery = null,
             ProblemQuery? problemQuery = null,
@@ -61,7 +63,8 @@ namespace Works4me.Xurrent.GraphQL
             TimeEntryQuery? timeEntryQuery = null,
             WorkflowQuery? workflowQuery = null)
         {
-            ArchiveQuery query = SelectOnType("archived", configurationItemQuery ?? new(), false);
+            ArchiveQuery query = SelectOnType("archived", ciStagedChangeQuery ?? new(), false);
+            query = query.SelectOnType("archived", configurationItemQuery ?? new(), false);
             query = query.SelectOnType("archived", personQuery ?? new(), false);
             query = query.SelectOnType("archived", problemQuery ?? new(), false);
             query = query.SelectOnType("archived", projectQuery ?? new(), false);
@@ -75,6 +78,21 @@ namespace Works4me.Xurrent.GraphQL
             query = query.SelectOnType("archived", timeEntryQuery ?? new(), false);
             query = query.SelectOnType("archived", workflowQuery ?? new(), false);
             return query;
+        }
+
+        /// <summary>
+        /// The archived record.<br />
+        /// Use this method along with other <c>SelectArchived()</c> calls to cast different object types.<br />
+        /// If a specific type is not queried via <c>SelectArchived()</c>, it defaults to a <c>null</c> value.<br />
+        /// </summary>
+        /// <param name="query">The archived query.</param>
+        /// <returns>The same <see cref="ArchiveQuery"/>, updated to include the "Archived" sub-query.</returns>
+        public ArchiveQuery SelectArchived(CiStagedChangeQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return SelectOnType("archived", query, false);
         }
 
         /// <summary>

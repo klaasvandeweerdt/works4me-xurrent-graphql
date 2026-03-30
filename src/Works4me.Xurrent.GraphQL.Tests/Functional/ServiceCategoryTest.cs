@@ -23,13 +23,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                     .SelectAll()
                     .SelectOwner(new ServiceCategoryQuery()
                         .ItemsPerRequest(1)
-                        .SelectAll())));
+                        .SelectAll())), TestContext.Current.CancellationToken);
 
             Assert.NotNull(serviceCategories);
 
             if (serviceCategories.Count > 0)
             {
-                serviceCategories = await _client.GetAsync(new ServiceCategoryQuery().WithId(serviceCategories.GetRandomItem().Id));
+                serviceCategories = await _client.GetAsync(new ServiceCategoryQuery().WithId(serviceCategories.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(serviceCategories);
             }
         }

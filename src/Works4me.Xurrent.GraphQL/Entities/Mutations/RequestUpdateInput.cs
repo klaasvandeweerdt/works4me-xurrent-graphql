@@ -27,6 +27,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private long? _productBacklogEstimate;
         private bool? _addressed;
         private RequestCategory? _category;
+        private string? _rfcTypeId;
         private string? _workflowId;
         private RequestCompletionReason? _completionReason;
         private string? _closureCode;
@@ -222,6 +223,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _category;
             set => _category = Set("category", value);
+        }
+
+        /// <summary>
+        /// Identifier of the RFC type of the request.
+        /// </summary>
+        [XurrentField("rfcTypeId")]
+        public string? RfcTypeId
+        {
+            get => _rfcTypeId;
+            set => _rfcTypeId = Set("rfcTypeId", value);
         }
 
         /// <summary>

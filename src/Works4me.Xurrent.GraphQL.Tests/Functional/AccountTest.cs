@@ -15,7 +15,7 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectAll()
                 .SelectDesign(new AccountDesignQuery()
                     .SelectAll())
-                .View(DefaultView.None));
+                .View(DefaultView.None), TestContext.Current.CancellationToken);
 
             Assert.NotNull(account);
             Assert.NotNull(account.Id);

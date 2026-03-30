@@ -48,7 +48,7 @@ namespace Works4me.Xurrent.GraphQL.Tests.Unit.Utilities
 
             HttpClient client = new(handler);
 
-            HttpResponseMessage response = await client.GetAsync("https://example.com");
+            HttpResponseMessage response = await client.GetAsync("https://example.com", TestContext.Current.CancellationToken);
 
             Assert.NotNull(capturedRequest);
             Assert.Equal("https://example.com/", capturedRequest.RequestUri.ToString());

@@ -23,7 +23,7 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional.EventsApi
                 .ConfigurationItem(Convert.ToInt32(Client.GetConfigValue("EventApi.ConfigurationItem")))
                 .Team(Convert.ToInt32(Client.GetConfigValue("EventApi.Team")));
 
-            Request request = await _client.CreateEventAsync(requestCreate);
+            Request request = await _client.CreateEventAsync(requestCreate, TestContext.Current.CancellationToken);
 
             Assert.NotNull(request);
             Assert.NotNull(request.Id);

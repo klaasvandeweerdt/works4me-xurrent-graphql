@@ -46,7 +46,7 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                     .SelectAll())
                 .SelectTags(new TagQuery()
                     .ItemsPerRequest(5)
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(requests);
 
@@ -54,7 +54,7 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
             {
                 requests = await _client.GetAsync(new RequestQuery()
                     .WithId(requests.GetRandomItem().Id)
-                    .Select(RequestField.RequestId));
+                    .Select(RequestField.RequestId), TestContext.Current.CancellationToken);
 
                 Assert.NotNull(requests);
                 Request request = requests.First();

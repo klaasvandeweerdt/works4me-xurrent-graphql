@@ -27,13 +27,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                         requestQuery: new RequestQuery()
                             .SelectAll(),
                         workflowTaskQuery: new WorkflowTaskQuery()
-                            .SelectAll())));
+                            .SelectAll())), TestContext.Current.CancellationToken);
 
             Assert.NotNull(sprints);
 
             if (sprints.Count > 0)
             {
-                sprints = await _client.GetAsync(new SprintQuery().WithId(sprints.GetRandomItem().Id));
+                sprints = await _client.GetAsync(new SprintQuery().WithId(sprints.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(sprints);
             }
         }

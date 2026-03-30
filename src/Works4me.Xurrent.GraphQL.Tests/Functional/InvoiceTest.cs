@@ -18,13 +18,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectConfigurationItems(new ConfigurationItemQuery()
                     .SelectAll())
                 .SelectRemarksAttachments(new AttachmentQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(invoices);
 
             if (invoices.Count > 0)
             {
-                invoices = await _client.GetAsync(new InvoiceQuery().WithId(invoices.GetRandomItem().Id));
+                invoices = await _client.GetAsync(new InvoiceQuery().WithId(invoices.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(invoices);
             }
         }

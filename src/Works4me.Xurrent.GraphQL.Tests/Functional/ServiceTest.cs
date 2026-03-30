@@ -26,13 +26,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectServiceOfferings(new ServiceOfferingQuery()
                     .SelectAll())
                 .SelectTranslations(new TranslationQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(services);
 
             if (services.Count > 0)
             {
-                services = await _client.GetAsync(new ServiceQuery().WithId(services.GetRandomItem().Id));
+                services = await _client.GetAsync(new ServiceQuery().WithId(services.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(services);
             }
         }

@@ -189,6 +189,12 @@ namespace Works4me.Xurrent.GraphQL
         public ReadOnlyDataCollection<ReservationOffering>? ReservationOfferings { get => ReservationOfferingsCollection?.Data is null ? null : new ReadOnlyDataCollection<ReservationOffering>(ReservationOfferingsCollection.Data); }
 
         /// <summary>
+        /// The RFC type of the request.
+        /// </summary>
+        [XurrentField("rfcType")]
+        public RfcType? RfcType { get; internal set; }
+
+        /// <summary>
         /// The service for which the request template is made available.
         /// </summary>
         [XurrentField("service")]

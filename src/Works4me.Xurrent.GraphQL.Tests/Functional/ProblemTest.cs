@@ -30,13 +30,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectTimeEntries(new TimeEntryQuery()
                     .SelectAll())
                 .SelectWorkaroundAttachments(new AttachmentQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(problems);
 
             if (problems.Count > 0)
             {
-                problems = await _client.GetAsync(new ProblemQuery().WithId(problems.GetRandomItem().Id));
+                problems = await _client.GetAsync(new ProblemQuery().WithId(problems.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(problems);
             }
         }

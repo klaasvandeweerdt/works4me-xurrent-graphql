@@ -67,6 +67,7 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="automationRuleQuery">The automation rule query.</param>
         /// <param name="broadcastQuery">The broadcast query.</param>
         /// <param name="calendarQuery">The calendar query.</param>
+        /// <param name="ciStagedChangeQuery">The ci staged change query.</param>
         /// <param name="closureCodeQuery">The closure code query.</param>
         /// <param name="configurationItemQuery">The configuration item query.</param>
         /// <param name="contractQuery">The contract query.</param>
@@ -98,6 +99,7 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="requestTemplateQuery">The request template query.</param>
         /// <param name="reservationQuery">The reservation query.</param>
         /// <param name="reservationOfferingQuery">The reservation offering query.</param>
+        /// <param name="rfcTypeQuery">The rfc type query.</param>
         /// <param name="riskQuery">The risk query.</param>
         /// <param name="riskSeverityQuery">The risk severity query.</param>
         /// <param name="scrumWorkspaceQuery">The scrum workspace query.</param>
@@ -147,6 +149,7 @@ namespace Works4me.Xurrent.GraphQL
             AutomationRuleQuery? automationRuleQuery = null,
             BroadcastQuery? broadcastQuery = null,
             CalendarQuery? calendarQuery = null,
+            CiStagedChangeQuery? ciStagedChangeQuery = null,
             ClosureCodeQuery? closureCodeQuery = null,
             ConfigurationItemQuery? configurationItemQuery = null,
             ContractQuery? contractQuery = null,
@@ -178,6 +181,7 @@ namespace Works4me.Xurrent.GraphQL
             RequestTemplateQuery? requestTemplateQuery = null,
             ReservationQuery? reservationQuery = null,
             ReservationOfferingQuery? reservationOfferingQuery = null,
+            RfcTypeQuery? rfcTypeQuery = null,
             RiskQuery? riskQuery = null,
             RiskSeverityQuery? riskSeverityQuery = null,
             ScrumWorkspaceQuery? scrumWorkspaceQuery = null,
@@ -226,6 +230,7 @@ namespace Works4me.Xurrent.GraphQL
             query = query.SelectOnType("selectedRecords", automationRuleQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", broadcastQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", calendarQuery ?? new(), true);
+            query = query.SelectOnType("selectedRecords", ciStagedChangeQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", closureCodeQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", configurationItemQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", contractQuery ?? new(), true);
@@ -257,6 +262,7 @@ namespace Works4me.Xurrent.GraphQL
             query = query.SelectOnType("selectedRecords", requestTemplateQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", reservationQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", reservationOfferingQuery ?? new(), true);
+            query = query.SelectOnType("selectedRecords", rfcTypeQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", riskQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", riskSeverityQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", scrumWorkspaceQuery ?? new(), true);
@@ -426,6 +432,21 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="query">The selected records query.</param>
         /// <returns>The same <see cref="SyncSetQuery"/>, updated to include the "SelectedRecords" sub-query.</returns>
         public SyncSetQuery SelectSelectedRecords(CalendarQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return SelectOnType("selectedRecords", query, true);
+        }
+
+        /// <summary>
+        /// Individual records selected to be included in the sync set.<br />
+        /// Use this method along with other <c>SelectSelectedRecords()</c> calls to cast different object types.<br />
+        /// If a specific type is not queried via <c>SelectSelectedRecords()</c>, it defaults to a <c>null</c> value.<br />
+        /// </summary>
+        /// <param name="query">The selected records query.</param>
+        /// <returns>The same <see cref="SyncSetQuery"/>, updated to include the "SelectedRecords" sub-query.</returns>
+        public SyncSetQuery SelectSelectedRecords(CiStagedChangeQuery query)
         {
             if (query is null)
                 throw new ArgumentNullException(nameof(query));
@@ -891,6 +912,21 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="query">The selected records query.</param>
         /// <returns>The same <see cref="SyncSetQuery"/>, updated to include the "SelectedRecords" sub-query.</returns>
         public SyncSetQuery SelectSelectedRecords(ReservationOfferingQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return SelectOnType("selectedRecords", query, true);
+        }
+
+        /// <summary>
+        /// Individual records selected to be included in the sync set.<br />
+        /// Use this method along with other <c>SelectSelectedRecords()</c> calls to cast different object types.<br />
+        /// If a specific type is not queried via <c>SelectSelectedRecords()</c>, it defaults to a <c>null</c> value.<br />
+        /// </summary>
+        /// <param name="query">The selected records query.</param>
+        /// <returns>The same <see cref="SyncSetQuery"/>, updated to include the "SelectedRecords" sub-query.</returns>
+        public SyncSetQuery SelectSelectedRecords(RfcTypeQuery query)
         {
             if (query is null)
                 throw new ArgumentNullException(nameof(query));

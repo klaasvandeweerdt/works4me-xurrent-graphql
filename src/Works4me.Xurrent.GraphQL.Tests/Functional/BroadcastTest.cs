@@ -34,13 +34,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                     .ItemsPerRequest(10)
                     .SelectAll())
                 .SelectTranslations(new BroadcastTranslationQuery()
-                    .ItemsPerRequest(1)));
+                    .ItemsPerRequest(1)), TestContext.Current.CancellationToken);
 
             Assert.NotNull(broadcasts);
 
             if (broadcasts.Count > 0)
             {
-                broadcasts = await _client.GetAsync(new BroadcastQuery().WithId(broadcasts.GetRandomItem().Id));
+                broadcasts = await _client.GetAsync(new BroadcastQuery().WithId(broadcasts.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(broadcasts);
             }
         }

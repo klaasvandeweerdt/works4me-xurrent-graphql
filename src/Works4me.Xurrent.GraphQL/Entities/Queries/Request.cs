@@ -338,6 +338,12 @@ namespace Works4me.Xurrent.GraphQL
         public bool? Reviewed { get; internal set; }
 
         /// <summary>
+        /// The RFC type of the request.
+        /// </summary>
+        [XurrentField("rfcType")]
+        public RfcType? RfcType { get; internal set; }
+
+        /// <summary>
         /// The Satisfaction field is set when a requester uses the hyperlinks defined in the 'Request Set to Completed' email template to indicate whether or not he/she is satisfied with the manner in which a request has been handled.
         /// </summary>
         [XurrentField("satisfaction")]

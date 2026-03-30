@@ -19,7 +19,8 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectTrashed(new ConfigurationItemQuery()
                     .Select(ConfigurationItemField.Id))
                 .SelectTrashed(new PersonQuery()
-                    .Select(PersonField.Id, PersonField.Name, PersonField.PrimaryEmail)));
+                    .Select(PersonField.Id, PersonField.Name, PersonField.PrimaryEmail)
+                ), TestContext.Current.CancellationToken);
 
             Assert.NotNull(trashes);
 
@@ -27,7 +28,7 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
             {
                 trashes = await _client.GetAsync(new TrashQuery()
                     .WithId(trashes.GetRandomItem().Id)
-                    .Select(TrashField.Id, TrashField.CreatedAt));
+                    .Select(TrashField.Id, TrashField.CreatedAt), TestContext.Current.CancellationToken);
 
                 Trash trash = trashes.First();
                 Assert.NotNull(trash.Id);

@@ -20,13 +20,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectNotes(new NoteQuery()
                     .SelectAll())
                 .SelectWorkflows(new WorkflowQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(releases);
 
             if (releases.Count > 0)
             {
-                releases = await _client.GetAsync(new ReleaseQuery().WithId(releases.GetRandomItem().Id));
+                releases = await _client.GetAsync(new ReleaseQuery().WithId(releases.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(releases);
             }
         }

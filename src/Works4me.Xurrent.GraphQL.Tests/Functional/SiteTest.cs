@@ -22,13 +22,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectPeople(new PersonQuery()
                     .SelectAll())
                 .SelectRemarksAttachments(new AttachmentQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(sites);
 
             if (sites.Count > 0)
             {
-                sites = await _client.GetAsync(new SiteQuery().WithId(sites.GetRandomItem().Id));
+                sites = await _client.GetAsync(new SiteQuery().WithId(sites.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(sites);
             }
         }

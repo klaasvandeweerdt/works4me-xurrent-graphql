@@ -16,13 +16,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .View(DefaultView.None)
                 .SelectAll()
                 .SelectInformationAttachments(new AttachmentQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(projectRiskLevels);
 
             if (projectRiskLevels.Count > 0)
             {
-                projectRiskLevels = await _client.GetAsync(new ProjectRiskLevelQuery().WithId(projectRiskLevels.GetRandomItem().Id));
+                projectRiskLevels = await _client.GetAsync(new ProjectRiskLevelQuery().WithId(projectRiskLevels.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(projectRiskLevels);
             }
         }

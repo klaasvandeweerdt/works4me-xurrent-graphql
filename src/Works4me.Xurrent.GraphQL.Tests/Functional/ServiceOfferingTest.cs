@@ -42,13 +42,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectTerminationAttachments(new AttachmentQuery()
                     .SelectAll())
                 .SelectSupportHoursCase(new CalendarQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(serviceOfferings);
 
             if (serviceOfferings.Count > 0)
             {
-                serviceOfferings = await _client.GetAsync(new ServiceOfferingQuery().WithId(serviceOfferings.GetRandomItem().Id));
+                serviceOfferings = await _client.GetAsync(new ServiceOfferingQuery().WithId(serviceOfferings.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(serviceOfferings);
             }
         }

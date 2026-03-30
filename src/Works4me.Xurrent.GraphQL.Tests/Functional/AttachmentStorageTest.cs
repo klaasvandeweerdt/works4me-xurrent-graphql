@@ -13,7 +13,7 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
         {
             AttachmentStorage? attachmentStorage = await _client.GetAsync(new AttachmentStorageQuery()
                 .View(DefaultView.None)
-                .SelectAll());
+                .SelectAll(), TestContext.Current.CancellationToken);
 
             Assert.NotNull(attachmentStorage);
         }

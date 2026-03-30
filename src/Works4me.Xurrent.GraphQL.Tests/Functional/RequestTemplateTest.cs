@@ -32,13 +32,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectStandardServiceRequests(new StandardServiceRequestQuery()
                     .SelectAll())
                 .SelectTranslations(new TranslationQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(requestTemplates);
 
             if (requestTemplates.Count > 0)
             {
-                requestTemplates = await _client.GetAsync(new RequestTemplateQuery().WithId(requestTemplates.GetRandomItem().Id));
+                requestTemplates = await _client.GetAsync(new RequestTemplateQuery().WithId(requestTemplates.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(requestTemplates);
             }
         }

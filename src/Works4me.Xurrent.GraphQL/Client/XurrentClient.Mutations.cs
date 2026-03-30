@@ -227,6 +227,20 @@ namespace Works4me.Xurrent.GraphQL
             return MutationAsync<CalendarUpdatePayload, CalendarUpdateInput>(GetAccountId(), new CalendarUpdateMutation(data, query), ct);
         }
 
+        /// <param name="data">The input data for the ci staged change mutation.</param>
+        /// <param name="query">The query specifying which fields to return in the response.</param>
+        /// <param name="ct">The <see cref="CancellationToken"/> for request cancellation.</param>
+        public Task<CiStagedChangeUpdatePayload> MutationAsync(CiStagedChangeUpdateInput data, CiStagedChangeQuery query, CancellationToken ct = default)
+        {
+            if (data is null)
+                throw new ArgumentNullException(nameof(data));
+
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return MutationAsync<CiStagedChangeUpdatePayload, CiStagedChangeUpdateInput>(GetAccountId(), new CiStagedChangeUpdateMutation(data, query), ct);
+        }
+
         /// <param name="data">The input data for the closure code mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
         /// <param name="ct">The <see cref="CancellationToken"/> for request cancellation.</param>

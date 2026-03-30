@@ -21,13 +21,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectDescriptionAttachments(new AttachmentQuery()
                     .SelectAll())
                 .SelectCustomerRepresentativeSlas(new ServiceLevelAgreementQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(agileBoards);
 
             if (agileBoards.Count > 0)
             {
-                agileBoards = await _client.GetAsync(new AgileBoardQuery().WithId(agileBoards.GetRandomItem().Id));
+                agileBoards = await _client.GetAsync(new AgileBoardQuery().WithId(agileBoards.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(agileBoards);
             }
         }

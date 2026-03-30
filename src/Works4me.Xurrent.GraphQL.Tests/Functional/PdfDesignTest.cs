@@ -22,13 +22,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                         .ItemsPerRequest(1)
                         .SelectTranslations(new TranslationQuery())))
                 .SelectDescriptionAttachments(new AttachmentQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(pdfDesigns);
 
             if (pdfDesigns.Count > 0)
             {
-                pdfDesigns = await _client.GetAsync(new PdfDesignQuery().WithId(pdfDesigns.GetRandomItem().Id));
+                pdfDesigns = await _client.GetAsync(new PdfDesignQuery().WithId(pdfDesigns.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(pdfDesigns);
             }
         }

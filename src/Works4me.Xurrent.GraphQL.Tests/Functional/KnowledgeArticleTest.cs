@@ -29,13 +29,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                     .SelectAll()
                     .SelectOwner(new KnowledgeArticleQuery()
                         .ItemsPerRequest(1)
-                        .SelectAll())));
+                        .SelectAll())), TestContext.Current.CancellationToken);
 
             Assert.NotNull(knowledgeArticles);
 
             if (knowledgeArticles.Count > 0)
             {
-                knowledgeArticles = await _client.GetAsync(new KnowledgeArticleQuery().WithId(knowledgeArticles.GetRandomItem().Id));
+                knowledgeArticles = await _client.GetAsync(new KnowledgeArticleQuery().WithId(knowledgeArticles.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(knowledgeArticles);
             }
         }

@@ -23,6 +23,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private string? _features;
         private Collection<AttachmentInput>? _featuresAttachments;
         private Collection<string>? _oauthAuthorizationEndpoints;
+        private bool? _openidConnectDiscovery;
         private WebhookPolicyJwtAlg? _policyJwtAlg;
         private string? _policyJwtAudience;
         private long? _policyJwtClaimExpiresIn;
@@ -173,6 +174,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _oauthAuthorizationEndpoints;
             set => _oauthAuthorizationEndpoints = Set("oauthAuthorizationEndpoints", value);
+        }
+
+        /// <summary>
+        /// Whether the webhook for this app uses OpenID Connect Discovery to allow retrieval of the policy's public key via a JWKS endpoint.
+        /// </summary>
+        [XurrentField("openidConnectDiscovery")]
+        public bool? OpenidConnectDiscovery
+        {
+            get => _openidConnectDiscovery;
+            set => _openidConnectDiscovery = Set("openidConnectDiscovery", value);
         }
 
         /// <summary>

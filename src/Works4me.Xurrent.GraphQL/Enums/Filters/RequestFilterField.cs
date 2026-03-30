@@ -320,6 +320,12 @@ namespace Works4me.Xurrent.GraphQL
         Response,
 
         /// <summary>
+        /// Filter on RFC type.
+        /// </summary>
+        [XurrentEnum("rfcType")]
+        RfcType,
+
+        /// <summary>
         /// Filter on Satisfaction.
         /// </summary>
         [XurrentEnum("satisfaction")]

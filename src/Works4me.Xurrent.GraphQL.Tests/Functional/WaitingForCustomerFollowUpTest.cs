@@ -16,13 +16,14 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .View(DefaultView.None)
                 .SelectAll()
                 .SelectWaitingForCustomerRules(new WaitingForCustomerRuleQuery()
-                    .SelectAll()));
+                    .SelectAll()
+                ), TestContext.Current.CancellationToken);
 
             Assert.NotNull(customCollections);
 
             if (customCollections.Count > 0)
             {
-                customCollections = await _client.GetAsync(new WaitingForCustomerFollowUpQuery().WithId(customCollections.GetRandomItem().Id));
+                customCollections = await _client.GetAsync(new WaitingForCustomerFollowUpQuery().WithId(customCollections.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(customCollections);
             }
         }

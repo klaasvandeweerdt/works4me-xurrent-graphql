@@ -24,13 +24,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectTaskTemplateRelations(new WorkflowTaskTemplateRelationQuery()
                     .SelectAll())
                 .SelectWorkflows(new WorkflowQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(workflowTemplates);
 
             if (workflowTemplates.Count > 0)
             {
-                workflowTemplates = await _client.GetAsync(new WorkflowTemplateQuery().WithId(workflowTemplates.GetRandomItem().Id));
+                workflowTemplates = await _client.GetAsync(new WorkflowTemplateQuery().WithId(workflowTemplates.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(workflowTemplates);
             }
         }

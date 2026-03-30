@@ -18,7 +18,7 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
             ReadOnlyDataCollection<AffectedSla> affectedSlas = await _client.GetAsync(new AffectedSlaQuery()
                 .View(AffectedSlaView.All)
                 .ItemsPerRequest(2)
-                .SelectAll());
+                .SelectAll(), TestContext.Current.CancellationToken);
 
             Assert.NotNull(affectedSlas);
 
@@ -27,7 +27,7 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 AffectedSla affectedSla = affectedSlas.GetRandomItem();
                 Assert.NotNull(affectedSla.Id);
 
-                ReadOnlyDataCollection<AffectedSla> selectedAffectedSlas = await _client.GetAsync(new AffectedSlaQuery().WithId(affectedSla.Id));
+                ReadOnlyDataCollection<AffectedSla> selectedAffectedSlas = await _client.GetAsync(new AffectedSlaQuery().WithId(affectedSla.Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(selectedAffectedSlas.First()?.Id);
 
                 IEnumerable<AffectedSla> noTargets = affectedSlas.Where(x => x.NextTargetAt is not null && x.NextTargetAt.Value.IsNoTarget());

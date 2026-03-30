@@ -76,6 +76,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private Currency? _rateCaseCurrency;
         private Collection<StandardServiceRequestInput>? _newStandardServiceRequests;
         private Collection<EffortClassRateInput>? _newEffortClassRates;
+        private Collection<RfcTypeRateInput>? _newRfcTypeRates;
         private string _name;
         private string _serviceId;
 
@@ -758,6 +759,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _newEffortClassRates;
             set => _newEffortClassRates = Set("newEffortClassRates", value);
+        }
+
+        /// <summary>
+        /// RFC type rates of the service offering.
+        /// </summary>
+        [XurrentField("newRfcTypeRates")]
+        public Collection<RfcTypeRateInput>? NewRfcTypeRates
+        {
+            get => _newRfcTypeRates;
+            set => _newRfcTypeRates = Set("newRfcTypeRates", value);
         }
 
         /// <summary>

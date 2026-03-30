@@ -19,13 +19,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                     .SelectAll())
                 .SelectTranslations(new TranslationQuery()
                     .ItemsPerRequest(1)
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(workflowTypes);
 
             if (workflowTypes.Count > 0)
             {
-                workflowTypes = await _client.GetAsync(new WorkflowTypeQuery().WithId(workflowTypes.GetRandomItem().Id));
+                workflowTypes = await _client.GetAsync(new WorkflowTypeQuery().WithId(workflowTypes.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(workflowTypes);
             }
         }

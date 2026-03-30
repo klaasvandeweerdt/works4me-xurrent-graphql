@@ -20,13 +20,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectMembers(new PersonQuery()
                     .SelectAll())
                 .SelectRemarksAttachments(new AttachmentQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(teams);
 
             if (teams.Count > 0)
             {
-                teams = await _client.GetAsync(new TeamQuery().WithId(teams.GetRandomItem().Id));
+                teams = await _client.GetAsync(new TeamQuery().WithId(teams.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(teams);
             }
         }

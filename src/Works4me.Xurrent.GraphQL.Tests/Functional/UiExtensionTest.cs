@@ -20,13 +20,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectTranslations(new TranslationQuery()
                     .SelectAll())
                 .SelectVersions(new UiExtensionVersionQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(uiExtensions);
 
             if (uiExtensions.Count > 0)
             {
-                uiExtensions = await _client.GetAsync(new UiExtensionQuery().WithId(uiExtensions.GetRandomItem().Id));
+                uiExtensions = await _client.GetAsync(new UiExtensionQuery().WithId(uiExtensions.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(uiExtensions);
             }
         }

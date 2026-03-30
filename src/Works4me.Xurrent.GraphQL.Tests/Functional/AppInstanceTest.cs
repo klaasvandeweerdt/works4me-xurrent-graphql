@@ -18,13 +18,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectAutomationRules(new AutomationRuleQuery()
                     .SelectAll())
                 .SelectCustomFieldsAttachments(new AttachmentQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(appInstances);
 
             if (appInstances.Count > 0)
             {
-                appInstances = await _client.GetAsync(new AppInstanceQuery().WithId(appInstances.GetRandomItem().Id));
+                appInstances = await _client.GetAsync(new AppInstanceQuery().WithId(appInstances.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(appInstances);
             }
         }

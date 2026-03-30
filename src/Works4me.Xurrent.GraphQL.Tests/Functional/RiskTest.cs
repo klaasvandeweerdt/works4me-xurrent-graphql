@@ -24,13 +24,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectProjects(new ProjectQuery()
                     .SelectAll())
                 .SelectServices(new ServiceQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(risks);
 
             if (risks.Count > 0)
             {
-                risks = await _client.GetAsync(new RiskQuery().WithId(risks.GetRandomItem().Id));
+                risks = await _client.GetAsync(new RiskQuery().WithId(risks.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(risks);
             }
         }

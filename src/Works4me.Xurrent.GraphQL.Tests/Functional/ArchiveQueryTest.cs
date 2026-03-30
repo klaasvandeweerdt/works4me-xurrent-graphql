@@ -18,13 +18,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectArchivedAll(
                     personQuery: new PersonQuery().Select(PersonField.Id, PersonField.PrimaryEmail, PersonField.Name),
                     configurationItemQuery: new ConfigurationItemQuery().Select(ConfigurationItemField.Id, ConfigurationItemField.Label, ConfigurationItemField.Name)
-                ));
+                ), TestContext.Current.CancellationToken);
 
             Assert.NotNull(archives);
 
             if (archives.Count > 0)
             {
-                archives = await _client.GetAsync(new ArchiveQuery().WithId(archives.GetRandomItem().Id));
+                archives = await _client.GetAsync(new ArchiveQuery().WithId(archives.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(archives);
             }
         }

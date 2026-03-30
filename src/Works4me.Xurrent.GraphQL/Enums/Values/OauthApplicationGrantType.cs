@@ -17,6 +17,12 @@ namespace Works4me.Xurrent.GraphQL
         /// Client credentials grant.
         /// </summary>
         [XurrentEnum("client_credentials")]
-        ClientCredentials
+        ClientCredentials,
+
+        /// <summary>
+        /// Token exchange grant.
+        /// </summary>
+        [XurrentEnum("token_exchange")]
+        TokenExchange
     }
 }

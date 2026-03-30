@@ -16,13 +16,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .View(DefaultView.None)
                 .SelectAll()
                 .SelectSlaNotificationRules(new SlaNotificationRuleQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(slaNotificationSchemes);
 
             if (slaNotificationSchemes.Count > 0)
             {
-                slaNotificationSchemes = await _client.GetAsync(new SlaNotificationSchemeQuery().WithId(slaNotificationSchemes.GetRandomItem().Id));
+                slaNotificationSchemes = await _client.GetAsync(new SlaNotificationSchemeQuery().WithId(slaNotificationSchemes.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(slaNotificationSchemes);
             }
         }

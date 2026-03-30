@@ -18,13 +18,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectTranslations(new TranslationQuery()
                     .ItemsPerRequest(1))
                 .SelectInformationAttachments(new AttachmentQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(closureCodes);
 
             if (closureCodes.Count > 0)
             {
-                closureCodes = await _client.GetAsync(new ClosureCodeQuery().WithId(closureCodes.GetRandomItem().Id));
+                closureCodes = await _client.GetAsync(new ClosureCodeQuery().WithId(closureCodes.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(closureCodes);
             }
         }

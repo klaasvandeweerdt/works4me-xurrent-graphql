@@ -43,7 +43,7 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                         .ItemsPerRequest(1),
                     workflowTemplateQuery: new WorkflowTemplateQuery()
                         .Select(WorkflowTemplateField.Id)
-                        .ItemsPerRequest(1)));
+                        .ItemsPerRequest(1)), TestContext.Current.CancellationToken);
 
             Assert.NotNull(automationRules);
         }

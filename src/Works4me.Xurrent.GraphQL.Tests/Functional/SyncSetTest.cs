@@ -19,13 +19,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                     .SelectAll())
                 .SelectSelectedRecordsAll()
                 .SelectLastSnapshot(new SnapshotQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(syncSets);
 
             if (syncSets.Count > 0)
             {
-                syncSets = await _client.GetAsync(new SyncSetQuery().WithId(syncSets.GetRandomItem().Id));
+                syncSets = await _client.GetAsync(new SyncSetQuery().WithId(syncSets.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(syncSets);
             }
         }

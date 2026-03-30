@@ -14,13 +14,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
         {
             ReadOnlyDataCollection<ShortUrl> shortUrls = await _client.GetAsync(new ShortUrlQuery()
                 .View(ShortUrlView.All)
-                .SelectAll());
+                .SelectAll(), TestContext.Current.CancellationToken);
 
             Assert.NotNull(shortUrls);
 
             if (shortUrls.Count > 0)
             {
-                shortUrls = await _client.GetAsync(new ShortUrlQuery().WithId(shortUrls.GetRandomItem().Id));
+                shortUrls = await _client.GetAsync(new ShortUrlQuery().WithId(shortUrls.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(shortUrls);
             }
         }

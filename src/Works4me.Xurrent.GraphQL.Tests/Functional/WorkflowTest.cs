@@ -32,13 +32,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectRequests(new RequestQuery()
                     .SelectAll())
                 .SelectTasks(new WorkflowTaskQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(workflows);
 
             if (workflows.Count > 0)
             {
-                workflows = await _client.GetAsync(new WorkflowQuery().WithId(workflows.GetRandomItem().Id));
+                workflows = await _client.GetAsync(new WorkflowQuery().WithId(workflows.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(workflows);
             }
         }

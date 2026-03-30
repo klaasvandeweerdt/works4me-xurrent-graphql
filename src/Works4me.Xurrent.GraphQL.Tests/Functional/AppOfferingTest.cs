@@ -22,13 +22,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectComplianceAttachments(new AttachmentQuery()
                     .SelectAll())
                 .SelectDescriptionAttachments(new AttachmentQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(appOfferings);
 
             if (appOfferings.Count > 0)
             {
-                appOfferings = await _client.GetAsync(new AppOfferingQuery().WithId(appOfferings.GetRandomItem().Id));
+                appOfferings = await _client.GetAsync(new AppOfferingQuery().WithId(appOfferings.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(appOfferings);
             }
         }

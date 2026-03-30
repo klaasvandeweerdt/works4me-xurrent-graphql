@@ -13,7 +13,7 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
         {
             RateLimit? rateLimits = await _client.GetAsync(new RateLimitQuery()
                 .View(DefaultView.None)
-                .SelectAll());
+                .SelectAll(), TestContext.Current.CancellationToken);
 
             Assert.NotNull(rateLimits);
             Assert.NotNull(rateLimits.Cost);

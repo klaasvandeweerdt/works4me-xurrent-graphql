@@ -18,13 +18,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectAnswers(new SurveyAnswerQuery()
                     .SelectAll())
                 .SelectSlas(new ServiceLevelAgreementQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(surveyResponses);
 
             if (surveyResponses.Count > 0)
             {
-                surveyResponses = await _client.GetAsync(new SurveyResponseQuery().WithId(surveyResponses.GetRandomItem().Id));
+                surveyResponses = await _client.GetAsync(new SurveyResponseQuery().WithId(surveyResponses.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(surveyResponses);
             }
         }

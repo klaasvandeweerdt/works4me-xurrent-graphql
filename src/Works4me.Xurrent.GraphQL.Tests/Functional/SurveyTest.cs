@@ -29,13 +29,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                     .SelectAll())
                 .SelectTranslations(new TranslationQuery()
                     .ItemsPerRequest(1)
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(surveys);
 
             if (surveys.Count > 0)
             {
-                surveys = await _client.GetAsync(new SurveyQuery().WithId(surveys.GetRandomItem().Id));
+                surveys = await _client.GetAsync(new SurveyQuery().WithId(surveys.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(surveys);
             }
         }

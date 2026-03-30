@@ -34,7 +34,7 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectSkillPools(new SkillPoolQuery()
                     .SelectAll())
                 .SelectTeams(new TeamQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(me);
         }

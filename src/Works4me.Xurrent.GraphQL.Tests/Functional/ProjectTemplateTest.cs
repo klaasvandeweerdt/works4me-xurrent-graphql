@@ -22,13 +22,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                     .ItemsPerRequest(50)
                     .SelectAutomationRules(new AutomationRuleQuery()
                         .SelectAll()
-                        .ItemsPerRequest(10))));
+                        .ItemsPerRequest(10))), TestContext.Current.CancellationToken);
 
             Assert.NotNull(projectTemplates);
 
             if (projectTemplates.Count > 0)
             {
-                projectTemplates = await _client.GetAsync(new ProjectTemplateQuery().WithId(projectTemplates.GetRandomItem().Id));
+                projectTemplates = await _client.GetAsync(new ProjectTemplateQuery().WithId(projectTemplates.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(projectTemplates);
             }
         }

@@ -12,6 +12,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private string? _clientMutationId;
         private bool? _disabled;
         private string? _description;
+        private bool? _openidConnectDiscovery;
         private Collection<AttachmentInput>? _descriptionAttachments;
         private string? _mailExceptionsTo;
         private string? _name;
@@ -48,6 +49,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _description;
             set => _description = Set("description", value);
+        }
+
+        /// <summary>
+        /// Whether this webhook uses OpenID Connect Discovery to allow retrieval of the policy's public key via a JWKS endpoint.
+        /// </summary>
+        [XurrentField("openidConnectDiscovery")]
+        public bool? OpenidConnectDiscovery
+        {
+            get => _openidConnectDiscovery;
+            set => _openidConnectDiscovery = Set("openidConnectDiscovery", value);
         }
 
         /// <summary>

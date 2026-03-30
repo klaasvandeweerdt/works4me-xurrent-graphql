@@ -142,6 +142,13 @@ namespace Works4me.Xurrent.GraphQL
         /// </summary>
         public ReadOnlyDataCollection<Attachment>? RemarksAttachments { get => RemarksAttachmentsCollection?.Data is null ? null : new ReadOnlyDataCollection<Attachment>(RemarksAttachmentsCollection.Data); }
 
+        [XurrentField("rfcTypeActivityIDs")]
+        internal PagedResponse<RfcTypeActivityID>? RfcTypeActivityIDsCollection { get; set; }
+        /// <summary>
+        /// Represents the activityIDs for request for change types. The Activity ID is the unique identifier by which an activity that is performed in the context of a service offering is known in the billing system of the service provider.
+        /// </summary>
+        public ReadOnlyDataCollection<RfcTypeActivityID>? RfcTypeActivityIDs { get => RfcTypeActivityIDsCollection?.Data is null ? null : new ReadOnlyDataCollection<RfcTypeActivityID>(RfcTypeActivityIDsCollection.Data); }
+
         /// <summary>
         /// The service instance that will be used to provide the service to the customer of the service level agreement. Only service instances that are linked to the same service as the selected service offering can be selected.
         /// </summary>
@@ -259,6 +266,7 @@ namespace Works4me.Xurrent.GraphQL
                 OrganizationsCollection?.Data?.AddRange(serviceLevelAgreement.Organizations);
                 PeopleCollection?.Data?.AddRange(serviceLevelAgreement.People);
                 RemarksAttachmentsCollection?.Data?.AddRange(serviceLevelAgreement.RemarksAttachments);
+                RfcTypeActivityIDsCollection?.Data?.AddRange(serviceLevelAgreement.RfcTypeActivityIDs);
                 ServiceInstancesCollection?.Data?.AddRange(serviceLevelAgreement.ServiceInstances);
                 SitesCollection?.Data?.AddRange(serviceLevelAgreement.Sites);
                 SkillPoolsCollection?.Data?.AddRange(serviceLevelAgreement.SkillPools);
@@ -299,6 +307,10 @@ namespace Works4me.Xurrent.GraphQL
 
             if (RemarksAttachmentsCollection is not null)
                 foreach (ExecutionPageInfo pageInfo in RemarksAttachmentsCollection.GetPageInfo("remarksAttachments", depth))
+                    yield return pageInfo;
+
+            if (RfcTypeActivityIDsCollection is not null)
+                foreach (ExecutionPageInfo pageInfo in RfcTypeActivityIDsCollection.GetPageInfo("rfcTypeActivityIDs", depth))
                     yield return pageInfo;
 
             if (ServiceInstancesCollection is not null)

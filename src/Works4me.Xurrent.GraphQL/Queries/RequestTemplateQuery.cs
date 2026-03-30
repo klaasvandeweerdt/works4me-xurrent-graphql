@@ -159,6 +159,19 @@ namespace Works4me.Xurrent.GraphQL
         }
 
         /// <summary>
+        /// The RFC type of the request.
+        /// </summary>
+        /// <param name="query">The rfc type query.</param>
+        /// <returns>The same <see cref="RequestTemplateQuery"/>, updated to include the "RfcType" sub-query.</returns>
+        public RequestTemplateQuery SelectRfcType(RfcTypeQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return Select("rfcType", query, false);
+        }
+
+        /// <summary>
         /// The service for which the request template is made available.
         /// </summary>
         /// <param name="query">The service query.</param>

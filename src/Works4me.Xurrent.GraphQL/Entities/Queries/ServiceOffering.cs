@@ -525,6 +525,13 @@ namespace Works4me.Xurrent.GraphQL
         [XurrentField("reviewFrequency")]
         public ServiceOfferingReviewFrequency? ReviewFrequency { get; internal set; }
 
+        [XurrentField("rfcTypeRates")]
+        internal PagedResponse<RfcTypeRate>? RfcTypeRatesCollection { get; set; }
+        /// <summary>
+        /// RFC type rates of the service offering.
+        /// </summary>
+        public ReadOnlyDataCollection<RfcTypeRate>? RfcTypeRates { get => RfcTypeRatesCollection?.Data is null ? null : new ReadOnlyDataCollection<RfcTypeRate>(RfcTypeRatesCollection.Data); }
+
         /// <summary>
         /// The service for which the service offering is being prepared.
         /// </summary>
@@ -689,6 +696,7 @@ namespace Works4me.Xurrent.GraphQL
                 PenaltiesAttachmentsCollection?.Data?.AddRange(serviceOffering.PenaltiesAttachments);
                 PerformanceAttachmentsCollection?.Data?.AddRange(serviceOffering.PerformanceAttachments);
                 PrerequisitesAttachmentsCollection?.Data?.AddRange(serviceOffering.PrerequisitesAttachments);
+                RfcTypeRatesCollection?.Data?.AddRange(serviceOffering.RfcTypeRates);
                 ServiceLevelAgreementsCollection?.Data?.AddRange(serviceOffering.ServiceLevelAgreements);
                 ShopArticlesCollection?.Data?.AddRange(serviceOffering.ShopArticles);
                 StandardServiceRequestsCollection?.Data?.AddRange(serviceOffering.StandardServiceRequests);
@@ -734,6 +742,10 @@ namespace Works4me.Xurrent.GraphQL
 
             if (PrerequisitesAttachmentsCollection is not null)
                 foreach (ExecutionPageInfo pageInfo in PrerequisitesAttachmentsCollection.GetPageInfo("prerequisitesAttachments", depth))
+                    yield return pageInfo;
+
+            if (RfcTypeRatesCollection is not null)
+                foreach (ExecutionPageInfo pageInfo in RfcTypeRatesCollection.GetPageInfo("rfcTypeRates", depth))
                     yield return pageInfo;
 
             if (ServiceLevelAgreementsCollection is not null)

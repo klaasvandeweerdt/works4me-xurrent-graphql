@@ -24,13 +24,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                         .SelectAll(),
                     workflowTaskQuery: new WorkflowTaskQuery()
                         .SelectAll()
-                ));
+                ), TestContext.Current.CancellationToken);
 
             Assert.NotNull(timeEntries);
 
             if (timeEntries.Count > 0)
             {
-                timeEntries = await _client.GetAsync(new TimeEntryQuery().WithId(timeEntries.GetRandomItem().Id));
+                timeEntries = await _client.GetAsync(new TimeEntryQuery().WithId(timeEntries.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(timeEntries);
             }
         }

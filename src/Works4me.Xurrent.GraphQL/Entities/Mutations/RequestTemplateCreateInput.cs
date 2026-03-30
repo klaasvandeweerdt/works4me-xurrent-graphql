@@ -15,6 +15,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private bool? _assetSelection;
         private bool? _assignToSelf;
         private RequestCategory? _category;
+        private string? _rfcTypeId;
         private string? _workflowManagerId;
         private string? _workflowTemplateId;
         private string? _configurationItemId;
@@ -109,6 +110,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _category;
             set => _category = Set("category", value);
+        }
+
+        /// <summary>
+        /// Identifier of the RFC type of the request template.
+        /// </summary>
+        [XurrentField("rfcTypeId")]
+        public string? RfcTypeId
+        {
+            get => _rfcTypeId;
+            set => _rfcTypeId = Set("rfcTypeId", value);
         }
 
         /// <summary>

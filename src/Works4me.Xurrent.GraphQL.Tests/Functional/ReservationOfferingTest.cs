@@ -18,13 +18,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectConfigurationItems(new ConfigurationItemQuery()
                     .SelectAll())
                 .SelectRequestTemplates(new RequestTemplateQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(reservationOfferings);
 
             if (reservationOfferings.Count > 0)
             {
-                reservationOfferings = await _client.GetAsync(new ReservationOfferingQuery().WithId(reservationOfferings.GetRandomItem().Id));
+                reservationOfferings = await _client.GetAsync(new ReservationOfferingQuery().WithId(reservationOfferings.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(reservationOfferings);
             }
         }

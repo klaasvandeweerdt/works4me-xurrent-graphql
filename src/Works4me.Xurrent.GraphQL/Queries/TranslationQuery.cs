@@ -40,6 +40,7 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="pdfDesignQuery">The pdf design query.</param>
         /// <param name="productCategoryQuery">The product category query.</param>
         /// <param name="requestTemplateQuery">The request template query.</param>
+        /// <param name="rfcTypeQuery">The rfc type query.</param>
         /// <param name="riskSeverityQuery">The risk severity query.</param>
         /// <param name="serviceQuery">The service query.</param>
         /// <param name="serviceCategoryQuery">The service category query.</param>
@@ -62,6 +63,7 @@ namespace Works4me.Xurrent.GraphQL
             PdfDesignQuery? pdfDesignQuery = null,
             ProductCategoryQuery? productCategoryQuery = null,
             RequestTemplateQuery? requestTemplateQuery = null,
+            RfcTypeQuery? rfcTypeQuery = null,
             RiskSeverityQuery? riskSeverityQuery = null,
             ServiceQuery? serviceQuery = null,
             ServiceCategoryQuery? serviceCategoryQuery = null,
@@ -83,6 +85,7 @@ namespace Works4me.Xurrent.GraphQL
             query = query.SelectOnType("owner", pdfDesignQuery ?? new(), false);
             query = query.SelectOnType("owner", productCategoryQuery ?? new(), false);
             query = query.SelectOnType("owner", requestTemplateQuery ?? new(), false);
+            query = query.SelectOnType("owner", rfcTypeQuery ?? new(), false);
             query = query.SelectOnType("owner", riskSeverityQuery ?? new(), false);
             query = query.SelectOnType("owner", serviceQuery ?? new(), false);
             query = query.SelectOnType("owner", serviceCategoryQuery ?? new(), false);
@@ -211,6 +214,21 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="query">The owner query.</param>
         /// <returns>The same <see cref="TranslationQuery"/>, updated to include the "Owner" sub-query.</returns>
         public TranslationQuery SelectOwner(RequestTemplateQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return SelectOnType("owner", query, false);
+        }
+
+        /// <summary>
+        /// The record from which the translation is obtained.<br />
+        /// Use this method along with other <c>SelectOwner()</c> calls to cast different object types.<br />
+        /// If a specific type is not queried via <c>SelectOwner()</c>, it defaults to a <c>null</c> value.<br />
+        /// </summary>
+        /// <param name="query">The owner query.</param>
+        /// <returns>The same <see cref="TranslationQuery"/>, updated to include the "Owner" sub-query.</returns>
+        public TranslationQuery SelectOwner(RfcTypeQuery query)
         {
             if (query is null)
                 throw new ArgumentNullException(nameof(query));

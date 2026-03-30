@@ -278,6 +278,12 @@ namespace Works4me.Xurrent.GraphQL
         Reviewed,
 
         /// <summary>
+        /// The rfc type field.
+        /// </summary>
+        [XurrentEnum("rfcType")]
+        RfcType,
+
+        /// <summary>
         /// The satisfaction field.
         /// </summary>
         [XurrentEnum("satisfaction")]

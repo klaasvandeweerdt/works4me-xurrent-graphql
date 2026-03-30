@@ -16,13 +16,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .View(DefaultView.None)
                 .SelectAll()
                 .SelectDescriptionAttachments(new AttachmentQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(webhooks);
 
             if (webhooks.Count > 0)
             {
-                webhooks = await _client.GetAsync(new WebhookQuery().WithId(webhooks.GetRandomItem().Id));
+                webhooks = await _client.GetAsync(new WebhookQuery().WithId(webhooks.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(webhooks);
             }
         }

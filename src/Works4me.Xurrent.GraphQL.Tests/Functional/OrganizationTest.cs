@@ -34,13 +34,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectServiceLevelAgreements(new ServiceLevelAgreementQuery()
                     .SelectAll())
                 .SelectTimeAllocations(new TimeAllocationQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(organizations);
 
             if (organizations.Count > 0)
             {
-                organizations = await _client.GetAsync(new OrganizationQuery().WithId(organizations.GetRandomItem().Id));
+                organizations = await _client.GetAsync(new OrganizationQuery().WithId(organizations.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(organizations);
             }
         }

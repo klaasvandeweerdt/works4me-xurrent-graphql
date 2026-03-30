@@ -18,7 +18,7 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 Internal = true
             }, new NoteQuery()
                 .Select(NoteField.Id)
-                .SelectNoteReactions(new NoteReactionQuery()));
+                .SelectNoteReactions(new NoteReactionQuery()), TestContext.Current.CancellationToken);
 
             await Assert.ThrowsAsync<XurrentExecutionException>(async () =>
             {
@@ -27,7 +27,7 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                     Internal = true,
                     OwnerId = Client.GetConfigValue("NoteTest.Id")
                 }, new NoteQuery()
-                    .Select(NoteField.Id));
+                    .Select(NoteField.Id), TestContext.Current.CancellationToken);
             });
 
             Assert.NotNull(noteCreatePayload);
@@ -35,13 +35,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
             Assert.NotNull(noteCreatePayload.Note.NoteReactions);
 
             NoteReactionCreatePayload noteReactionCreatePayload = await _client.MutationAsync(new NoteReactionCreateInput(noteCreatePayload.Note.Id, "👍"), new NoteReactionQuery()
-                .SelectAll());
+                .SelectAll(), TestContext.Current.CancellationToken);
 
             Assert.NotNull(noteReactionCreatePayload);
             Assert.NotNull(noteReactionCreatePayload.NoteReaction);
             Assert.NotNull(noteReactionCreatePayload.NoteReaction.Note);
 
-            NoteReactionDeleteMutationPayload noteReactionDeleteMutationPayload = await _client.MutationAsync(new NoteReactionDeleteMutationInput(noteReactionCreatePayload.NoteReaction.Id));
+            NoteReactionDeleteMutationPayload noteReactionDeleteMutationPayload = await _client.MutationAsync(new NoteReactionDeleteMutationInput(noteReactionCreatePayload.NoteReaction.Id), TestContext.Current.CancellationToken);
 
             Assert.NotNull(noteReactionDeleteMutationPayload);
             Assert.True(noteReactionDeleteMutationPayload.Success);

@@ -16,13 +16,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .View(DefaultView.None)
                 .SelectAll()
                 .SelectInformationAttachments(new AttachmentQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(projectCategories);
 
             if (projectCategories.Count > 0)
             {
-                projectCategories = await _client.GetAsync(new ProjectCategoryQuery().WithId(projectCategories.GetRandomItem().Id));
+                projectCategories = await _client.GetAsync(new ProjectCategoryQuery().WithId(projectCategories.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(projectCategories);
             }
         }

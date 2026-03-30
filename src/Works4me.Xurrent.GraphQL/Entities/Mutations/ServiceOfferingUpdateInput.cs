@@ -80,9 +80,11 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private Currency? _rateCaseCurrency;
         private Collection<StandardServiceRequestInput>? _newStandardServiceRequests;
         private Collection<EffortClassRateInput>? _newEffortClassRates;
+        private Collection<RfcTypeRateInput>? _newRfcTypeRates;
         private string _id;
         private Collection<string>? _standardServiceRequestsToDelete;
         private Collection<string>? _effortClassRatesToDelete;
+        private Collection<string>? _rfcTypeRatesToDelete;
 
         /// <summary>
         /// A unique identifier for the client performing the mutation.
@@ -786,6 +788,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         }
 
         /// <summary>
+        /// RFC type rates of the service offering.
+        /// </summary>
+        [XurrentField("newRfcTypeRates")]
+        public Collection<RfcTypeRateInput>? NewRfcTypeRates
+        {
+            get => _newRfcTypeRates;
+            set => _newRfcTypeRates = Set("newRfcTypeRates", value);
+        }
+
+        /// <summary>
         /// The node ID of the record to update.
         /// </summary>
         [XurrentField("id")]
@@ -813,6 +825,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _effortClassRatesToDelete;
             set => _effortClassRatesToDelete = Set("effortClassRatesToDelete", value);
+        }
+
+        /// <summary>
+        /// Identifiers of RFC type rates to remove from the service offering.
+        /// </summary>
+        [XurrentField("rfcTypeRatesToDelete")]
+        public Collection<string>? RfcTypeRatesToDelete
+        {
+            get => _rfcTypeRatesToDelete;
+            set => _rfcTypeRatesToDelete = Set("rfcTypeRatesToDelete", value);
         }
 
         /// <summary>

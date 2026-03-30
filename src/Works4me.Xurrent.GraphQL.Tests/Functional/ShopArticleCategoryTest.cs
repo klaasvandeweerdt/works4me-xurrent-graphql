@@ -22,13 +22,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                     .SelectOwner(new RiskSeverityQuery()
                         .SelectAll()
                         .ItemsPerRequest(1)))
-                .SelectParent(new ShopArticleCategoryQuery().SelectAll()));
+                .SelectParent(new ShopArticleCategoryQuery().SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(shopArticleCategories);
 
             if (shopArticleCategories.Count > 0)
             {
-                shopArticleCategories = await _client.GetAsync(new ShopArticleCategoryQuery().WithId(shopArticleCategories.GetRandomItem().Id));
+                shopArticleCategories = await _client.GetAsync(new ShopArticleCategoryQuery().WithId(shopArticleCategories.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(shopArticleCategories);
             }
         }

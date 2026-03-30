@@ -75,6 +75,12 @@ namespace Works4me.Xurrent.GraphQL
         public string? Name { get; internal set; }
 
         /// <summary>
+        /// Whether this webhook uses OpenID Connect Discovery to allow retrieval of the policy's public key via a JWKS endpoint.
+        /// </summary>
+        [XurrentField("openidConnectDiscovery")]
+        public bool? OpenidConnectDiscovery { get; internal set; }
+
+        /// <summary>
         /// An identifier for the client application submitting the resource or the name of an external system.
         /// </summary>
         [XurrentField("source")]

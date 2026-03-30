@@ -21,13 +21,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                     .SelectAll()
                     .SelectOwner(new RiskSeverityQuery()
                         .SelectAll()
-                        .ItemsPerRequest(1))));
+                        .ItemsPerRequest(1))), TestContext.Current.CancellationToken);
 
             Assert.NotNull(riskSeverities);
 
             if (riskSeverities.Count > 0)
             {
-                riskSeverities = await _client.GetAsync(new RiskSeverityQuery().WithId(riskSeverities.GetRandomItem().Id));
+                riskSeverities = await _client.GetAsync(new RiskSeverityQuery().WithId(riskSeverities.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(riskSeverities);
             }
         }

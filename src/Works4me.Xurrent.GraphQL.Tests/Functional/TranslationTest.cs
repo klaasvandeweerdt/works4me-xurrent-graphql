@@ -17,13 +17,14 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectAll()
                 .SelectOwner(new ServiceQuery()
                     .ItemsPerRequest(1)
-                    .SelectAll()));
+                    .SelectAll()
+                ), TestContext.Current.CancellationToken);
 
             Assert.NotNull(translations);
 
             if (translations.Count > 0)
             {
-                translations = await _client.GetAsync(new TranslationQuery().WithId(translations.GetRandomItem().Id));
+                translations = await _client.GetAsync(new TranslationQuery().WithId(translations.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(translations);
             }
         }

@@ -62,6 +62,12 @@ namespace Works4me.Xurrent.GraphQL
         Name,
 
         /// <summary>
+        /// The openid connect discovery field.
+        /// </summary>
+        [XurrentEnum("openidConnectDiscovery")]
+        OpenidConnectDiscovery,
+
+        /// <summary>
         /// The source field.
         /// </summary>
         [XurrentEnum("source")]

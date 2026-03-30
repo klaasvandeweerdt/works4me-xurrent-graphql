@@ -16,13 +16,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .View(ReservationView.All)
                 .SelectAll()
                 .SelectDescriptionAttachments(new AttachmentQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(reservations);
 
             if (reservations.Count > 0)
             {
-                reservations = await _client.GetAsync(new ReservationQuery().WithId(reservations.GetRandomItem().Id));
+                reservations = await _client.GetAsync(new ReservationQuery().WithId(reservations.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(reservations);
             }
         }

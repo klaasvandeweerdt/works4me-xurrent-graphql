@@ -134,6 +134,12 @@ namespace Works4me.Xurrent.GraphQL
         RegistrationHints,
 
         /// <summary>
+        /// The rfc type field.
+        /// </summary>
+        [XurrentEnum("rfcType")]
+        RfcType,
+
+        /// <summary>
         /// The service field.
         /// </summary>
         [XurrentEnum("service")]

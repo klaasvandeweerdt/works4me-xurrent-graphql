@@ -43,6 +43,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private Collection<string>? _skillPoolIds;
         private Collection<EffortClassRateIDInput>? _newEffortClassRateIDs;
         private Collection<StandardServiceRequestActivityIDInput>? _newStandardServiceRequestActivityIDs;
+        private Collection<RfcTypeActivityIDInput>? _newRfcTypeActivityIDs;
         private string? _customerAccountId;
         private string _customerId;
         private string _name;
@@ -278,6 +279,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _newStandardServiceRequestActivityIDs;
             set => _newStandardServiceRequestActivityIDs = Set("newStandardServiceRequestActivityIDs", value);
+        }
+
+        /// <summary>
+        /// Represents the activityIDs for request for change types. The Activity ID is the unique identifier by which an activity that is performed in the context of a service offering is known in the billing system of the service provider.
+        /// </summary>
+        [XurrentField("newRfcTypeActivityIDs")]
+        public Collection<RfcTypeActivityIDInput>? NewRfcTypeActivityIDs
+        {
+            get => _newRfcTypeActivityIDs;
+            set => _newRfcTypeActivityIDs = Set("newRfcTypeActivityIDs", value);
         }
 
         /// <summary>

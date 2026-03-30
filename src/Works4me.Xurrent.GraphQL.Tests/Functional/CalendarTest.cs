@@ -16,13 +16,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .View(DefaultView.None)
                 .SelectAll()
                 .SelectCalendarHours(new CalendarHourQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(calendars);
 
             if (calendars.Count > 0)
             {
-                calendars = await _client.GetAsync(new CalendarQuery().WithId(calendars.GetRandomItem().Id));
+                calendars = await _client.GetAsync(new CalendarQuery().WithId(calendars.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(calendars);
             }
         }

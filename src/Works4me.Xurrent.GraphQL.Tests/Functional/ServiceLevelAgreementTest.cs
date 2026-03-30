@@ -36,13 +36,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectCoverageGroups(new SlaCoverageGroupQuery()
                     .SelectAll())
                 .SelectStandardServiceRequestActivityIDs(new StandardServiceRequestActivityIDQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(serviceLevelAgreements);
 
             if (serviceLevelAgreements.Count > 0)
             {
-                serviceLevelAgreements = await _client.GetAsync(new ServiceLevelAgreementQuery().WithId(serviceLevelAgreements.GetRandomItem().Id));
+                serviceLevelAgreements = await _client.GetAsync(new ServiceLevelAgreementQuery().WithId(serviceLevelAgreements.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(serviceLevelAgreements);
             }
         }

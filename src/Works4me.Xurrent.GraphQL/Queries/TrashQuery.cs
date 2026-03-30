@@ -32,6 +32,7 @@ namespace Works4me.Xurrent.GraphQL
         /// The trashed record, e.g. Request.<br />
         /// A new instance of the respective query type is created when the parameter is not provided or <c>null</c>.<br />
         /// </summary>
+        /// <param name="ciStagedChangeQuery">The ci staged change query.</param>
         /// <param name="configurationItemQuery">The configuration item query.</param>
         /// <param name="personQuery">The person query.</param>
         /// <param name="problemQuery">The problem query.</param>
@@ -47,6 +48,7 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="workflowQuery">The workflow query.</param>
         /// <returns>The same <see cref="TrashQuery"/>, updated to include the sub-queries.</returns>
         public TrashQuery SelectTrashedAll(
+            CiStagedChangeQuery? ciStagedChangeQuery = null,
             ConfigurationItemQuery? configurationItemQuery = null,
             PersonQuery? personQuery = null,
             ProblemQuery? problemQuery = null,
@@ -61,7 +63,8 @@ namespace Works4me.Xurrent.GraphQL
             TimeEntryQuery? timeEntryQuery = null,
             WorkflowQuery? workflowQuery = null)
         {
-            TrashQuery query = SelectOnType("trashed", configurationItemQuery ?? new(), false);
+            TrashQuery query = SelectOnType("trashed", ciStagedChangeQuery ?? new(), false);
+            query = query.SelectOnType("trashed", configurationItemQuery ?? new(), false);
             query = query.SelectOnType("trashed", personQuery ?? new(), false);
             query = query.SelectOnType("trashed", problemQuery ?? new(), false);
             query = query.SelectOnType("trashed", projectQuery ?? new(), false);
@@ -75,6 +78,21 @@ namespace Works4me.Xurrent.GraphQL
             query = query.SelectOnType("trashed", timeEntryQuery ?? new(), false);
             query = query.SelectOnType("trashed", workflowQuery ?? new(), false);
             return query;
+        }
+
+        /// <summary>
+        /// The trashed record, e.g. Request.<br />
+        /// Use this method along with other <c>SelectTrashed()</c> calls to cast different object types.<br />
+        /// If a specific type is not queried via <c>SelectTrashed()</c>, it defaults to a <c>null</c> value.<br />
+        /// </summary>
+        /// <param name="query">The trashed query.</param>
+        /// <returns>The same <see cref="TrashQuery"/>, updated to include the "Trashed" sub-query.</returns>
+        public TrashQuery SelectTrashed(CiStagedChangeQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return SelectOnType("trashed", query, false);
         }
 
         /// <summary>

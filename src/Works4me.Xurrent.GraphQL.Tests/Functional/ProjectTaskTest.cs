@@ -32,13 +32,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectSuccessors(new ProjectTaskQuery()
                     .SelectAll())
                 .SelectTimeEntries(new TimeEntryQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(projectsTasks);
 
             if (projectsTasks.Count > 0)
             {
-                projectsTasks = await _client.GetAsync(new ProjectTaskQuery().WithId(projectsTasks.GetRandomItem().Id));
+                projectsTasks = await _client.GetAsync(new ProjectTaskQuery().WithId(projectsTasks.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(projectsTasks);
             }
         }

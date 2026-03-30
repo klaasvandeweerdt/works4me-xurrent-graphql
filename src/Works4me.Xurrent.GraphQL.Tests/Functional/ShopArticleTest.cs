@@ -19,13 +19,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                     .SelectAll()
                     .SelectOwner(new ShopArticleCategoryQuery()
                         .SelectAll()
-                        .ItemsPerRequest(1))));
+                        .ItemsPerRequest(1))), TestContext.Current.CancellationToken);
 
             Assert.NotNull(shopArticles);
 
             if (shopArticles.Count > 0)
             {
-                shopArticles = await _client.GetAsync(new ShopArticleQuery().WithId(shopArticles.GetRandomItem().Id));
+                shopArticles = await _client.GetAsync(new ShopArticleQuery().WithId(shopArticles.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(shopArticles);
             }
         }

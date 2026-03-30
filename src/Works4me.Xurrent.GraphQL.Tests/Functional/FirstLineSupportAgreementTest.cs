@@ -24,13 +24,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectCustomerRepresentative(new PersonQuery()
                     .SelectAll())
                 .SelectMajorIncidentManagers(new PersonQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(firstLineSupportAgreements);
 
             if (firstLineSupportAgreements.Count > 0)
             {
-                firstLineSupportAgreements = await _client.GetAsync(new FirstLineSupportAgreementQuery().WithId(firstLineSupportAgreements.GetRandomItem().Id));
+                firstLineSupportAgreements = await _client.GetAsync(new FirstLineSupportAgreementQuery().WithId(firstLineSupportAgreements.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(firstLineSupportAgreements);
             }
         }

@@ -15,13 +15,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
         {
             ReadOnlyDataCollection<WebhookPolicy> webhookPolicies = await _client.GetAsync(new WebhookPolicyQuery()
                 .View(DefaultView.None)
-                .SelectAll());
+                .SelectAll(), TestContext.Current.CancellationToken);
 
             Assert.NotNull(webhookPolicies);
 
             if (webhookPolicies.Count > 0)
             {
-                webhookPolicies = await _client.GetAsync(new WebhookPolicyQuery().WithId(webhookPolicies.GetRandomItem().Id));
+                webhookPolicies = await _client.GetAsync(new WebhookPolicyQuery().WithId(webhookPolicies.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(webhookPolicies);
             }
         }
@@ -31,14 +31,14 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
         {
             WebhookPolicyCreatePayload webhookPolicyCreatePayload = await _client.MutationAsync(
                 new WebhookPolicyCreateInput(WebhookPolicyJwtAlg.Rs512) { Disabled = false, ClientMutationId = "CMID" },
-                new WebhookPolicyCreateResponseQuery().Select(WebhookPolicyCreateResponseField.Id, WebhookPolicyCreateResponseField.PublicKeyPem));
+                new WebhookPolicyCreateResponseQuery().Select(WebhookPolicyCreateResponseField.Id, WebhookPolicyCreateResponseField.PublicKeyPem), TestContext.Current.CancellationToken);
 
             Assert.NotNull(webhookPolicyCreatePayload);
             Assert.NotNull(webhookPolicyCreatePayload.WebhookPolicy);
             Assert.False(string.IsNullOrWhiteSpace(webhookPolicyCreatePayload.WebhookPolicy.PublicKeyPem));
             Assert.Equal("CMID", webhookPolicyCreatePayload.ClientMutationId);
 
-            WebhookPolicyDeleteMutationPayload webhookPolicyDeleteMutationPayload = await _client.MutationAsync(new WebhookPolicyDeleteMutationInput(webhookPolicyCreatePayload.WebhookPolicy.Id));
+            WebhookPolicyDeleteMutationPayload webhookPolicyDeleteMutationPayload = await _client.MutationAsync(new WebhookPolicyDeleteMutationInput(webhookPolicyCreatePayload.WebhookPolicy.Id), TestContext.Current.CancellationToken);
 
             Assert.NotNull(webhookPolicyDeleteMutationPayload);
         }

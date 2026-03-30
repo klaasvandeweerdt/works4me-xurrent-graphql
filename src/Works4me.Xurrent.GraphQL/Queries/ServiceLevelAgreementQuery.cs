@@ -159,6 +159,19 @@ namespace Works4me.Xurrent.GraphQL
         }
 
         /// <summary>
+        /// Represents the activityIDs for request for change types. The Activity ID is the unique identifier by which an activity that is performed in the context of a service offering is known in the billing system of the service provider.
+        /// </summary>
+        /// <param name="query">The rfc type activity i ds query.</param>
+        /// <returns>The same <see cref="ServiceLevelAgreementQuery"/>, updated to include the "RfcTypeActivityIDs" sub-query.</returns>
+        public ServiceLevelAgreementQuery SelectRfcTypeActivityIDs(RfcTypeActivityIDQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return Select("rfcTypeActivityIDs", query, true);
+        }
+
+        /// <summary>
         /// The service instance that will be used to provide the service to the customer of the service level agreement. Only service instances that are linked to the same service as the selected service offering can be selected.
         /// </summary>
         /// <param name="query">The service instance query.</param>

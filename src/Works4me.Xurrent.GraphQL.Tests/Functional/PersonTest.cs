@@ -37,7 +37,7 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectSkillPools(new SkillPoolQuery()
                     .SelectAll())
                 .SelectTeams(new TeamQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(people);
 
@@ -46,7 +46,7 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 people = await _client.GetAsync(new PersonQuery()
                     .View(PersonView.All)
                     .Where(PersonFilterField.Id, FilterOperator.Equals, people.GetRandomItem().Id)
-                    .Select(PersonField.Id, PersonField.Name, PersonField.CreatedAt, PersonField.UpdatedAt));
+                    .Select(PersonField.Id, PersonField.Name, PersonField.CreatedAt, PersonField.UpdatedAt), TestContext.Current.CancellationToken);
 
                 Person? person = people.FirstOrDefault();
                 Assert.NotNull(person);
@@ -62,7 +62,7 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
         {
             await Assert.ThrowsAsync<ArgumentException>(async () =>
             {
-                _ = await _client.GetAsync(new PersonQuery().WithId(string.Empty));
+                _ = await _client.GetAsync(new PersonQuery().WithId(string.Empty), TestContext.Current.CancellationToken);
             });
         }
     }

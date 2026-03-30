@@ -121,6 +121,12 @@ namespace Works4me.Xurrent.GraphQL
         public IReadOnlyList<string>? OauthAuthorizationEndpoints { get; internal set; }
 
         /// <summary>
+        /// Whether the webhook for this app uses OpenID Connect Discovery to allow retrieval of the policy's public key via a JWKS endpoint.
+        /// </summary>
+        [XurrentField("openidConnectDiscovery")]
+        public bool? OpenidConnectDiscovery { get; internal set; }
+
+        /// <summary>
         /// The hyperlink to the image file for the record.
         /// </summary>
         [XurrentField("pictureUri")]

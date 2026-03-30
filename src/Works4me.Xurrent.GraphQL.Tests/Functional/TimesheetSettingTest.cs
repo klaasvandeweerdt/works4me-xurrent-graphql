@@ -18,13 +18,14 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectEffortClasses(new EffortClassQuery()
                     .SelectAll())
                 .SelectOrganizations(new OrganizationQuery()
-                    .SelectAll()));
+                    .SelectAll()
+                ), TestContext.Current.CancellationToken);
 
             Assert.NotNull(timesheetSettings);
 
             if (timesheetSettings.Count > 0)
             {
-                timesheetSettings = await _client.GetAsync(new TimesheetSettingQuery().WithId(timesheetSettings.GetRandomItem().Id));
+                timesheetSettings = await _client.GetAsync(new TimesheetSettingQuery().WithId(timesheetSettings.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(timesheetSettings);
             }
         }

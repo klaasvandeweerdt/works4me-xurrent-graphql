@@ -80,6 +80,12 @@ namespace Works4me.Xurrent.GraphQL
         OauthAuthorizationEndpoints,
 
         /// <summary>
+        /// The openid connect discovery field.
+        /// </summary>
+        [XurrentEnum("openidConnectDiscovery")]
+        OpenidConnectDiscovery,
+
+        /// <summary>
         /// The picture uri field.
         /// </summary>
         [XurrentEnum("pictureUri")]

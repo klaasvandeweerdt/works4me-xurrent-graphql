@@ -26,13 +26,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectProjectTemplates(new ProjectTemplateQuery()
                     .SelectAll())
                 .SelectTasks(new ProjectTaskQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(projectTaskTemplates);
 
             if (projectTaskTemplates.Count > 0)
             {
-                projectTaskTemplates = await _client.GetAsync(new ProjectTaskTemplateQuery().WithId(projectTaskTemplates.GetRandomItem().Id));
+                projectTaskTemplates = await _client.GetAsync(new ProjectTaskTemplateQuery().WithId(projectTaskTemplates.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(projectTaskTemplates);
             }
         }

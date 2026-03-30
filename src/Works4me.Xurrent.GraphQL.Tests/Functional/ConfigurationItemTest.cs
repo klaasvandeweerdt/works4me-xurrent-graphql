@@ -36,13 +36,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectServiceInstances(new ServiceInstanceQuery()
                     .SelectAll())
                 .SelectUsers(new PersonQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(cis);
 
             if (cis.Count > 0)
             {
-                cis = await _client.GetAsync(new ConfigurationItemQuery().WithId(cis.GetRandomItem().Id));
+                cis = await _client.GetAsync(new ConfigurationItemQuery().WithId(cis.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(cis);
             }
         }

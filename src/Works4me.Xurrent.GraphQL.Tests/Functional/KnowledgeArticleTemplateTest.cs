@@ -16,13 +16,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .View(KnowledgeArticleTemplateView.All)
                 .SelectAll()
                 .SelectServiceInstances(new ServiceInstanceQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(knowledgeArticleTemplates);
 
             if (knowledgeArticleTemplates.Count > 0)
             {
-                knowledgeArticleTemplates = await _client.GetAsync(new KnowledgeArticleTemplateQuery().WithId(knowledgeArticleTemplates.GetRandomItem().Id));
+                knowledgeArticleTemplates = await _client.GetAsync(new KnowledgeArticleTemplateQuery().WithId(knowledgeArticleTemplates.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(knowledgeArticleTemplates);
             }
         }

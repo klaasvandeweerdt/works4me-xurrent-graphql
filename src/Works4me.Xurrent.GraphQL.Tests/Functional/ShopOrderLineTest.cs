@@ -20,13 +20,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectCustomFields(new CustomFieldQuery()
                     .SelectAll())
                 .SelectCustomFieldsAttachments(new AttachmentQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(shopOrderLines);
 
             if (shopOrderLines.Count > 0)
             {
-                shopOrderLines = await _client.GetAsync(new ShopOrderLineQuery().WithId(shopOrderLines.GetRandomItem().Id));
+                shopOrderLines = await _client.GetAsync(new ShopOrderLineQuery().WithId(shopOrderLines.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(shopOrderLines);
             }
         }

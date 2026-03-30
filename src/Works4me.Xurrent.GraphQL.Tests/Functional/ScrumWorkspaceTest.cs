@@ -18,13 +18,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectDescriptionAttachments(new AttachmentQuery()
                     .SelectAll())
                 .SelectSprints(new SprintQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(scrumWorkspaces);
 
             if (scrumWorkspaces.Count > 0)
             {
-                scrumWorkspaces = await _client.GetAsync(new ScrumWorkspaceQuery().WithId(scrumWorkspaces.GetRandomItem().Id));
+                scrumWorkspaces = await _client.GetAsync(new ScrumWorkspaceQuery().WithId(scrumWorkspaces.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(scrumWorkspaces);
             }
         }

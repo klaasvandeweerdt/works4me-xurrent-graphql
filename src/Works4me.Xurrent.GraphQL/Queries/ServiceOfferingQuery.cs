@@ -250,6 +250,19 @@ namespace Works4me.Xurrent.GraphQL
         }
 
         /// <summary>
+        /// RFC type rates of the service offering.
+        /// </summary>
+        /// <param name="query">The rfc type rates query.</param>
+        /// <returns>The same <see cref="ServiceOfferingQuery"/>, updated to include the "RfcTypeRates" sub-query.</returns>
+        public ServiceOfferingQuery SelectRfcTypeRates(RfcTypeRateQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return Select("rfcTypeRates", query, true);
+        }
+
+        /// <summary>
         /// The service for which the service offering is being prepared.
         /// </summary>
         /// <param name="query">The service query.</param>

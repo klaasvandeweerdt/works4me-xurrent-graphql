@@ -27,13 +27,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                         serviceQuery: new ServiceQuery()
                             .Select(ServiceField.Id),
                         serviceInstanceQuery: new ServiceInstanceQuery()
-                            .Select(ServiceInstanceField.Id))));
+                            .Select(ServiceInstanceField.Id))), TestContext.Current.CancellationToken);
 
             Assert.NotNull(serviceInstances);
 
             if (serviceInstances.Count > 0)
             {
-                serviceInstances = await _client.GetAsync(new ServiceInstanceQuery().WithId(serviceInstances.GetRandomItem().Id));
+                serviceInstances = await _client.GetAsync(new ServiceInstanceQuery().WithId(serviceInstances.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(serviceInstances);
             }
         }

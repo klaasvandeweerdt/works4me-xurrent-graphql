@@ -20,13 +20,13 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectSkillPools(new SkillPoolQuery()
                     .SelectAll())
                 .SelectTimesheetSettings(new TimesheetSettingQuery()
-                    .SelectAll()));
+                    .SelectAll()), TestContext.Current.CancellationToken);
 
             Assert.NotNull(effortClasses);
 
             if (effortClasses.Count > 0)
             {
-                effortClasses = await _client.GetAsync(new EffortClassQuery().WithId(effortClasses.GetRandomItem().Id));
+                effortClasses = await _client.GetAsync(new EffortClassQuery().WithId(effortClasses.GetRandomItem().Id), TestContext.Current.CancellationToken);
                 Assert.NotNull(effortClasses);
             }
         }
