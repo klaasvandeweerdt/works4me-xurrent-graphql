@@ -8,6 +8,12 @@ namespace Works4me.Xurrent.GraphQL
     public enum RequestTemplateFilterField
     {
         /// <summary>
+        /// Filter on Action type.
+        /// </summary>
+        [XurrentEnum("actionType")]
+        ActionType,
+
+        /// <summary>
         /// Filter on Category.
         /// </summary>
         [XurrentEnum("category")]

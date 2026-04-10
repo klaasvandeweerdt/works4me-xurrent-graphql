@@ -20,6 +20,12 @@ namespace Works4me.Xurrent.GraphQL
         public Account? Account { get; internal set; }
 
         /// <summary>
+        /// Optional classification of the kind of action the request template supports.
+        /// </summary>
+        [XurrentField("actionType")]
+        public RequestActionType? ActionType { get; internal set; }
+
+        /// <summary>
         /// After selecting the request template in Self Service, the user needs to be able to select a configuration item in the Asset field.
         /// </summary>
         [XurrentField("assetSelection")]
@@ -73,6 +79,12 @@ namespace Works4me.Xurrent.GraphQL
         /// </summary>
         [XurrentField("createdAt")]
         public DateTime? CreatedAt { get; internal set; }
+
+        /// <summary>
+        /// Optional plain-text description with additional context about the request template.
+        /// </summary>
+        [XurrentField("description")]
+        public string? Description { get; internal set; }
 
         /// <summary>
         /// Used to enter the number of minutes within which requests that are based on the request template are to be resolved.

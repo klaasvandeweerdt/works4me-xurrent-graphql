@@ -11,7 +11,7 @@ namespace Works4me.Xurrent.GraphQL
     /// </summary>
     [DebuggerDisplay("{Id}")]
     [XurrentEntity("TaskTemplate")]
-    public sealed class WorkflowTaskTemplate : IDataItem, IHasAutomationRules, INode, IRecord
+    public sealed class WorkflowTaskTemplate : IDataItem, IHasAutomationRules, IHasTranslations, INode, IRecord
     {
         /// <summary>
         /// The account this record belongs to.
@@ -278,6 +278,13 @@ namespace Works4me.Xurrent.GraphQL
         [XurrentField("team")]
         public Team? Team { get; internal set; }
 
+        [XurrentField("translations")]
+        internal PagedResponse<Translation>? TranslationsCollection { get; set; }
+        /// <summary>
+        /// Translations associated with this object.
+        /// </summary>
+        public ReadOnlyDataCollection<Translation>? Translations { get => TranslationsCollection?.Data is null ? null : new ReadOnlyDataCollection<Translation>(TranslationsCollection.Data); }
+
         /// <summary>
         /// UI extension that is to be added to a new task when it is being created based on the template.
         /// </summary>
@@ -334,6 +341,7 @@ namespace Works4me.Xurrent.GraphQL
                 NoteAttachmentsCollection?.Data?.AddRange(workflowTaskTemplate.NoteAttachments);
                 ServiceInstancesCollection?.Data?.AddRange(workflowTaskTemplate.ServiceInstances);
                 TasksCollection?.Data?.AddRange(workflowTaskTemplate.Tasks);
+                TranslationsCollection?.Data?.AddRange(workflowTaskTemplate.Translations);
                 WorkflowTemplatesCollection?.Data?.AddRange(workflowTaskTemplate.WorkflowTemplates);
             }
         }
@@ -371,6 +379,10 @@ namespace Works4me.Xurrent.GraphQL
 
             if (TasksCollection is not null)
                 foreach (ExecutionPageInfo pageInfo in TasksCollection.GetPageInfo("tasks", depth))
+                    yield return pageInfo;
+
+            if (TranslationsCollection is not null)
+                foreach (ExecutionPageInfo pageInfo in TranslationsCollection.GetPageInfo("translations", depth))
                     yield return pageInfo;
 
             if (WorkflowTemplatesCollection is not null)

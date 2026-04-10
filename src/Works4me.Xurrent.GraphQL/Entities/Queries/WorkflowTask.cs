@@ -89,6 +89,18 @@ namespace Works4me.Xurrent.GraphQL
         public ReadOnlyDataCollection<ConfigurationItem>? ConfigurationItems { get => ConfigurationItemsCollection?.Data is null ? null : new ReadOnlyDataCollection<ConfigurationItem>(ConfigurationItemsCollection.Data); }
 
         /// <summary>
+        /// Whether notes on this task are copied as public notes to the request of the task's workflow. Defaults to the value set on the task's template.
+        /// </summary>
+        [XurrentField("copyNoteToRequest")]
+        public bool? CopyNoteToRequest { get; internal set; }
+
+        /// <summary>
+        /// Whether notes on this task are copied to the task's workflow. Defaults to the value set on the task's template.
+        /// </summary>
+        [XurrentField("copyNoteToWorkflow")]
+        public bool? CopyNoteToWorkflow { get; internal set; }
+
+        /// <summary>
         /// The date and time at which the record was created.
         /// </summary>
         [XurrentField("createdAt")]

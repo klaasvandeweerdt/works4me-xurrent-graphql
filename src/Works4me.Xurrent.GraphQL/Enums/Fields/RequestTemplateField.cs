@@ -14,6 +14,12 @@ namespace Works4me.Xurrent.GraphQL
         Account,
 
         /// <summary>
+        /// The action type field.
+        /// </summary>
+        [XurrentEnum("actionType")]
+        ActionType,
+
+        /// <summary>
         /// The asset selection field.
         /// </summary>
         [XurrentEnum("assetSelection")]
@@ -60,6 +66,12 @@ namespace Works4me.Xurrent.GraphQL
         /// </summary>
         [XurrentEnum("createdAt")]
         CreatedAt,
+
+        /// <summary>
+        /// The description field.
+        /// </summary>
+        [XurrentEnum("description")]
+        Description,
 
         /// <summary>
         /// The desired completion field.

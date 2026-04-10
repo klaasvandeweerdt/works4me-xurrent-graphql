@@ -22,6 +22,8 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private Collection<AttachmentInput>? _customFieldsAttachments;
         private DateTime? _assignedAt;
         private TaskCategory? _category;
+        private bool? _copyNoteToRequest;
+        private bool? _copyNoteToWorkflow;
         private DateTime? _finishedAt;
         private TaskImpact? _impact;
         private string? _instructions;
@@ -181,6 +183,26 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _category;
             set => _category = Set("category", value);
+        }
+
+        /// <summary>
+        /// Whether notes on this task are copied as public notes to the request of the task's workflow. Defaults to the value set on the task's template.
+        /// </summary>
+        [XurrentField("copyNoteToRequest")]
+        public bool? CopyNoteToRequest
+        {
+            get => _copyNoteToRequest;
+            set => _copyNoteToRequest = Set("copyNoteToRequest", value);
+        }
+
+        /// <summary>
+        /// Whether notes on this task are copied to the task's workflow. Defaults to the value set on the task's template.
+        /// </summary>
+        [XurrentField("copyNoteToWorkflow")]
+        public bool? CopyNoteToWorkflow
+        {
+            get => _copyNoteToWorkflow;
+            set => _copyNoteToWorkflow = Set("copyNoteToWorkflow", value);
         }
 
         /// <summary>

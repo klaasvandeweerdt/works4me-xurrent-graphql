@@ -62,6 +62,18 @@ namespace Works4me.Xurrent.GraphQL
         CompletionTargetAt,
 
         /// <summary>
+        /// The copy note to request field.
+        /// </summary>
+        [XurrentEnum("copyNoteToRequest")]
+        CopyNoteToRequest,
+
+        /// <summary>
+        /// The copy note to workflow field.
+        /// </summary>
+        [XurrentEnum("copyNoteToWorkflow")]
+        CopyNoteToWorkflow,
+
+        /// <summary>
         /// The created at field.
         /// </summary>
         [XurrentEnum("createdAt")]

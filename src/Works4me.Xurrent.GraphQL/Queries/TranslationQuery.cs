@@ -49,6 +49,7 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="shopArticleCategoryQuery">The shop article category query.</param>
         /// <param name="surveyQuery">The survey query.</param>
         /// <param name="surveyQuestionQuery">The survey question query.</param>
+        /// <param name="workflowTaskTemplateQuery">The workflow task template query.</param>
         /// <param name="timeAllocationQuery">The time allocation query.</param>
         /// <param name="uiExtensionQuery">The ui extension query.</param>
         /// <param name="workflowTemplatePhaseQuery">The workflow template phase query.</param>
@@ -72,6 +73,7 @@ namespace Works4me.Xurrent.GraphQL
             ShopArticleCategoryQuery? shopArticleCategoryQuery = null,
             SurveyQuery? surveyQuery = null,
             SurveyQuestionQuery? surveyQuestionQuery = null,
+            WorkflowTaskTemplateQuery? workflowTaskTemplateQuery = null,
             TimeAllocationQuery? timeAllocationQuery = null,
             UiExtensionQuery? uiExtensionQuery = null,
             WorkflowTemplatePhaseQuery? workflowTemplatePhaseQuery = null,
@@ -94,6 +96,7 @@ namespace Works4me.Xurrent.GraphQL
             query = query.SelectOnType("owner", shopArticleCategoryQuery ?? new(), false);
             query = query.SelectOnType("owner", surveyQuery ?? new(), false);
             query = query.SelectOnType("owner", surveyQuestionQuery ?? new(), false);
+            query = query.SelectOnType("owner", workflowTaskTemplateQuery ?? new(), false);
             query = query.SelectOnType("owner", timeAllocationQuery ?? new(), false);
             query = query.SelectOnType("owner", uiExtensionQuery ?? new(), false);
             query = query.SelectOnType("owner", workflowTemplatePhaseQuery ?? new(), false);
@@ -349,6 +352,21 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="query">The owner query.</param>
         /// <returns>The same <see cref="TranslationQuery"/>, updated to include the "Owner" sub-query.</returns>
         public TranslationQuery SelectOwner(SurveyQuestionQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return SelectOnType("owner", query, false);
+        }
+
+        /// <summary>
+        /// The record from which the translation is obtained.<br />
+        /// Use this method along with other <c>SelectOwner()</c> calls to cast different object types.<br />
+        /// If a specific type is not queried via <c>SelectOwner()</c>, it defaults to a <c>null</c> value.<br />
+        /// </summary>
+        /// <param name="query">The owner query.</param>
+        /// <returns>The same <see cref="TranslationQuery"/>, updated to include the "Owner" sub-query.</returns>
+        public TranslationQuery SelectOwner(WorkflowTaskTemplateQuery query)
         {
             if (query is null)
                 throw new ArgumentNullException(nameof(query));

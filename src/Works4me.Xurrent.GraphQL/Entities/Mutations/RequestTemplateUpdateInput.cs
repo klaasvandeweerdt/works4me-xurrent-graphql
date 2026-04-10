@@ -23,6 +23,8 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private string? _configurationItemId;
         private RequestCompletionReason? _completionReason;
         private bool? _copySubjectToRequests;
+        private string? _description;
+        private RequestActionType? _actionType;
         private long? _desiredCompletion;
         private bool? _disabled;
         private string? _effortClassId;
@@ -173,6 +175,26 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _copySubjectToRequests;
             set => _copySubjectToRequests = Set("copySubjectToRequests", value);
+        }
+
+        /// <summary>
+        /// Optional plain-text description with additional context about the request template.
+        /// </summary>
+        [XurrentField("description")]
+        public string? Description
+        {
+            get => _description;
+            set => _description = Set("description", value);
+        }
+
+        /// <summary>
+        /// Optional classification of the kind of action the request template supports.
+        /// </summary>
+        [XurrentField("actionType")]
+        public RequestActionType? ActionType
+        {
+            get => _actionType;
+            set => _actionType = Set("actionType", value);
         }
 
         /// <summary>

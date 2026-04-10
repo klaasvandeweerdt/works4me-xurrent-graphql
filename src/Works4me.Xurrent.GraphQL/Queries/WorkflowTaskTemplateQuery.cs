@@ -224,6 +224,19 @@ namespace Works4me.Xurrent.GraphQL
         }
 
         /// <summary>
+        /// Translations associated with this object.
+        /// </summary>
+        /// <param name="query">The translations query.</param>
+        /// <returns>The same <see cref="WorkflowTaskTemplateQuery"/>, updated to include the "Translations" sub-query.</returns>
+        public WorkflowTaskTemplateQuery SelectTranslations(TranslationQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return Select("translations", query, true);
+        }
+
+        /// <summary>
         /// UI extension that is to be added to a new task when it is being created based on the template.
         /// </summary>
         /// <param name="query">The ui extension query.</param>
