@@ -43,6 +43,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private string? _memberId;
         private string? _note;
         private Collection<AttachmentInput>? _noteAttachments;
+        private string? _organizationId;
         private string? _problemId;
         private string? _projectId;
         private bool? _providerNotAccountable;
@@ -383,6 +384,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _noteAttachments;
             set => _noteAttachments = Set("noteAttachments", value);
+        }
+
+        /// <summary>
+        /// ID of the organization of the person for whom the request was submitted. Only people with the Account Administrator role are allowed to update this field, and the only accepted value is the organization of the current requested_for person.
+        /// </summary>
+        [XurrentField("organizationId")]
+        public string? OrganizationId
+        {
+            get => _organizationId;
+            set => _organizationId = Set("organizationId", value);
         }
 
         /// <summary>

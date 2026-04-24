@@ -8,65 +8,53 @@ using Works4me.Xurrent.GraphQL.Builders;
 namespace Works4me.Xurrent.GraphQL
 {
     /// <summary>
-    /// Represent an <see href="https://developer.xurrent.com/graphql/object/account/">Account</see> in Xurrent.
+    /// Represent a <see href="https://developer.xurrent.com/graphql/object/virtualagentdesign/">VirtualAgentDesign</see> in Xurrent.
     /// </summary>
     [DebuggerDisplay("{Id}")]
-    [XurrentEntity("Account")]
-    public sealed class Account : IDataItem
+    [XurrentEntity("VirtualAgentDesign")]
+    public sealed class VirtualAgentDesign : IDataItem, INode, IRecord
     {
         /// <summary>
-        /// The design of the account.
+        /// The account this record belongs to.
         /// </summary>
-        [XurrentField("design")]
-        public AccountDesign? Design { get; internal set; }
+        [XurrentField("account")]
+        public Account? Account { get; internal set; }
 
         /// <summary>
-        /// Indicates whether the account is a directory account.
+        /// Instructions for the virtual agent in markdown format.
         /// </summary>
-        [XurrentField("directory")]
-        public bool? Directory { get; internal set; }
+        [XurrentField("agentInstructions")]
+        public string? AgentInstructions { get; internal set; }
 
         /// <summary>
-        /// The directory account of the current support domain.
+        /// The date and time at which the record was created.
         /// </summary>
-        [XurrentField("directoryAccount")]
-        public Account? DirectoryAccount { get; internal set; }
+        [XurrentField("createdAt")]
+        public DateTime? CreatedAt { get; internal set; }
 
         /// <summary>
-        /// Indicates whether the account is disabled.
-        /// </summary>
-        [XurrentField("disabled")]
-        public bool? Disabled { get; internal set; }
-
-        /// <summary>
-        /// The unique ID of the account.
+        /// Unique identifier of the record.
         /// </summary>
         [XurrentField("id", IsDefaultQueryProperty = true)]
         public string Id { get; internal set; } = string.Empty;
 
         /// <summary>
-        /// The display name of the account.
+        /// The date and time of the last update of the record. If the record has no updates it contains the <c>createdAt</c> value.
         /// </summary>
-        [XurrentField("name", IsDefaultQueryProperty = true)]
-        public string? Name { get; internal set; }
+        [XurrentField("updatedAt")]
+        public DateTime? UpdatedAt { get; internal set; }
 
         /// <summary>
-        /// The organization for which the account was prepared.
+        /// The reasoning provided by the validation service when instructions are partially applied or rejected.
         /// </summary>
-        [XurrentField("organization")]
-        public Organization? Organization { get; internal set; }
+        [XurrentField("validationReasoning")]
+        public string? ValidationReasoning { get; internal set; }
 
         /// <summary>
-        /// The web address that is used to access the account.
+        /// The validation status of the agent instructions. Valid values are: <c>pending</c>, <c>approved</c>, <c>partially_applied</c>, <c>rejected</c>, <c>error</c>.
         /// </summary>
-        [XurrentField("url")]
-        public Uri? Url { get; internal set; }
-
-        /// <summary>
-        /// The virtual agent design of the account.
-        /// </summary>
-        [XurrentField("virtualAgentDesign")]
-        public VirtualAgentDesign? VirtualAgentDesign { get; internal set; }
+        [XurrentField("validationStatus")]
+        public string? ValidationStatus { get; internal set; }
 
         /// <summary>
         /// <br>Returns a key used internally for merging paged or partial data responses within a <see cref="DataCollection{T}"/>.</br>

@@ -1829,6 +1829,20 @@ namespace Works4me.Xurrent.GraphQL
             return MutationAsync<UiExtensionUpdatePayload, UiExtensionUpdateInput>(GetAccountId(), new UiExtensionUpdateMutation(data, query), ct);
         }
 
+        /// <param name="data">The input data for the virtual agent design mutation.</param>
+        /// <param name="query">The query specifying which fields to return in the response.</param>
+        /// <param name="ct">The <see cref="CancellationToken"/> for request cancellation.</param>
+        public Task<VirtualAgentDesignUpdatePayload> MutationAsync(VirtualAgentDesignUpdateInput data, VirtualAgentDesignQuery query, CancellationToken ct = default)
+        {
+            if (data is null)
+                throw new ArgumentNullException(nameof(data));
+
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return MutationAsync<VirtualAgentDesignUpdatePayload, VirtualAgentDesignUpdateInput>(GetAccountId(), new VirtualAgentDesignUpdateMutation(data, query), ct);
+        }
+
         /// <param name="data">The input data for the waiting for customer follow up mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
         /// <param name="ct">The <see cref="CancellationToken"/> for request cancellation.</param>

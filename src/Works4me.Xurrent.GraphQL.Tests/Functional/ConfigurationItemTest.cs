@@ -55,7 +55,7 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .WithId(Client.GetConfigValue("CiTest.Id"))
                 .Select(ConfigurationItemField.Id, ConfigurationItemField.Status);
 
-            ReadOnlyDataCollection<ConfigurationItem> cis = await _client.GetAsync(ciQuery);
+            ReadOnlyDataCollection<ConfigurationItem> cis = await _client.GetAsync(ciQuery, TestContext.Current.CancellationToken);
 
             Assert.Single(cis);
 
@@ -71,7 +71,7 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
             {
                 Id = ci.Id,
                 Status = newStatus,
-            }, new ConfigurationItemQuery().Select(ConfigurationItemField.Status));
+            }, new ConfigurationItemQuery().Select(ConfigurationItemField.Status), TestContext.Current.CancellationToken);
             
             Assert.NotNull(result);
             Assert.NotNull(result.ConfigurationItem);

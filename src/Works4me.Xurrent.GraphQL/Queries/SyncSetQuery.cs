@@ -132,6 +132,7 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="timesheetSettingQuery">The timesheet setting query.</param>
         /// <param name="translationQuery">The translation query.</param>
         /// <param name="uiExtensionQuery">The ui extension query.</param>
+        /// <param name="virtualAgentDesignQuery">The virtual agent design query.</param>
         /// <param name="waitingForCustomerFollowUpQuery">The waiting for customer follow up query.</param>
         /// <param name="webhookQuery">The webhook query.</param>
         /// <param name="webhookPolicyQuery">The webhook policy query.</param>
@@ -214,6 +215,7 @@ namespace Works4me.Xurrent.GraphQL
             TimesheetSettingQuery? timesheetSettingQuery = null,
             TranslationQuery? translationQuery = null,
             UiExtensionQuery? uiExtensionQuery = null,
+            VirtualAgentDesignQuery? virtualAgentDesignQuery = null,
             WaitingForCustomerFollowUpQuery? waitingForCustomerFollowUpQuery = null,
             WebhookQuery? webhookQuery = null,
             WebhookPolicyQuery? webhookPolicyQuery = null,
@@ -295,6 +297,7 @@ namespace Works4me.Xurrent.GraphQL
             query = query.SelectOnType("selectedRecords", timesheetSettingQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", translationQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", uiExtensionQuery ?? new(), true);
+            query = query.SelectOnType("selectedRecords", virtualAgentDesignQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", waitingForCustomerFollowUpQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", webhookQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", webhookPolicyQuery ?? new(), true);
@@ -1407,6 +1410,21 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="query">The selected records query.</param>
         /// <returns>The same <see cref="SyncSetQuery"/>, updated to include the "SelectedRecords" sub-query.</returns>
         public SyncSetQuery SelectSelectedRecords(UiExtensionQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return SelectOnType("selectedRecords", query, true);
+        }
+
+        /// <summary>
+        /// Individual records selected to be included in the sync set.<br />
+        /// Use this method along with other <c>SelectSelectedRecords()</c> calls to cast different object types.<br />
+        /// If a specific type is not queried via <c>SelectSelectedRecords()</c>, it defaults to a <c>null</c> value.<br />
+        /// </summary>
+        /// <param name="query">The selected records query.</param>
+        /// <returns>The same <see cref="SyncSetQuery"/>, updated to include the "SelectedRecords" sub-query.</returns>
+        public SyncSetQuery SelectSelectedRecords(VirtualAgentDesignQuery query)
         {
             if (query is null)
                 throw new ArgumentNullException(nameof(query));

@@ -53,6 +53,12 @@ namespace Works4me.Xurrent.GraphQL
         /// The url field.
         /// </summary>
         [XurrentEnum("url")]
-        Url
+        Url,
+
+        /// <summary>
+        /// The virtual agent design field.
+        /// </summary>
+        [XurrentEnum("virtualAgentDesign")]
+        VirtualAgentDesign
     }
 }
