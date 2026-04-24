@@ -71,13 +71,17 @@ namespace Works4me.Xurrent.GraphQL.Serialization
                 PropertyNamingPolicy = source.PropertyNamingPolicy,
                 ReadCommentHandling = source.ReadCommentHandling,
                 ReferenceHandler = source.ReferenceHandler,
+#if (NET8_0_OR_GREATER)
                 TypeInfoResolver = source.TypeInfoResolver,
                 UnmappedMemberHandling = source.UnmappedMemberHandling,
+#endif
                 UnknownTypeHandling = source.UnknownTypeHandling,
                 WriteIndented = source.WriteIndented,
+#if (NET9_0_OR_GREATER)
                 IndentCharacter = source.IndentCharacter,
                 IndentSize = source.IndentSize,
                 NewLine = source.NewLine
+#endif
             };
 
             foreach (JsonConverter converter in source.Converters)
