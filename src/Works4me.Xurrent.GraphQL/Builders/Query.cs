@@ -319,15 +319,57 @@ namespace Works4me.Xurrent.GraphQL.Builders
         }
 
         /// <summary>
+        /// Adds a filter condition where the specified numeric field must match one of the given nullable integer values.
+        /// </summary>
+        /// <param name="field">The <typeparamref name="TFilterField"/> enum value representing the field to filter.</param>
+        /// <param name="op">The <see cref="FilterOperator"/> specifying how to compare the field.</param>
+        /// <param name="values">One or more nullable integer values to compare against.</param>
+        /// <returns>The same <typeparamref name="TQueryEntity"/> instance, updated with the filter condition.</returns>
+        public TQueryEntity Where(TFilterField field, FilterOperator op, params int?[] values)
+        {
+            return Where(field, op, values.AsEnumerable());
+        }
+
+        /// <summary>
         /// Adds a filter condition where the specified numeric field must match one of the given integer values.
         /// </summary>
         /// <param name="field">The <typeparamref name="TFilterField"/> enum value representing the field to filter.</param>
         /// <param name="op">The <see cref="FilterOperator"/> specifying how to compare the field.</param>
         /// <param name="values">A collection of integer values to compare against.</param>
         /// <returns>The same <typeparamref name="TQueryEntity"/> instance, updated with the filter condition.</returns>
-        public TQueryEntity Where(TFilterField field, FilterOperator op, params int?[] values)
+        public TQueryEntity Where(TFilterField field, FilterOperator op, IEnumerable<int> values)
         {
+            if (values is null)
+                throw new ArgumentNullException(nameof(values));
+
+            return Where(field, op, values.Select(x => (int?)x));
+        }
+
+        /// <summary>
+        /// Adds a filter condition where the specified numeric field must match one of the given nullable integer values.
+        /// </summary>
+        /// <param name="field">The <typeparamref name="TFilterField"/> enum value representing the field to filter.</param>
+        /// <param name="op">The <see cref="FilterOperator"/> specifying how to compare the field.</param>
+        /// <param name="values">A collection of nullable integer values to compare against.</param>
+        /// <returns>The same <typeparamref name="TQueryEntity"/> instance, updated with the filter condition.</returns>
+        public TQueryEntity Where(TFilterField field, FilterOperator op, IEnumerable<int?> values)
+        {
+            if (values is null)
+                throw new ArgumentNullException(nameof(values));
+
             return AddFilter(field, op, values.Select(x => x?.ToString(CultureInfo.InvariantCulture)).ToArray(), FilterValueType.Integer);
+        }
+
+        /// <summary>
+        /// Adds a filter condition where the specified date/time field must match one of the given nullable <see cref="DateTime"/> values.
+        /// </summary>
+        /// <param name="field">The <typeparamref name="TFilterField"/> enum value representing the field to filter.</param>
+        /// <param name="op">The <see cref="FilterOperator"/> specifying how to compare the field.</param>
+        /// <param name="values">One or more nullable <see cref="DateTime"/> values to compare against.</param>
+        /// <returns>The same <typeparamref name="TQueryEntity"/> instance, updated with the filter condition.</returns>
+        public TQueryEntity Where(TFilterField field, FilterOperator op, params DateTime?[] values)
+        {
+            return Where(field, op, values.AsEnumerable());
         }
 
         /// <summary>
@@ -337,9 +379,77 @@ namespace Works4me.Xurrent.GraphQL.Builders
         /// <param name="op">The <see cref="FilterOperator"/> specifying how to compare the field.</param>
         /// <param name="values">A collection of <see cref="DateTime"/> values to compare against.</param>
         /// <returns>The same <typeparamref name="TQueryEntity"/> instance, updated with the filter condition.</returns>
-        public TQueryEntity Where(TFilterField field, FilterOperator op, params DateTime?[] values)
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="values"/> is <c>null</c>.</exception>
+        public TQueryEntity Where(TFilterField field, FilterOperator op, IEnumerable<DateTime> values)
         {
+            if (values is null)
+                throw new ArgumentNullException(nameof(values));
+
+            return Where(field, op, values.Select(x => (DateTime?)x));
+        }
+
+        /// <summary>
+        /// Adds a filter condition where the specified date/time field must match one of the given nullable <see cref="DateTime"/> values.
+        /// </summary>
+        /// <param name="field">The <typeparamref name="TFilterField"/> enum value representing the field to filter.</param>
+        /// <param name="op">The <see cref="FilterOperator"/> specifying how to compare the field.</param>
+        /// <param name="values">A collection of nullable <see cref="DateTime"/> values to compare against.</param>
+        /// <returns>The same <typeparamref name="TQueryEntity"/> instance, updated with the filter condition.</returns>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="values"/> is <c>null</c>.</exception>
+        public TQueryEntity Where(TFilterField field, FilterOperator op, IEnumerable<DateTime?> values)
+        {
+            if (values is null)
+                throw new ArgumentNullException(nameof(values));
+
             return AddFilter(field, op, values.Select(x => x?.ToString(Constants.DateTimeFormat, CultureInfo.InvariantCulture)).ToArray(), FilterValueType.DateTime);
+        }
+
+        /// <summary>
+        /// Adds a filter condition where the specified date/time field must match one of the given nullable <see cref="DateTimeOffset"/> values.
+        /// </summary>
+        /// <param name="field">The <typeparamref name="TFilterField"/> enum value representing the field to filter.</param>
+        /// <param name="op">The <see cref="FilterOperator"/> specifying how to compare the field.</param>
+        /// <param name="values">One or more nullable <see cref="DateTimeOffset"/> values to compare against.</param>
+        /// <returns>The same <typeparamref name="TQueryEntity"/> instance, updated with the filter condition.</returns>
+        public TQueryEntity Where(TFilterField field, FilterOperator op, params DateTimeOffset?[] values)
+        {
+            return Where(field, op, values.AsEnumerable());
+        }
+
+        /// <summary>
+        /// Adds a filter condition where the specified date/time field must match one of the given <see cref="DateTimeOffset"/> values.
+        /// </summary>
+        /// <param name="field">The <typeparamref name="TFilterField"/> enum value representing the field to filter.</param>
+        /// <param name="op">The <see cref="FilterOperator"/> specifying how to compare the field.</param>
+        /// <param name="values">A collection of <see cref="DateTimeOffset"/> values to compare against.</param>
+        /// <returns>The same <typeparamref name="TQueryEntity"/> instance, updated with the filter condition.</returns>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="values"/> is <c>null</c>.</exception>
+        public TQueryEntity Where(TFilterField field, FilterOperator op, IEnumerable<DateTimeOffset> values)
+        {
+            if (values is null)
+                throw new ArgumentNullException(nameof(values));
+
+            return Where(field, op, values.Select(x => (DateTimeOffset?)x));
+        }
+
+        /// <summary>
+        /// Adds a filter condition where the specified date/time field must match one of the given nullable <see cref="DateTimeOffset"/> values.
+        /// </summary>
+        /// <param name="field">The <typeparamref name="TFilterField"/> enum value representing the field to filter.</param>
+        /// <param name="op">The <see cref="FilterOperator"/> specifying how to compare the field.</param>
+        /// <param name="values">A collection of nullable <see cref="DateTimeOffset"/> values to compare against.</param>
+        /// <returns>The same <typeparamref name="TQueryEntity"/> instance, updated with the filter condition.</returns>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="values"/> is <c>null</c>.</exception>
+        public TQueryEntity Where(TFilterField field, FilterOperator op, IEnumerable<DateTimeOffset?> values)
+        {
+            if (values is null)
+                throw new ArgumentNullException(nameof(values));
+
+            return AddFilter(
+                field,
+                op,
+                values.Select(x => x?.ToString(Constants.DateTimeFormat, CultureInfo.InvariantCulture)).ToArray(),
+                FilterValueType.DateTime);
         }
 
         /// <summary>
@@ -359,11 +469,27 @@ namespace Works4me.Xurrent.GraphQL.Builders
         /// </summary>
         /// <param name="field">The <typeparamref name="TFilterField"/> enum value representing the field to filter.</param>
         /// <param name="op">The <see cref="FilterOperator"/> specifying how to compare the field.</param>
-        /// <param name="values">A collection of string values to compare against.</param>
+        /// <param name="values">One or more string values to compare against.</param>
         /// <returns>The same <typeparamref name="TQueryEntity"/> instance, updated with the filter condition.</returns>
         public TQueryEntity Where(TFilterField field, FilterOperator op, params string?[] values)
         {
-            return AddFilter(field, op, values, FilterValueType.String);
+            return Where(field, op, values.AsEnumerable());
+        }
+
+        /// <summary>
+        /// Adds a filter condition where the specified string field must match one of the given string values.
+        /// </summary>
+        /// <param name="field">The <typeparamref name="TFilterField"/> enum value representing the field to filter.</param>
+        /// <param name="op">The <see cref="FilterOperator"/> specifying how to compare the field.</param>
+        /// <param name="values">A collection of string values to compare against.</param>
+        /// <returns>The same <typeparamref name="TQueryEntity"/> instance, updated with the filter condition.</returns>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="values"/> is <c>null</c>.</exception>
+        public TQueryEntity Where(TFilterField field, FilterOperator op, IEnumerable<string?> values)
+        {
+            if (values is null)
+                throw new ArgumentNullException(nameof(values));
+
+            return AddFilter(field, op, values.ToArray(), FilterValueType.String);
         }
 
         /// <summary>
