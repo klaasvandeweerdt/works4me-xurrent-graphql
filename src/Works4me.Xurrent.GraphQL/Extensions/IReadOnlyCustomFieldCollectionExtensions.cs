@@ -12,6 +12,29 @@ namespace Works4me.Xurrent.GraphQL.Extensions
     public static class IReadOnlyCustomFieldCollectionExtensions
     {
         /// <summary>
+        /// Attempts to retrieve the raw JSON value of a custom field.
+        /// </summary>
+        /// <param name="fields">The <see cref="IReadOnlyCustomFieldCollection"/> containing the custom fields.</param>
+        /// <param name="key">The key of the custom field to retrieve.</param>
+        /// <param name="value">When this method returns, contains the <see cref="JsonElement"/> associated with <paramref name="key"/> if the key exists; otherwise, the default value.</param>
+        /// <returns><c>true</c> if the field exists; otherwise, <c>false</c>.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fields"/> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="key"/> is <c>null</c> or empty.</exception>
+        public static bool TryGetValue(this IReadOnlyCustomFieldCollection fields, string key, out JsonElement value)
+        {
+            JsonElement? element = GetJsonElement(fields, key);
+
+            if (element is null)
+            {
+                value = default;
+                return false;
+            }
+
+            value = element.Value;
+            return true;
+        }
+
+        /// <summary>
         /// Attempts to retrieve the value of a custom field as a string.
         /// </summary>
         /// <param name="fields">The <see cref="IReadOnlyCustomFieldCollection"/> containing the custom fields.</param>
