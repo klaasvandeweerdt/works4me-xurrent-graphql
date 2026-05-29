@@ -55,16 +55,16 @@ namespace Works4me.Xurrent.GraphQL
         }
 
         /// <summary>
-        /// The virtual agent design of the account.
+        /// The Sera AI Studio of the account.
         /// </summary>
-        /// <param name="query">The virtual agent design query.</param>
-        /// <returns>The same <see cref="AccountQuery"/>, updated to include the "VirtualAgentDesign" sub-query.</returns>
-        public AccountQuery SelectVirtualAgentDesign(VirtualAgentDesignQuery query)
+        /// <param name="query">The sera ai studio query.</param>
+        /// <returns>The same <see cref="AccountQuery"/>, updated to include the "SeraAiStudio" sub-query.</returns>
+        public AccountQuery SelectSeraAiStudio(SeraAiStudioQuery query)
         {
             if (query is null)
                 throw new ArgumentNullException(nameof(query));
 
-            return Select("virtualAgentDesign", query, false);
+            return Select("seraAiStudio", query, false);
         }
     }
 }

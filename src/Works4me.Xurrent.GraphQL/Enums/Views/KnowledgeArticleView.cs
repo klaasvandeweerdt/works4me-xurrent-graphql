@@ -35,6 +35,12 @@ namespace Works4me.Xurrent.GraphQL
         /// Knowledge Articles for My Team's Services.
         /// </summary>
         [XurrentEnum("my_teams_services")]
-        MyTeamsServices
+        MyTeamsServices,
+
+        /// <summary>
+        /// Knowledge Articles Needing Review.
+        /// </summary>
+        [XurrentEnum("needs_review")]
+        NeedsReview
     }
 }

@@ -67,7 +67,6 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="automationRuleQuery">The automation rule query.</param>
         /// <param name="broadcastQuery">The broadcast query.</param>
         /// <param name="calendarQuery">The calendar query.</param>
-        /// <param name="ciStagedChangeQuery">The ci staged change query.</param>
         /// <param name="closureCodeQuery">The closure code query.</param>
         /// <param name="configurationItemQuery">The configuration item query.</param>
         /// <param name="contractQuery">The contract query.</param>
@@ -76,6 +75,7 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="effortClassQuery">The effort class query.</param>
         /// <param name="emailTemplateQuery">The email template query.</param>
         /// <param name="firstLineSupportAgreementQuery">The first line support agreement query.</param>
+        /// <param name="goldenSetItemQuery">The golden set item query.</param>
         /// <param name="holidayQuery">The holiday query.</param>
         /// <param name="invoiceQuery">The invoice query.</param>
         /// <param name="knowledgeArticleQuery">The knowledge article query.</param>
@@ -103,6 +103,7 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="riskQuery">The risk query.</param>
         /// <param name="riskSeverityQuery">The risk severity query.</param>
         /// <param name="scrumWorkspaceQuery">The scrum workspace query.</param>
+        /// <param name="seraAiStudioQuery">The sera ai studio query.</param>
         /// <param name="serviceQuery">The service query.</param>
         /// <param name="serviceCategoryQuery">The service category query.</param>
         /// <param name="serviceInstanceQuery">The service instance query.</param>
@@ -132,7 +133,6 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="timesheetSettingQuery">The timesheet setting query.</param>
         /// <param name="translationQuery">The translation query.</param>
         /// <param name="uiExtensionQuery">The ui extension query.</param>
-        /// <param name="virtualAgentDesignQuery">The virtual agent design query.</param>
         /// <param name="waitingForCustomerFollowUpQuery">The waiting for customer follow up query.</param>
         /// <param name="webhookQuery">The webhook query.</param>
         /// <param name="webhookPolicyQuery">The webhook policy query.</param>
@@ -150,7 +150,6 @@ namespace Works4me.Xurrent.GraphQL
             AutomationRuleQuery? automationRuleQuery = null,
             BroadcastQuery? broadcastQuery = null,
             CalendarQuery? calendarQuery = null,
-            CiStagedChangeQuery? ciStagedChangeQuery = null,
             ClosureCodeQuery? closureCodeQuery = null,
             ConfigurationItemQuery? configurationItemQuery = null,
             ContractQuery? contractQuery = null,
@@ -159,6 +158,7 @@ namespace Works4me.Xurrent.GraphQL
             EffortClassQuery? effortClassQuery = null,
             EmailTemplateQuery? emailTemplateQuery = null,
             FirstLineSupportAgreementQuery? firstLineSupportAgreementQuery = null,
+            GoldenSetItemQuery? goldenSetItemQuery = null,
             HolidayQuery? holidayQuery = null,
             InvoiceQuery? invoiceQuery = null,
             KnowledgeArticleQuery? knowledgeArticleQuery = null,
@@ -186,6 +186,7 @@ namespace Works4me.Xurrent.GraphQL
             RiskQuery? riskQuery = null,
             RiskSeverityQuery? riskSeverityQuery = null,
             ScrumWorkspaceQuery? scrumWorkspaceQuery = null,
+            SeraAiStudioQuery? seraAiStudioQuery = null,
             ServiceQuery? serviceQuery = null,
             ServiceCategoryQuery? serviceCategoryQuery = null,
             ServiceInstanceQuery? serviceInstanceQuery = null,
@@ -215,7 +216,6 @@ namespace Works4me.Xurrent.GraphQL
             TimesheetSettingQuery? timesheetSettingQuery = null,
             TranslationQuery? translationQuery = null,
             UiExtensionQuery? uiExtensionQuery = null,
-            VirtualAgentDesignQuery? virtualAgentDesignQuery = null,
             WaitingForCustomerFollowUpQuery? waitingForCustomerFollowUpQuery = null,
             WebhookQuery? webhookQuery = null,
             WebhookPolicyQuery? webhookPolicyQuery = null,
@@ -232,7 +232,6 @@ namespace Works4me.Xurrent.GraphQL
             query = query.SelectOnType("selectedRecords", automationRuleQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", broadcastQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", calendarQuery ?? new(), true);
-            query = query.SelectOnType("selectedRecords", ciStagedChangeQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", closureCodeQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", configurationItemQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", contractQuery ?? new(), true);
@@ -241,6 +240,7 @@ namespace Works4me.Xurrent.GraphQL
             query = query.SelectOnType("selectedRecords", effortClassQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", emailTemplateQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", firstLineSupportAgreementQuery ?? new(), true);
+            query = query.SelectOnType("selectedRecords", goldenSetItemQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", holidayQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", invoiceQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", knowledgeArticleQuery ?? new(), true);
@@ -268,6 +268,7 @@ namespace Works4me.Xurrent.GraphQL
             query = query.SelectOnType("selectedRecords", riskQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", riskSeverityQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", scrumWorkspaceQuery ?? new(), true);
+            query = query.SelectOnType("selectedRecords", seraAiStudioQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", serviceQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", serviceCategoryQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", serviceInstanceQuery ?? new(), true);
@@ -297,7 +298,6 @@ namespace Works4me.Xurrent.GraphQL
             query = query.SelectOnType("selectedRecords", timesheetSettingQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", translationQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", uiExtensionQuery ?? new(), true);
-            query = query.SelectOnType("selectedRecords", virtualAgentDesignQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", waitingForCustomerFollowUpQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", webhookQuery ?? new(), true);
             query = query.SelectOnType("selectedRecords", webhookPolicyQuery ?? new(), true);
@@ -449,21 +449,6 @@ namespace Works4me.Xurrent.GraphQL
         /// </summary>
         /// <param name="query">The selected records query.</param>
         /// <returns>The same <see cref="SyncSetQuery"/>, updated to include the "SelectedRecords" sub-query.</returns>
-        public SyncSetQuery SelectSelectedRecords(CiStagedChangeQuery query)
-        {
-            if (query is null)
-                throw new ArgumentNullException(nameof(query));
-
-            return SelectOnType("selectedRecords", query, true);
-        }
-
-        /// <summary>
-        /// Individual records selected to be included in the sync set.<br />
-        /// Use this method along with other <c>SelectSelectedRecords()</c> calls to cast different object types.<br />
-        /// If a specific type is not queried via <c>SelectSelectedRecords()</c>, it defaults to a <c>null</c> value.<br />
-        /// </summary>
-        /// <param name="query">The selected records query.</param>
-        /// <returns>The same <see cref="SyncSetQuery"/>, updated to include the "SelectedRecords" sub-query.</returns>
         public SyncSetQuery SelectSelectedRecords(ClosureCodeQuery query)
         {
             if (query is null)
@@ -570,6 +555,21 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="query">The selected records query.</param>
         /// <returns>The same <see cref="SyncSetQuery"/>, updated to include the "SelectedRecords" sub-query.</returns>
         public SyncSetQuery SelectSelectedRecords(FirstLineSupportAgreementQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return SelectOnType("selectedRecords", query, true);
+        }
+
+        /// <summary>
+        /// Individual records selected to be included in the sync set.<br />
+        /// Use this method along with other <c>SelectSelectedRecords()</c> calls to cast different object types.<br />
+        /// If a specific type is not queried via <c>SelectSelectedRecords()</c>, it defaults to a <c>null</c> value.<br />
+        /// </summary>
+        /// <param name="query">The selected records query.</param>
+        /// <returns>The same <see cref="SyncSetQuery"/>, updated to include the "SelectedRecords" sub-query.</returns>
+        public SyncSetQuery SelectSelectedRecords(GoldenSetItemQuery query)
         {
             if (query is null)
                 throw new ArgumentNullException(nameof(query));
@@ -975,6 +975,21 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="query">The selected records query.</param>
         /// <returns>The same <see cref="SyncSetQuery"/>, updated to include the "SelectedRecords" sub-query.</returns>
         public SyncSetQuery SelectSelectedRecords(ScrumWorkspaceQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return SelectOnType("selectedRecords", query, true);
+        }
+
+        /// <summary>
+        /// Individual records selected to be included in the sync set.<br />
+        /// Use this method along with other <c>SelectSelectedRecords()</c> calls to cast different object types.<br />
+        /// If a specific type is not queried via <c>SelectSelectedRecords()</c>, it defaults to a <c>null</c> value.<br />
+        /// </summary>
+        /// <param name="query">The selected records query.</param>
+        /// <returns>The same <see cref="SyncSetQuery"/>, updated to include the "SelectedRecords" sub-query.</returns>
+        public SyncSetQuery SelectSelectedRecords(SeraAiStudioQuery query)
         {
             if (query is null)
                 throw new ArgumentNullException(nameof(query));
@@ -1410,21 +1425,6 @@ namespace Works4me.Xurrent.GraphQL
         /// <param name="query">The selected records query.</param>
         /// <returns>The same <see cref="SyncSetQuery"/>, updated to include the "SelectedRecords" sub-query.</returns>
         public SyncSetQuery SelectSelectedRecords(UiExtensionQuery query)
-        {
-            if (query is null)
-                throw new ArgumentNullException(nameof(query));
-
-            return SelectOnType("selectedRecords", query, true);
-        }
-
-        /// <summary>
-        /// Individual records selected to be included in the sync set.<br />
-        /// Use this method along with other <c>SelectSelectedRecords()</c> calls to cast different object types.<br />
-        /// If a specific type is not queried via <c>SelectSelectedRecords()</c>, it defaults to a <c>null</c> value.<br />
-        /// </summary>
-        /// <param name="query">The selected records query.</param>
-        /// <returns>The same <see cref="SyncSetQuery"/>, updated to include the "SelectedRecords" sub-query.</returns>
-        public SyncSetQuery SelectSelectedRecords(VirtualAgentDesignQuery query)
         {
             if (query is null)
                 throw new ArgumentNullException(nameof(query));

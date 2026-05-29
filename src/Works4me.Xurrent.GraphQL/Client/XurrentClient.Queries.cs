@@ -260,34 +260,6 @@ namespace Works4me.Xurrent.GraphQL
         }
 
         /// <summary>
-        /// Executes the specified <see cref="CiStagedChangeQuery"/> and returns a <see cref="ReadOnlyDataCollection{CiStagedChange}"/> of results, performing pagination as needed.
-        /// </summary>
-        /// <param name="query">The <see cref="CiStagedChangeQuery"/> to execute.</param>
-        /// <param name="ct">The <see cref="CancellationToken"/> for request cancellation.</param>
-        /// <returns>A <see cref="Task{ReadOnlyDataCollection}"/> representing the asynchronous operation, containing a <see cref="ReadOnlyDataCollection{CiStagedChange}"/> of results.</returns>
-        public Task<ReadOnlyDataCollection<CiStagedChange>> GetAsync(CiStagedChangeQuery query, CancellationToken ct = default)
-        {
-            if (query is null)
-                throw new ArgumentNullException(nameof(query));
-
-            return GetAsync<CiStagedChange>(GetAccountId(), query, _defaultItemsPerRequest, _maxRequestsPerQuery, ct);
-        }
-
-        /// <summary>
-        /// Streams paged results for the specified <see cref="CiStagedChangeQuery"/>, yielding each <see cref="ReadOnlyDataCollection{CiStagedChange}"/> page as it arrives.
-        /// </summary>
-        /// <param name="query">The <see cref="CiStagedChangeQuery"/> to execute.</param>
-        /// <param name="ct">The <see cref="CancellationToken"/> for request cancellation.</param>
-        /// <returns>An <see cref="IAsyncEnumerable{ReadOnlyDataCollection}"/> yielding each <see cref="ReadOnlyDataCollection{CiStagedChange}"/> page of results.</returns>
-        public IAsyncEnumerable<CiStagedChange> StreamAsync(CiStagedChangeQuery query, CancellationToken ct = default)
-        {
-            if (query is null)
-                throw new ArgumentNullException(nameof(query));
-
-            return StreamAsync<CiStagedChange>(GetAccountId(), query, _defaultItemsPerRequest, _maxRequestsPerQuery, ct);
-        }
-
-        /// <summary>
         /// Executes the specified <see cref="ClosureCodeQuery"/> and returns a <see cref="ReadOnlyDataCollection{ClosureCode}"/> of results, performing pagination as needed.
         /// </summary>
         /// <param name="query">The <see cref="ClosureCodeQuery"/> to execute.</param>
@@ -1237,6 +1209,20 @@ namespace Works4me.Xurrent.GraphQL
                 throw new ArgumentNullException(nameof(query));
 
             return StreamAsync<ScrumWorkspace>(GetAccountId(), query, _defaultItemsPerRequest, _maxRequestsPerQuery, ct);
+        }
+
+        /// <summary>
+        /// Executes the specified <see cref="SeraAiStudioQuery"/> and returns a single <see cref="SeraAiStudio"/> or <c>null</c>.
+        /// </summary>
+        /// <param name="query">The <see cref="SeraAiStudioQuery"/> to execute.</param>
+        /// <param name="ct">The <see cref="CancellationToken"/> for request cancellation.</param>
+        /// <returns>A <see cref="Task{SeraAiStudio}"/> representing the asynchronous operation, containing the single <see cref="SeraAiStudio"/> or <c>null</c>.</returns>
+        public Task<SeraAiStudio?> GetAsync(SeraAiStudioQuery query, CancellationToken ct = default)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return GetAsync<SeraAiStudio>(GetAccountId(), query, ct);
         }
 
         /// <summary>

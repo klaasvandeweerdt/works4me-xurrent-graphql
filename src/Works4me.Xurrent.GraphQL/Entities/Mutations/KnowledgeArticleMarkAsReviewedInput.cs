@@ -4,13 +4,12 @@ using Works4me.Xurrent.GraphQL.Attributes;
 namespace Works4me.Xurrent.GraphQL.Mutations
 {
     /// <summary>
-    /// Represent a <see href="https://developer.xurrent.com/graphql/object/virtualagentdesignupdateinput/">VirtualAgentDesignUpdateInput</see> in Xurrent.
+    /// Represent a <see href="https://developer.xurrent.com/graphql/object/knowledgearticlemarkasreviewedinput/">KnowledgeArticleMarkAsReviewedInput</see> in Xurrent.
     /// </summary>
     [DebuggerDisplay("{Id}")]
-    public sealed class VirtualAgentDesignUpdateInput : PropertyChangeSet
+    public sealed class KnowledgeArticleMarkAsReviewedInput : PropertyChangeSet
     {
         private string? _clientMutationId;
-        private string? _agentInstructions;
         private string _id;
 
         /// <summary>
@@ -24,16 +23,6 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         }
 
         /// <summary>
-        /// Instructions for the virtual agent in markdown format.
-        /// </summary>
-        [XurrentField("agentInstructions")]
-        public string? AgentInstructions
-        {
-            get => _agentInstructions;
-            set => _agentInstructions = Set("agentInstructions", value);
-        }
-
-        /// <summary>
         /// The node ID of the record to update.
         /// </summary>
         [XurrentField("id")]
@@ -44,17 +33,17 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="VirtualAgentDesignUpdateInput"/> class without providing the required values.
+        /// Initializes a new instance of the <see cref="KnowledgeArticleMarkAsReviewedInput"/> class without providing the required values.
         /// </summary>
-        public VirtualAgentDesignUpdateInput()
+        public KnowledgeArticleMarkAsReviewedInput()
         {
             _id = string.Empty;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="VirtualAgentDesignUpdateInput"/> class.
+        /// Initializes a new instance of the <see cref="KnowledgeArticleMarkAsReviewedInput"/> class.
         /// </summary>
-        public VirtualAgentDesignUpdateInput(string id)
+        public KnowledgeArticleMarkAsReviewedInput(string id)
         {
             _id = Set("id", id);
         }

@@ -8,11 +8,11 @@ using Works4me.Xurrent.GraphQL.Builders;
 namespace Works4me.Xurrent.GraphQL
 {
     /// <summary>
-    /// Represent a <see href="https://developer.xurrent.com/graphql/object/virtualagentdesign/">VirtualAgentDesign</see> in Xurrent.
+    /// Represent a <see href="https://developer.xurrent.com/graphql/object/goldensetitem/">GoldenSetItem</see> in Xurrent.
     /// </summary>
     [DebuggerDisplay("{Id}")]
-    [XurrentEntity("VirtualAgentDesign")]
-    public sealed class VirtualAgentDesign : IDataItem, INode, IRecord
+    [XurrentEntity("GoldenSetItem")]
+    public sealed class GoldenSetItem : IDataItem, INode, IRecord
     {
         /// <summary>
         /// The account this record belongs to.
@@ -21,10 +21,10 @@ namespace Works4me.Xurrent.GraphQL
         public Account? Account { get; internal set; }
 
         /// <summary>
-        /// Instructions for the virtual agent in markdown format.
+        /// Text the virtual agent returned during the most recent run.
         /// </summary>
-        [XurrentField("agentInstructions")]
-        public string? AgentInstructions { get; internal set; }
+        [XurrentField("aiResponse")]
+        public string? AiResponse { get; internal set; }
 
         /// <summary>
         /// The date and time at which the record was created.
@@ -33,28 +33,64 @@ namespace Works4me.Xurrent.GraphQL
         public DateTime? CreatedAt { get; internal set; }
 
         /// <summary>
+        /// The Knowledge Article or Request Template the agent is expected to surface.
+        /// </summary>
+        [XurrentField("expectedHit")]
+        public IHasGoldenSetExpectedHits? ExpectedHit { get; internal set; }
+
+        /// <summary>
         /// Unique identifier of the record.
         /// </summary>
         [XurrentField("id", IsDefaultQueryProperty = true)]
         public string Id { get; internal set; } = string.Empty;
 
         /// <summary>
+        /// Free-text search prompt sent to the virtual agent during evaluation.
+        /// </summary>
+        [XurrentField("promptQuery")]
+        public string? PromptQuery { get; internal set; }
+
+        /// <summary>
+        /// Person whose role and locale the evaluation impersonates.
+        /// </summary>
+        [XurrentField("runAs")]
+        public Person? RunAs { get; internal set; }
+
+        /// <summary>
+        /// Score of the most recent run. <c>100</c> when the agent surfaced the expected hit, <c>0</c> when it did not, <c>null</c> if the item has never been evaluated.
+        /// </summary>
+        [XurrentField("score")]
+        public long? Score { get; internal set; }
+
+        /// <summary>
+        /// Sera AI Studio that owns this golden set item.
+        /// </summary>
+        [XurrentField("seraAiStudio")]
+        public SeraAiStudio? SeraAiStudio { get; internal set; }
+
+        /// <summary>
+        /// Timestamp at which the most recent run began. Null while the item is <c>pending</c>.
+        /// </summary>
+        [XurrentField("startedAt")]
+        public DateTime? StartedAt { get; internal set; }
+
+        /// <summary>
+        /// Lifecycle state of the most recent run.
+        /// </summary>
+        [XurrentField("status")]
+        public GoldenSetItemStatus? Status { get; internal set; }
+
+        /// <summary>
+        /// Wall-clock duration of the most recent run, in seconds.
+        /// </summary>
+        [XurrentField("timeTaken")]
+        public decimal? TimeTaken { get; internal set; }
+
+        /// <summary>
         /// The date and time of the last update of the record. If the record has no updates it contains the <c>createdAt</c> value.
         /// </summary>
         [XurrentField("updatedAt")]
         public DateTime? UpdatedAt { get; internal set; }
-
-        /// <summary>
-        /// The reasoning provided by the validation service when instructions are partially applied or rejected.
-        /// </summary>
-        [XurrentField("validationReasoning")]
-        public string? ValidationReasoning { get; internal set; }
-
-        /// <summary>
-        /// The validation status of the agent instructions. Valid values are: <c>pending</c>, <c>approved</c>, <c>partially_applied</c>, <c>rejected</c>, <c>error</c>.
-        /// </summary>
-        [XurrentField("validationStatus")]
-        public string? ValidationStatus { get; internal set; }
 
         /// <summary>
         /// <br>Returns a key used internally for merging paged or partial data responses within a <see cref="DataCollection{T}"/>.</br>

@@ -13,7 +13,7 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
         {
             Account? account = await _client.GetAsync(new AccountQuery()
                 .SelectAll()
-                .SelectVirtualAgentDesign(new VirtualAgentDesignQuery()
+                .SelectSeraAiStudio(new SeraAiStudioQuery()
                     .SelectAll())
                 .SelectDesign(new AccountDesignQuery()
                     .SelectAll())

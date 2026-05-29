@@ -11,7 +11,7 @@ namespace Works4me.Xurrent.GraphQL
     /// </summary>
     [DebuggerDisplay("{Id}")]
     [XurrentEntity("KnowledgeArticle")]
-    public sealed class KnowledgeArticle : IDataItem, IHasTranslations, INode, IRecord
+    public sealed class KnowledgeArticle : IDataItem, IHasGoldenSetExpectedHits, IHasTranslations, INode, IRecord
     {
         /// <summary>
         /// The account this record belongs to.
@@ -82,6 +82,13 @@ namespace Works4me.Xurrent.GraphQL
         /// </summary>
         [XurrentField("endUsers")]
         public bool? EndUsers { get; internal set; }
+
+        [XurrentField("goldenSetItems")]
+        internal PagedResponse<GoldenSetItem>? GoldenSetItemsCollection { get; set; }
+        /// <summary>
+        /// Golden set items that expect this record as the agent's hit.
+        /// </summary>
+        public ReadOnlyDataCollection<GoldenSetItem>? GoldenSetItems { get => GoldenSetItemsCollection?.Data is null ? null : new ReadOnlyDataCollection<GoldenSetItem>(GoldenSetItemsCollection.Data); }
 
         /// <summary>
         /// Unique identifier of the record.
@@ -215,6 +222,7 @@ namespace Works4me.Xurrent.GraphQL
             {
                 CustomFieldsAttachmentsCollection?.Data?.AddRange(knowledgeArticle.CustomFieldsAttachments);
                 DescriptionAttachmentsCollection?.Data?.AddRange(knowledgeArticle.DescriptionAttachments);
+                GoldenSetItemsCollection?.Data?.AddRange(knowledgeArticle.GoldenSetItems);
                 InstructionsAttachmentsCollection?.Data?.AddRange(knowledgeArticle.InstructionsAttachments);
                 RequestsCollection?.Data?.AddRange(knowledgeArticle.Requests);
                 ServiceInstancesCollection?.Data?.AddRange(knowledgeArticle.ServiceInstances);
@@ -235,6 +243,10 @@ namespace Works4me.Xurrent.GraphQL
 
             if (DescriptionAttachmentsCollection is not null)
                 foreach (ExecutionPageInfo pageInfo in DescriptionAttachmentsCollection.GetPageInfo("descriptionAttachments", depth))
+                    yield return pageInfo;
+
+            if (GoldenSetItemsCollection is not null)
+                foreach (ExecutionPageInfo pageInfo in GoldenSetItemsCollection.GetPageInfo("goldenSetItems", depth))
                     yield return pageInfo;
 
             if (InstructionsAttachmentsCollection is not null)

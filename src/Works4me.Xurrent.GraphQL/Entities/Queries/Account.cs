@@ -57,16 +57,16 @@ namespace Works4me.Xurrent.GraphQL
         public Organization? Organization { get; internal set; }
 
         /// <summary>
+        /// The Sera AI Studio of the account.
+        /// </summary>
+        [XurrentField("seraAiStudio")]
+        public SeraAiStudio? SeraAiStudio { get; internal set; }
+
+        /// <summary>
         /// The web address that is used to access the account.
         /// </summary>
         [XurrentField("url")]
         public Uri? Url { get; internal set; }
-
-        /// <summary>
-        /// The virtual agent design of the account.
-        /// </summary>
-        [XurrentField("virtualAgentDesign")]
-        public VirtualAgentDesign? VirtualAgentDesign { get; internal set; }
 
         /// <summary>
         /// <br>Returns a key used internally for merging paged or partial data responses within a <see cref="DataCollection{T}"/>.</br>

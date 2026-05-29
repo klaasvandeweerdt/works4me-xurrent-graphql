@@ -227,20 +227,6 @@ namespace Works4me.Xurrent.GraphQL
             return MutationAsync<CalendarUpdatePayload, CalendarUpdateInput>(GetAccountId(), new CalendarUpdateMutation(data, query), ct);
         }
 
-        /// <param name="data">The input data for the ci staged change mutation.</param>
-        /// <param name="query">The query specifying which fields to return in the response.</param>
-        /// <param name="ct">The <see cref="CancellationToken"/> for request cancellation.</param>
-        public Task<CiStagedChangeUpdatePayload> MutationAsync(CiStagedChangeUpdateInput data, CiStagedChangeQuery query, CancellationToken ct = default)
-        {
-            if (data is null)
-                throw new ArgumentNullException(nameof(data));
-
-            if (query is null)
-                throw new ArgumentNullException(nameof(query));
-
-            return MutationAsync<CiStagedChangeUpdatePayload, CiStagedChangeUpdateInput>(GetAccountId(), new CiStagedChangeUpdateMutation(data, query), ct);
-        }
-
         /// <param name="data">The input data for the closure code mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
         /// <param name="ct">The <see cref="CancellationToken"/> for request cancellation.</param>
@@ -455,6 +441,44 @@ namespace Works4me.Xurrent.GraphQL
             return MutationAsync<FirstLineSupportAgreementUpdatePayload, FirstLineSupportAgreementUpdateInput>(GetAccountId(), new FirstLineSupportAgreementUpdateMutation(data, query), ct);
         }
 
+        /// <param name="data">The input data for the golden set item mutation.</param>
+        /// <param name="query">The query specifying which fields to return in the response.</param>
+        /// <param name="ct">The <see cref="CancellationToken"/> for request cancellation.</param>
+        public Task<GoldenSetItemCreatePayload> MutationAsync(GoldenSetItemCreateInput data, GoldenSetItemQuery query, CancellationToken ct = default)
+        {
+            if (data is null)
+                throw new ArgumentNullException(nameof(data));
+
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return MutationAsync<GoldenSetItemCreatePayload, GoldenSetItemCreateInput>(GetAccountId(), new GoldenSetItemCreateMutation(data, query), ct);
+        }
+
+        /// <param name="data">The input data for the success mutation.</param>
+        /// <param name="ct">The <see cref="CancellationToken"/> for request cancellation.</param>
+        public Task<GoldenSetItemDeleteMutationPayload> MutationAsync(GoldenSetItemDeleteMutationInput data, CancellationToken ct = default)
+        {
+            if (data is null)
+                throw new ArgumentNullException(nameof(data));
+
+            return MutationAsync<GoldenSetItemDeleteMutationPayload, GoldenSetItemDeleteMutationInput>(GetAccountId(), new GoldenSetItemDeleteMutation(data), ct);
+        }
+
+        /// <param name="data">The input data for the golden set item mutation.</param>
+        /// <param name="query">The query specifying which fields to return in the response.</param>
+        /// <param name="ct">The <see cref="CancellationToken"/> for request cancellation.</param>
+        public Task<GoldenSetItemUpdatePayload> MutationAsync(GoldenSetItemUpdateInput data, GoldenSetItemQuery query, CancellationToken ct = default)
+        {
+            if (data is null)
+                throw new ArgumentNullException(nameof(data));
+
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return MutationAsync<GoldenSetItemUpdatePayload, GoldenSetItemUpdateInput>(GetAccountId(), new GoldenSetItemUpdateMutation(data, query), ct);
+        }
+
         /// <param name="data">The input data for the holiday mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
         /// <param name="ct">The <see cref="CancellationToken"/> for request cancellation.</param>
@@ -523,6 +547,20 @@ namespace Works4me.Xurrent.GraphQL
                 throw new ArgumentNullException(nameof(query));
 
             return MutationAsync<KnowledgeArticleCreatePayload, KnowledgeArticleCreateInput>(GetAccountId(), new KnowledgeArticleCreateMutation(data, query), ct);
+        }
+
+        /// <param name="data">The input data for the knowledge article mutation.</param>
+        /// <param name="query">The query specifying which fields to return in the response.</param>
+        /// <param name="ct">The <see cref="CancellationToken"/> for request cancellation.</param>
+        public Task<KnowledgeArticleMarkAsReviewedPayload> MutationAsync(KnowledgeArticleMarkAsReviewedInput data, KnowledgeArticleQuery query, CancellationToken ct = default)
+        {
+            if (data is null)
+                throw new ArgumentNullException(nameof(data));
+
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return MutationAsync<KnowledgeArticleMarkAsReviewedPayload, KnowledgeArticleMarkAsReviewedInput>(GetAccountId(), new KnowledgeArticleMarkAsReviewedMutation(data, query), ct);
         }
 
         /// <param name="data">The input data for the knowledge article mutation.</param>
@@ -1213,6 +1251,20 @@ namespace Works4me.Xurrent.GraphQL
             return MutationAsync<ScrumWorkspaceUpdatePayload, ScrumWorkspaceUpdateInput>(GetAccountId(), new ScrumWorkspaceUpdateMutation(data, query), ct);
         }
 
+        /// <param name="data">The input data for the sera ai studio mutation.</param>
+        /// <param name="query">The query specifying which fields to return in the response.</param>
+        /// <param name="ct">The <see cref="CancellationToken"/> for request cancellation.</param>
+        public Task<SeraAiStudioUpdatePayload> MutationAsync(SeraAiStudioUpdateInput data, SeraAiStudioQuery query, CancellationToken ct = default)
+        {
+            if (data is null)
+                throw new ArgumentNullException(nameof(data));
+
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return MutationAsync<SeraAiStudioUpdatePayload, SeraAiStudioUpdateInput>(GetAccountId(), new SeraAiStudioUpdateMutation(data, query), ct);
+        }
+
         /// <param name="data">The input data for the service category mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
         /// <param name="ct">The <see cref="CancellationToken"/> for request cancellation.</param>
@@ -1827,20 +1879,6 @@ namespace Works4me.Xurrent.GraphQL
                 throw new ArgumentNullException(nameof(query));
 
             return MutationAsync<UiExtensionUpdatePayload, UiExtensionUpdateInput>(GetAccountId(), new UiExtensionUpdateMutation(data, query), ct);
-        }
-
-        /// <param name="data">The input data for the virtual agent design mutation.</param>
-        /// <param name="query">The query specifying which fields to return in the response.</param>
-        /// <param name="ct">The <see cref="CancellationToken"/> for request cancellation.</param>
-        public Task<VirtualAgentDesignUpdatePayload> MutationAsync(VirtualAgentDesignUpdateInput data, VirtualAgentDesignQuery query, CancellationToken ct = default)
-        {
-            if (data is null)
-                throw new ArgumentNullException(nameof(data));
-
-            if (query is null)
-                throw new ArgumentNullException(nameof(query));
-
-            return MutationAsync<VirtualAgentDesignUpdatePayload, VirtualAgentDesignUpdateInput>(GetAccountId(), new VirtualAgentDesignUpdateMutation(data, query), ct);
         }
 
         /// <param name="data">The input data for the waiting for customer follow up mutation.</param>

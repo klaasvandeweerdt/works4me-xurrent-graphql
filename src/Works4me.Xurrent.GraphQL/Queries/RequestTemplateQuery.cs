@@ -68,6 +68,19 @@ namespace Works4me.Xurrent.GraphQL
         }
 
         /// <summary>
+        /// Golden set items that expect this record as the agent's hit.
+        /// </summary>
+        /// <param name="query">The golden set items query.</param>
+        /// <returns>The same <see cref="RequestTemplateQuery"/>, updated to include the "GoldenSetItems" sub-query.</returns>
+        public RequestTemplateQuery SelectGoldenSetItems(GoldenSetItemQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return Select("goldenSetItems", query, true);
+        }
+
+        /// <summary>
         /// Inline images linked to the Instructions field.
         /// </summary>
         /// <param name="query">The instructions attachments query.</param>

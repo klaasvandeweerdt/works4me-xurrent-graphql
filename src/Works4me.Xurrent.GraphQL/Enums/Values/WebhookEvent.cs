@@ -50,18 +50,6 @@ namespace Works4me.Xurrent.GraphQL
         BroadcastUpdate,
 
         /// <summary>
-        /// Ci staged change create.
-        /// </summary>
-        [XurrentEnum("ci_staged_change.create")]
-        CiStagedChangeCreate,
-
-        /// <summary>
-        /// Ci staged change update.
-        /// </summary>
-        [XurrentEnum("ci_staged_change.update")]
-        CiStagedChangeUpdate,
-
-        /// <summary>
         /// Ci create.
         /// </summary>
         [XurrentEnum("ci.create")]

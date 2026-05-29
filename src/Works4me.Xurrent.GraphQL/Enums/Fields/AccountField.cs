@@ -50,15 +50,15 @@ namespace Works4me.Xurrent.GraphQL
         Organization,
 
         /// <summary>
+        /// The sera ai studio field.
+        /// </summary>
+        [XurrentEnum("seraAiStudio")]
+        SeraAiStudio,
+
+        /// <summary>
         /// The url field.
         /// </summary>
         [XurrentEnum("url")]
-        Url,
-
-        /// <summary>
-        /// The virtual agent design field.
-        /// </summary>
-        [XurrentEnum("virtualAgentDesign")]
-        VirtualAgentDesign
+        Url
     }
 }

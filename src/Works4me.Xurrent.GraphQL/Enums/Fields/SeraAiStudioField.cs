@@ -3,9 +3,9 @@
 namespace Works4me.Xurrent.GraphQL
 {
     /// <summary>
-    /// The <see cref="VirtualAgentDesign">VirtualAgentDesign</see> fields.
+    /// The <see cref="SeraAiStudio">SeraAiStudio</see> fields.
     /// </summary>
-    public enum VirtualAgentDesignField
+    public enum SeraAiStudioField
     {
         /// <summary>
         /// The account field.
@@ -20,6 +20,12 @@ namespace Works4me.Xurrent.GraphQL
         AgentInstructions,
 
         /// <summary>
+        /// The agent instructions draft field.
+        /// </summary>
+        [XurrentEnum("agentInstructionsDraft")]
+        AgentInstructionsDraft,
+
+        /// <summary>
         /// The created at field.
         /// </summary>
         [XurrentEnum("createdAt")]
@@ -30,6 +36,12 @@ namespace Works4me.Xurrent.GraphQL
         /// </summary>
         [XurrentEnum("id")]
         Id,
+
+        /// <summary>
+        /// The run as field.
+        /// </summary>
+        [XurrentEnum("runAs")]
+        RunAs,
 
         /// <summary>
         /// The updated at field.
