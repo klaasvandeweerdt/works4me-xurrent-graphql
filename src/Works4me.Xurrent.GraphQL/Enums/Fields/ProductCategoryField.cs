@@ -56,6 +56,36 @@ namespace Works4me.Xurrent.GraphQL
         Reference,
 
         /// <summary>
+        /// The review end of support days field.
+        /// </summary>
+        [XurrentEnum("reviewEndOfSupportDays")]
+        ReviewEndOfSupportDays,
+
+        /// <summary>
+        /// The review in use since days field.
+        /// </summary>
+        [XurrentEnum("reviewInUseSinceDays")]
+        ReviewInUseSinceDays,
+
+        /// <summary>
+        /// The review last seen days field.
+        /// </summary>
+        [XurrentEnum("reviewLastSeenDays")]
+        ReviewLastSeenDays,
+
+        /// <summary>
+        /// The review license expiry days field.
+        /// </summary>
+        [XurrentEnum("reviewLicenseExpiryDays")]
+        ReviewLicenseExpiryDays,
+
+        /// <summary>
+        /// The review warranty expiry days field.
+        /// </summary>
+        [XurrentEnum("reviewWarrantyExpiryDays")]
+        ReviewWarrantyExpiryDays,
+
+        /// <summary>
         /// The rule set field.
         /// </summary>
         [XurrentEnum("ruleSet")]

@@ -15,6 +15,11 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private string? _uiExtensionId;
         private bool? _disabled;
         private string? _group;
+        private long? _reviewEndOfSupportDays;
+        private long? _reviewInUseSinceDays;
+        private long? _reviewLastSeenDays;
+        private long? _reviewLicenseExpiryDays;
+        private long? _reviewWarrantyExpiryDays;
         private string _name;
         private ProductCategoryRuleSet _ruleSet;
 
@@ -86,6 +91,56 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _group;
             set => _group = Set("group", value);
+        }
+
+        /// <summary>
+        /// Number of days before the end of support date to flag a configuration item for review.
+        /// </summary>
+        [XurrentField("reviewEndOfSupportDays")]
+        public long? ReviewEndOfSupportDays
+        {
+            get => _reviewEndOfSupportDays;
+            set => _reviewEndOfSupportDays = Set("reviewEndOfSupportDays", value);
+        }
+
+        /// <summary>
+        /// Number of days since the in use since date to flag a configuration item for review.
+        /// </summary>
+        [XurrentField("reviewInUseSinceDays")]
+        public long? ReviewInUseSinceDays
+        {
+            get => _reviewInUseSinceDays;
+            set => _reviewInUseSinceDays = Set("reviewInUseSinceDays", value);
+        }
+
+        /// <summary>
+        /// Number of days since last seen to flag a configuration item for review.
+        /// </summary>
+        [XurrentField("reviewLastSeenDays")]
+        public long? ReviewLastSeenDays
+        {
+            get => _reviewLastSeenDays;
+            set => _reviewLastSeenDays = Set("reviewLastSeenDays", value);
+        }
+
+        /// <summary>
+        /// Number of days before license expiry to flag a configuration item for review.
+        /// </summary>
+        [XurrentField("reviewLicenseExpiryDays")]
+        public long? ReviewLicenseExpiryDays
+        {
+            get => _reviewLicenseExpiryDays;
+            set => _reviewLicenseExpiryDays = Set("reviewLicenseExpiryDays", value);
+        }
+
+        /// <summary>
+        /// Number of days before warranty expiry to flag a configuration item for review.
+        /// </summary>
+        [XurrentField("reviewWarrantyExpiryDays")]
+        public long? ReviewWarrantyExpiryDays
+        {
+            get => _reviewWarrantyExpiryDays;
+            set => _reviewWarrantyExpiryDays = Set("reviewWarrantyExpiryDays", value);
         }
 
         /// <summary>

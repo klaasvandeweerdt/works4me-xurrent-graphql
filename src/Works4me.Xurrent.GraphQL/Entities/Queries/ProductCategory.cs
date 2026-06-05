@@ -69,6 +69,36 @@ namespace Works4me.Xurrent.GraphQL
         public string? Reference { get; internal set; }
 
         /// <summary>
+        /// Number of days before a CI's end-of-support date after which a lifecycle review is flagged. Leave empty to disable this review.
+        /// </summary>
+        [XurrentField("reviewEndOfSupportDays")]
+        public long? ReviewEndOfSupportDays { get; internal set; }
+
+        /// <summary>
+        /// Number of days after a CI's in-use-since date after which a lifecycle review is flagged. Leave empty to disable this review.
+        /// </summary>
+        [XurrentField("reviewInUseSinceDays")]
+        public long? ReviewInUseSinceDays { get; internal set; }
+
+        /// <summary>
+        /// Number of days since a CI was last seen after which a lifecycle review is flagged. Leave empty to disable this review.
+        /// </summary>
+        [XurrentField("reviewLastSeenDays")]
+        public long? ReviewLastSeenDays { get; internal set; }
+
+        /// <summary>
+        /// Number of days before a CI's license-expiry date after which a lifecycle review is flagged. Leave empty to disable this review.
+        /// </summary>
+        [XurrentField("reviewLicenseExpiryDays")]
+        public long? ReviewLicenseExpiryDays { get; internal set; }
+
+        /// <summary>
+        /// Number of days before a CI's warranty-expiry date after which a lifecycle review is flagged. Leave empty to disable this review.
+        /// </summary>
+        [XurrentField("reviewWarrantyExpiryDays")]
+        public long? ReviewWarrantyExpiryDays { get; internal set; }
+
+        /// <summary>
         /// Used to select a set of rules that are to be applied to the products to which the product category is related, as well as the configuration items that are related to those products. The selected rule set dictates which fields are available for these product and configuration items.
         /// </summary>
         [XurrentField("ruleSet")]
