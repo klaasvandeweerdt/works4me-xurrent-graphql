@@ -281,6 +281,12 @@ namespace Works4me.Xurrent.GraphQL
         [XurrentField("timeZone")]
         public string? TimeZone { get; internal set; }
 
+        /// <summary>
+        /// Whether the subject of requests created from this template is automatically translated to the language of the viewer. When false, the subject is always displayed in its original language.
+        /// </summary>
+        [XurrentField("translateSubject")]
+        public bool? TranslateSubject { get; internal set; }
+
         [XurrentField("translations")]
         internal PagedResponse<Translation>? TranslationsCollection { get; set; }
         /// <summary>

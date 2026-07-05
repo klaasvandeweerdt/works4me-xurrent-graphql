@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the project risk level mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal ProjectRiskLevelUpdateMutation(ProjectRiskLevelUpdateInput data, ProjectRiskLevelQuery query)
-            : base("projectRiskLevelUpdate", "ProjectRiskLevelUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "projectRiskLevel")))
+        internal ProjectRiskLevelUpdateMutation(ProjectRiskLevelUpdateInput data, ProjectRiskLevelQuery? query)
+            : base("projectRiskLevelUpdate", "ProjectRiskLevelUpdateInput!", data, query is null ? new ProjectRiskLevelUpdatePayloadQuery() : new ProjectRiskLevelUpdatePayloadQuery().Select(UpdateQuery(query, "projectRiskLevel")))
         {
         }
     }

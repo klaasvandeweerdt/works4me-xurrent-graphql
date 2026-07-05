@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("uiExtension", IsDefaultQueryProperty = true)]
+        [XurrentField("uiExtension")]
         public UiExtension? UiExtension { get; internal set; }
     }
 }

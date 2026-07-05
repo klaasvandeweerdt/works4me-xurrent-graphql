@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the product mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal ProductUpdateMutation(ProductUpdateInput data, ProductQuery query)
-            : base("productUpdate", "ProductUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "product")))
+        internal ProductUpdateMutation(ProductUpdateInput data, ProductQuery? query)
+            : base("productUpdate", "ProductUpdateInput!", data, query is null ? new ProductUpdatePayloadQuery() : new ProductUpdatePayloadQuery().Select(UpdateQuery(query, "product")))
         {
         }
     }

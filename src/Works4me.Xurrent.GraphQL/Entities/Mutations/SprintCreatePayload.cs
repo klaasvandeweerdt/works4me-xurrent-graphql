@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("sprint", IsDefaultQueryProperty = true)]
+        [XurrentField("sprint")]
         public Sprint? Sprint { get; internal set; }
     }
 }

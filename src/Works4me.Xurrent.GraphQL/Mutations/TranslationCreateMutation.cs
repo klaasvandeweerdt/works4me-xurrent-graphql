@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the translation mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal TranslationCreateMutation(TranslationCreateInput data, TranslationQuery query)
-            : base("translationCreate", "TranslationCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "translation")))
+        internal TranslationCreateMutation(TranslationCreateInput data, TranslationQuery? query)
+            : base("translationCreate", "TranslationCreateInput!", data, query is null ? new TranslationCreatePayloadQuery() : new TranslationCreatePayloadQuery().Select(UpdateQuery(query, "translation")))
         {
         }
     }

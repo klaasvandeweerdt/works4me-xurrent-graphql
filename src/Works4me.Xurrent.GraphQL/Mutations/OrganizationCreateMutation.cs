@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the organization mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal OrganizationCreateMutation(OrganizationCreateInput data, OrganizationQuery query)
-            : base("organizationCreate", "OrganizationCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "organization")))
+        internal OrganizationCreateMutation(OrganizationCreateInput data, OrganizationQuery? query)
+            : base("organizationCreate", "OrganizationCreateInput!", data, query is null ? new OrganizationCreatePayloadQuery() : new OrganizationCreatePayloadQuery().Select(UpdateQuery(query, "organization")))
         {
         }
     }

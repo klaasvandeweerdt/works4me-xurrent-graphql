@@ -8,21 +8,9 @@ namespace Works4me.Xurrent.GraphQL
     internal enum MutationResponseField
     {
         /// <summary>
-        /// The client mutation ID used to correlate requests and responses.
+        /// Indicates that all scalar fields in the mutation response should be selected.
         /// </summary>
-        [XurrentEnum("clientMutationId")]
-        ClientMutationId,
-
-        /// <summary>
-        /// Indicates whether the mutation was successful.
-        /// </summary>
-        [XurrentEnum("success")]
-        Success,
-
-        /// <summary>
-        /// The list of error messages returned by the mutation, if any.
-        /// </summary>
-        [XurrentEnum("errors")]
-        Errors
+        [XurrentEnum(null)]
+        All
     }
 }

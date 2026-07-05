@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the note mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal NoteCreateMutation(NoteCreateInput data, NoteQuery query)
-            : base("noteCreate", "NoteCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "note")))
+        internal NoteCreateMutation(NoteCreateInput data, NoteQuery? query)
+            : base("noteCreate", "NoteCreateInput!", data, query is null ? new NoteCreatePayloadQuery() : new NoteCreatePayloadQuery().Select(UpdateQuery(query, "note")))
         {
         }
     }

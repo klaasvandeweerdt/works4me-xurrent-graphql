@@ -110,7 +110,7 @@ namespace Works4me.Xurrent.GraphQL
         /// <summary>
         /// The label that is attached to the configuration item (CI). A label is automatically generated using the same prefix of other CIs of the same product category, followed by the next available number as the suffix.
         /// </summary>
-        [XurrentField("label")]
+        [XurrentField("label", IsDefaultQueryProperty = true)]
         public string? Label { get; internal set; }
 
         /// <summary>

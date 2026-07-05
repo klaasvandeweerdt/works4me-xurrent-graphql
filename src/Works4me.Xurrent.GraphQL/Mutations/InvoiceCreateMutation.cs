@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the invoice mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal InvoiceCreateMutation(InvoiceCreateInput data, InvoiceQuery query)
-            : base("invoiceCreate", "InvoiceCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "invoice")))
+        internal InvoiceCreateMutation(InvoiceCreateInput data, InvoiceQuery? query)
+            : base("invoiceCreate", "InvoiceCreateInput!", data, query is null ? new InvoiceCreatePayloadQuery() : new InvoiceCreatePayloadQuery().Select(UpdateQuery(query, "invoice")))
         {
         }
     }

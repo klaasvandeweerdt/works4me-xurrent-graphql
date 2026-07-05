@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the holiday mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal HolidayUpdateMutation(HolidayUpdateInput data, HolidayQuery query)
-            : base("holidayUpdate", "HolidayUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "holiday")))
+        internal HolidayUpdateMutation(HolidayUpdateInput data, HolidayQuery? query)
+            : base("holidayUpdate", "HolidayUpdateInput!", data, query is null ? new HolidayUpdatePayloadQuery() : new HolidayUpdatePayloadQuery().Select(UpdateQuery(query, "holiday")))
         {
         }
     }

@@ -206,6 +206,12 @@ namespace Works4me.Xurrent.GraphQL
         PLN,
 
         /// <summary>
+        /// Serbian dinar.
+        /// </summary>
+        [XurrentEnum("rsd")]
+        RSD,
+
+        /// <summary>
         /// Russian rouble.
         /// </summary>
         [XurrentEnum("rub")]

@@ -52,7 +52,7 @@ namespace Works4me.Xurrent.GraphQL
         /// <summary>
         /// The subject of email notifications that are generated based on the email template.
         /// </summary>
-        [XurrentField("subject")]
+        [XurrentField("subject", IsDefaultQueryProperty = true)]
         public string? Subject { get; internal set; }
 
         [XurrentField("translations")]

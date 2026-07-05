@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the service level agreement mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal ServiceLevelAgreementCreateMutation(ServiceLevelAgreementCreateInput data, ServiceLevelAgreementQuery query)
-            : base("serviceLevelAgreementCreate", "ServiceLevelAgreementCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "serviceLevelAgreement")))
+        internal ServiceLevelAgreementCreateMutation(ServiceLevelAgreementCreateInput data, ServiceLevelAgreementQuery? query)
+            : base("serviceLevelAgreementCreate", "ServiceLevelAgreementCreateInput!", data, query is null ? new ServiceLevelAgreementCreatePayloadQuery() : new ServiceLevelAgreementCreatePayloadQuery().Select(UpdateQuery(query, "serviceLevelAgreement")))
         {
         }
     }

@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the time allocation mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal TimeAllocationCreateMutation(TimeAllocationCreateInput data, TimeAllocationQuery query)
-            : base("timeAllocationCreate", "TimeAllocationCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "timeAllocation")))
+        internal TimeAllocationCreateMutation(TimeAllocationCreateInput data, TimeAllocationQuery? query)
+            : base("timeAllocationCreate", "TimeAllocationCreateInput!", data, query is null ? new TimeAllocationCreatePayloadQuery() : new TimeAllocationCreatePayloadQuery().Select(UpdateQuery(query, "timeAllocation")))
         {
         }
     }

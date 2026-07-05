@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the problem mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal ProblemCreateMutation(ProblemCreateInput data, ProblemQuery query)
-            : base("problemCreate", "ProblemCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "problem")))
+        internal ProblemCreateMutation(ProblemCreateInput data, ProblemQuery? query)
+            : base("problemCreate", "ProblemCreateInput!", data, query is null ? new ProblemCreatePayloadQuery() : new ProblemCreatePayloadQuery().Select(UpdateQuery(query, "problem")))
         {
         }
     }

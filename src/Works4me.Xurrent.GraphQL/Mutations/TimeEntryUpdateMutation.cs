@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the time entry mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal TimeEntryUpdateMutation(TimeEntryUpdateInput data, TimeEntryQuery query)
-            : base("timeEntryUpdate", "TimeEntryUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "timeEntry")))
+        internal TimeEntryUpdateMutation(TimeEntryUpdateInput data, TimeEntryQuery? query)
+            : base("timeEntryUpdate", "TimeEntryUpdateInput!", data, query is null ? new TimeEntryUpdatePayloadQuery() : new TimeEntryUpdatePayloadQuery().Select(UpdateQuery(query, "timeEntry")))
         {
         }
     }

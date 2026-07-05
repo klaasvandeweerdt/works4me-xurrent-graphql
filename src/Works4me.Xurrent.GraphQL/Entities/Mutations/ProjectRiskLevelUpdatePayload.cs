@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("projectRiskLevel", IsDefaultQueryProperty = true)]
+        [XurrentField("projectRiskLevel")]
         public ProjectRiskLevel? ProjectRiskLevel { get; internal set; }
     }
 }

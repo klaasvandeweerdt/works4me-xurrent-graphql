@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("agileBoard", IsDefaultQueryProperty = true)]
+        [XurrentField("agileBoard")]
         public AgileBoard? AgileBoard { get; internal set; }
     }
 }

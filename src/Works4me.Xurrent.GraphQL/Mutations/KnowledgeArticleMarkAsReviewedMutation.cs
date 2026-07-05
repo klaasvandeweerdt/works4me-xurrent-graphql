@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the knowledge article mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal KnowledgeArticleMarkAsReviewedMutation(KnowledgeArticleMarkAsReviewedInput data, KnowledgeArticleQuery query)
-            : base("knowledgeArticleMarkAsReviewed", "KnowledgeArticleMarkAsReviewedInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "knowledgeArticle")))
+        internal KnowledgeArticleMarkAsReviewedMutation(KnowledgeArticleMarkAsReviewedInput data, KnowledgeArticleQuery? query)
+            : base("knowledgeArticleMarkAsReviewed", "KnowledgeArticleMarkAsReviewedInput!", data, query is null ? new KnowledgeArticleMarkAsReviewedPayloadQuery() : new KnowledgeArticleMarkAsReviewedPayloadQuery().Select(UpdateQuery(query, "knowledgeArticle")))
         {
         }
     }

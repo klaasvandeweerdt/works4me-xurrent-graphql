@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Remoting;
 using System.Threading.Tasks;
 using Works4me.Xurrent.GraphQL.Mutations;
 using Works4me.Xurrent.GraphQL.Tests.Shared;
@@ -13,8 +14,11 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
         [Fact]
         public async Task Create()
         {
-            NoteCreatePayload noteCreatePayload = await _client.MutationAsync(new NoteCreateInput($"{DateTime.Now:HH:mm:ss.fff} - Hello World !!!", Client.GetConfigValue("NoteTest.Id"))
+            string clientMutationId = Guid.NewGuid().ToString("N");
+
+            NoteCreatePayload noteCreatePayload = await _client.NoteCreateAsync(new NoteCreateInput($"{DateTime.Now:HH:mm:ss.fff} - Hello World !!!", Client.GetConfigValue("NoteTest.Id"))
             {
+                ClientMutationId = clientMutationId,
                 Internal = true
             }, new NoteQuery()
                 .Select(NoteField.Id)
@@ -33,6 +37,7 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
             Assert.NotNull(noteCreatePayload);
             Assert.NotNull(noteCreatePayload.Note);
             Assert.NotNull(noteCreatePayload.Note.NoteReactions);
+            Assert.Equal(clientMutationId, noteCreatePayload.ClientMutationId);
 
             NoteReactionCreatePayload noteReactionCreatePayload = await _client.MutationAsync(new NoteReactionCreateInput(noteCreatePayload.Note.Id, "👍"), new NoteReactionQuery()
                 .SelectAll(), TestContext.Current.CancellationToken);
@@ -45,6 +50,18 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
 
             Assert.NotNull(noteReactionDeleteMutationPayload);
             Assert.True(noteReactionDeleteMutationPayload.Success);
+        }
+
+        [Fact]
+        public async Task CreateWithoutReturnNoteObject()
+        {
+            NoteCreatePayload noteCreatePayload = await _client.MutationAsync(new NoteCreateInput($"{DateTime.Now:HH:mm:ss.fff} - Hello World !!!", Client.GetConfigValue("NoteTest.Id"))
+            {
+                Internal = true
+            }, TestContext.Current.CancellationToken);
+
+            Assert.NotNull(noteCreatePayload);
+            Assert.Null(noteCreatePayload.Note);
         }
     }
 }

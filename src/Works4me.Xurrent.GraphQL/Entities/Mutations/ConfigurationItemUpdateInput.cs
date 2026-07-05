@@ -75,6 +75,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private Collection<CiRelationInput>? _newCiRelations;
         private string _id;
         private Collection<string>? _ciRelationsToDelete;
+        private Collection<CiRelationSourceKeyInput>? _ciRelationsToDeleteBySource;
 
         /// <summary>
         /// A unique identifier for the client performing the mutation.
@@ -570,6 +571,19 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _ciRelationsToDelete;
             set => _ciRelationsToDelete = Set("ciRelationsToDelete", value);
+        }
+
+        /// <summary>
+        /// Relations to remove from the configuration item, each addressed by the related.<br />
+        /// configuration item's external identity (<c>configurationItemSource</c>,.<br />
+        /// <c>configurationItemSourceID</c>) instead of by relation identifier. A key that matches.<br />
+        /// no current relation is ignored.<br />
+        /// </summary>
+        [XurrentField("ciRelationsToDeleteBySource")]
+        public Collection<CiRelationSourceKeyInput>? CiRelationsToDeleteBySource
+        {
+            get => _ciRelationsToDeleteBySource;
+            set => _ciRelationsToDeleteBySource = Set("ciRelationsToDeleteBySource", value);
         }
 
         /// <summary>

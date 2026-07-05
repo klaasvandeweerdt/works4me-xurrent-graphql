@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the waiting for customer follow up mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal WaitingForCustomerFollowUpCreateMutation(WaitingForCustomerFollowUpCreateInput data, WaitingForCustomerFollowUpQuery query)
-            : base("waitingForCustomerFollowUpCreate", "WaitingForCustomerFollowUpCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "waitingForCustomerFollowUp")))
+        internal WaitingForCustomerFollowUpCreateMutation(WaitingForCustomerFollowUpCreateInput data, WaitingForCustomerFollowUpQuery? query)
+            : base("waitingForCustomerFollowUpCreate", "WaitingForCustomerFollowUpCreateInput!", data, query is null ? new WaitingForCustomerFollowUpCreatePayloadQuery() : new WaitingForCustomerFollowUpCreatePayloadQuery().Select(UpdateQuery(query, "waitingForCustomerFollowUp")))
         {
         }
     }

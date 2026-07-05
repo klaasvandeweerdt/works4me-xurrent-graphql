@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("webhook", IsDefaultQueryProperty = true)]
+        [XurrentField("webhook")]
         public Webhook? Webhook { get; internal set; }
     }
 }

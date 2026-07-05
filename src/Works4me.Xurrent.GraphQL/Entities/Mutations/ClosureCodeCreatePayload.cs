@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("closureCode", IsDefaultQueryProperty = true)]
+        [XurrentField("closureCode")]
         public ClosureCode? ClosureCode { get; internal set; }
     }
 }

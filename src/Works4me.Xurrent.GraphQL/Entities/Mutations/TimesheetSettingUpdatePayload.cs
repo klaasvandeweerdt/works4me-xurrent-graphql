@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("timesheetSetting", IsDefaultQueryProperty = true)]
+        [XurrentField("timesheetSetting")]
         public TimesheetSetting? TimesheetSetting { get; internal set; }
     }
 }

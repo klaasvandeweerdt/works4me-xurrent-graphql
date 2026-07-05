@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("slaCoverageGroup", IsDefaultQueryProperty = true)]
+        [XurrentField("slaCoverageGroup")]
         public SlaCoverageGroup? SlaCoverageGroup { get; internal set; }
     }
 }

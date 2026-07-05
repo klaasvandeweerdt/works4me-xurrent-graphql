@@ -21,6 +21,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private string? _configurationItemId;
         private RequestCompletionReason? _completionReason;
         private bool? _copySubjectToRequests;
+        private bool? _translateSubject;
         private string? _description;
         private RequestActionType? _actionType;
         private long? _desiredCompletion;
@@ -172,6 +173,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _copySubjectToRequests;
             set => _copySubjectToRequests = Set("copySubjectToRequests", value);
+        }
+
+        /// <summary>
+        /// Whether the subject of requests created from this template is automatically translated to the language of the viewer. When false, the subject is always displayed in its original language.
+        /// </summary>
+        [XurrentField("translateSubject")]
+        public bool? TranslateSubject
+        {
+            get => _translateSubject;
+            set => _translateSubject = Set("translateSubject", value);
         }
 
         /// <summary>

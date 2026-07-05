@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("shopArticleCategory", IsDefaultQueryProperty = true)]
+        [XurrentField("shopArticleCategory")]
         public ShopArticleCategory? ShopArticleCategory { get; internal set; }
     }
 }

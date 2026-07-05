@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("goldenSetItem", IsDefaultQueryProperty = true)]
+        [XurrentField("goldenSetItem")]
         public GoldenSetItem? GoldenSetItem { get; internal set; }
     }
 }

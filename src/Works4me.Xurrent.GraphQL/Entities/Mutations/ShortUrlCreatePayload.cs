@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("shortUrl", IsDefaultQueryProperty = true)]
+        [XurrentField("shortUrl")]
         public ShortUrl? ShortUrl { get; internal set; }
     }
 }

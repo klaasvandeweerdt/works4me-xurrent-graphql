@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("knowledgeArticle", IsDefaultQueryProperty = true)]
+        [XurrentField("knowledgeArticle")]
         public KnowledgeArticle? KnowledgeArticle { get; internal set; }
     }
 }

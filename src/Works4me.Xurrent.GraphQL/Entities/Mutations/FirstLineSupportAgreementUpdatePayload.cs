@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("firstLineSupportAgreement", IsDefaultQueryProperty = true)]
+        [XurrentField("firstLineSupportAgreement")]
         public FirstLineSupportAgreement? FirstLineSupportAgreement { get; internal set; }
     }
 }

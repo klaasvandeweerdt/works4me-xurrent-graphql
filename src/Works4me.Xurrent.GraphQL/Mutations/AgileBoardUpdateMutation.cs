@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the agile board mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal AgileBoardUpdateMutation(AgileBoardUpdateInput data, AgileBoardQuery query)
-            : base("agileBoardUpdate", "AgileBoardUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "agileBoard")))
+        internal AgileBoardUpdateMutation(AgileBoardUpdateInput data, AgileBoardQuery? query)
+            : base("agileBoardUpdate", "AgileBoardUpdateInput!", data, query is null ? new AgileBoardUpdatePayloadQuery() : new AgileBoardUpdatePayloadQuery().Select(UpdateQuery(query, "agileBoard")))
         {
         }
     }

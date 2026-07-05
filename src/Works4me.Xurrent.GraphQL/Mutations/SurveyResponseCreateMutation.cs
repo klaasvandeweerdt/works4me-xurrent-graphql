@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the survey response mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal SurveyResponseCreateMutation(SurveyResponseCreateInput data, SurveyResponseQuery query)
-            : base("surveyResponseCreate", "SurveyResponseCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "surveyResponse")))
+        internal SurveyResponseCreateMutation(SurveyResponseCreateInput data, SurveyResponseQuery? query)
+            : base("surveyResponseCreate", "SurveyResponseCreateInput!", data, query is null ? new SurveyResponseCreatePayloadQuery() : new SurveyResponseCreatePayloadQuery().Select(UpdateQuery(query, "surveyResponse")))
         {
         }
     }

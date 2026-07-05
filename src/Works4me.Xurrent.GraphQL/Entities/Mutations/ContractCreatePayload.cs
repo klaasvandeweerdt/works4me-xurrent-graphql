@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("contract", IsDefaultQueryProperty = true)]
+        [XurrentField("contract")]
         public Contract? Contract { get; internal set; }
     }
 }

@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the sla notification scheme mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal SlaNotificationSchemeCreateMutation(SlaNotificationSchemeCreateInput data, SlaNotificationSchemeQuery query)
-            : base("slaNotificationSchemeCreate", "SlaNotificationSchemeCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "slaNotificationScheme")))
+        internal SlaNotificationSchemeCreateMutation(SlaNotificationSchemeCreateInput data, SlaNotificationSchemeQuery? query)
+            : base("slaNotificationSchemeCreate", "SlaNotificationSchemeCreateInput!", data, query is null ? new SlaNotificationSchemeCreatePayloadQuery() : new SlaNotificationSchemeCreatePayloadQuery().Select(UpdateQuery(query, "slaNotificationScheme")))
         {
         }
     }

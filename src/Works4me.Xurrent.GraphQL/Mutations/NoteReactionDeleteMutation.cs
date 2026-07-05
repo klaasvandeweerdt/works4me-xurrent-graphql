@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="data">The input data for the success mutation.</param>
         internal NoteReactionDeleteMutation(NoteReactionDeleteMutationInput data)
-            : base("noteReactionDelete", "NoteReactionDeleteMutationInput!", data, new MutationResponseQuery().SelectAll())
+            : base("noteReactionDelete", "NoteReactionDeleteMutationInput!", data, new NoteReactionDeleteMutationPayloadQuery())
         {
         }
     }

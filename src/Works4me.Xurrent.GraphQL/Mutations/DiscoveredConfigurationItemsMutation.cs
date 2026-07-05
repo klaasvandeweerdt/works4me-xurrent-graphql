@@ -27,7 +27,7 @@
         /// <param name="query1">The query specifying which fields to return in the response.</param>
         /// <param name="query2">The query specifying which fields to return in the response.</param>
         internal DiscoveredConfigurationItemsMutation(DiscoveredConfigurationItemsInput data, AsyncQueryQuery query1, ConfigurationItemQuery query2)
-            : base("discoveredConfigurationItems", "DiscoveredConfigurationItemsInput!", data, new MutationResponseQuery().Select(UpdateQuery(query1, "asyncQuery")).Select(UpdateQuery(query2, "configurationItems")))
+            : base("discoveredConfigurationItems", "DiscoveredConfigurationItemsInput!", data, new DiscoveredConfigurationItemsPayloadQuery().Select(UpdateQuery(query1, "asyncQuery")).Select(UpdateQuery(query2, "configurationItems")))
         {
         }
     }

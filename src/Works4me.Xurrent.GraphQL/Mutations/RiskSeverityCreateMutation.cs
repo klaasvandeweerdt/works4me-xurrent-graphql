@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the risk severity mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal RiskSeverityCreateMutation(RiskSeverityCreateInput data, RiskSeverityQuery query)
-            : base("riskSeverityCreate", "RiskSeverityCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "riskSeverity")))
+        internal RiskSeverityCreateMutation(RiskSeverityCreateInput data, RiskSeverityQuery? query)
+            : base("riskSeverityCreate", "RiskSeverityCreateInput!", data, query is null ? new RiskSeverityCreatePayloadQuery() : new RiskSeverityCreatePayloadQuery().Select(UpdateQuery(query, "riskSeverity")))
         {
         }
     }

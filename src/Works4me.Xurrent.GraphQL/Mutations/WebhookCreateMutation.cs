@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the webhook mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal WebhookCreateMutation(WebhookCreateInput data, WebhookQuery query)
-            : base("webhookCreate", "WebhookCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "webhook")))
+        internal WebhookCreateMutation(WebhookCreateInput data, WebhookQuery? query)
+            : base("webhookCreate", "WebhookCreateInput!", data, query is null ? new WebhookCreatePayloadQuery() : new WebhookCreatePayloadQuery().Select(UpdateQuery(query, "webhook")))
         {
         }
     }

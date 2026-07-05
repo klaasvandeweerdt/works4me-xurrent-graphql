@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("automationRule", IsDefaultQueryProperty = true)]
+        [XurrentField("automationRule")]
         public AutomationRule? AutomationRule { get; internal set; }
     }
 }

@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the team mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal TeamCreateMutation(TeamCreateInput data, TeamQuery query)
-            : base("teamCreate", "TeamCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "team")))
+        internal TeamCreateMutation(TeamCreateInput data, TeamQuery? query)
+            : base("teamCreate", "TeamCreateInput!", data, query is null ? new TeamCreatePayloadQuery() : new TeamCreatePayloadQuery().Select(UpdateQuery(query, "team")))
         {
         }
     }

@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the task template mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal WorkflowTaskTemplateCreateMutation(WorkflowTaskTemplateCreateInput data, WorkflowTaskTemplateQuery query)
-            : base("taskTemplateCreate", "TaskTemplateCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "taskTemplate")))
+        internal WorkflowTaskTemplateCreateMutation(WorkflowTaskTemplateCreateInput data, WorkflowTaskTemplateQuery? query)
+            : base("taskTemplateCreate", "TaskTemplateCreateInput!", data, query is null ? new WorkflowTaskTemplateCreatePayloadQuery() : new WorkflowTaskTemplateCreatePayloadQuery().Select(UpdateQuery(query, "taskTemplate")))
         {
         }
     }

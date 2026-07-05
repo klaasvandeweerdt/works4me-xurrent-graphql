@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the app offering mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal AppOfferingPublishMutation(AppOfferingPublishMutationInput data, AppOfferingQuery query)
-            : base("appOfferingPublish", "AppOfferingPublishMutationInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "appOffering")))
+        internal AppOfferingPublishMutation(AppOfferingPublishMutationInput data, AppOfferingQuery? query)
+            : base("appOfferingPublish", "AppOfferingPublishMutationInput!", data, query is null ? new AppOfferingPublishMutationPayloadQuery() : new AppOfferingPublishMutationPayloadQuery().Select(UpdateQuery(query, "appOffering")))
         {
         }
     }

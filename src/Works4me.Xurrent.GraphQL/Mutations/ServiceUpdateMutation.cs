@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the service mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal ServiceUpdateMutation(ServiceUpdateInput data, ServiceQuery query)
-            : base("serviceUpdate", "ServiceUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "service")))
+        internal ServiceUpdateMutation(ServiceUpdateInput data, ServiceQuery? query)
+            : base("serviceUpdate", "ServiceUpdateInput!", data, query is null ? new ServiceUpdatePayloadQuery() : new ServiceUpdatePayloadQuery().Select(UpdateQuery(query, "service")))
         {
         }
     }

@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("task", IsDefaultQueryProperty = true)]
+        [XurrentField("task")]
         public WorkflowTask? Task { get; internal set; }
     }
 }

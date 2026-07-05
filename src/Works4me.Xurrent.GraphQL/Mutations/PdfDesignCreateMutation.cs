@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the pdf design mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal PdfDesignCreateMutation(PdfDesignCreateInput data, PdfDesignQuery query)
-            : base("pdfDesignCreate", "PdfDesignCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "pdfDesign")))
+        internal PdfDesignCreateMutation(PdfDesignCreateInput data, PdfDesignQuery? query)
+            : base("pdfDesignCreate", "PdfDesignCreateInput!", data, query is null ? new PdfDesignCreatePayloadQuery() : new PdfDesignCreatePayloadQuery().Select(UpdateQuery(query, "pdfDesign")))
         {
         }
     }

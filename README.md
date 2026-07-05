@@ -94,7 +94,7 @@ The entity classes and fields in this SDK mirror the Xurrent Quality Assurance s
 
 ## Client
 
-The `XurrentClient` class provides access to all necessary methods for querying and modifying data, with `GetAsync` and `MutationAsync` methods. You can customize client behavior through four key properties:
+The `XurrentClient` class provides access to all necessary methods for querying and modifying data. Queries are executed with `GetAsync` and `StreamAsync`. Mutations can be executed with `MutationAsync` or with generated named mutation methods such as `PersonCreateAsync` and `PersonUpdateAsync`.
 
 - `AccountId`: Update the Xurrent Account ID after initializing the client, enabling account switching using the same client instance.
 - `DefaultItemsPerRequest`: Set the number of items per connection request. The default and maximum value is 100.
@@ -221,13 +221,19 @@ See [Mutation Examples](#mutations-1) for practical usage.
 
 ### Mutation Behavior
 
-- Mutations return the newly created or updated object (delete operations return no object).
-- You must explicitly specify which fields to return in the mutation.
+- Mutations can be executed with `MutationAsync` or with generated named mutation methods.
+- Most mutations support two overloads:
+  - one without a response query
+  - one with a response query that specifies which fields to return
+- Use the overload without a response query when fields from the created or updated object are not needed.
+- Use the overload with a response query when fields from the created or updated object are required.
+- When you need data from the created or updated object, return it directly from the mutation response instead of performing a separate query afterwards. This avoids an additional API request and reduces token usage.
+- Delete mutations do not return an object.
 - Connection fields included in a mutation response are not paged.
 
 ## Attachments
 
-The SDK provides an `UploadAttachment` method for uploading attachments, which can then be associated with any create or update mutation.  
+The SDK provides an `UploadAttachmentAsync` method for uploading attachments, which can then be associated with any create or update mutation.  
 The response from this method includes the information required to link the uploaded attachments to other objects.
 
 See [Attachment Examples](#attachments-1) for practical usage.
@@ -594,12 +600,44 @@ using Works4me.Xurrent.GraphQL;
 using Works4me.Xurrent.GraphQL.Mutations;
 ```
 
-### Create a New Person and Return the Identifier
+### Create a New Person
 
 This example demonstrates how to create a new person using the `PersonCreateInput` class.
 Standard fields like `Name`, `PrimaryEmail`, `OrganizationId`, and `EmployeeID` are provided, along with time zone settings and custom fields.
 
-The mutation uses a `PersonQuery` to specify the fields to return, in this case, the new person's identifier. Errors are handled using a `try/catch` block.
+When no fields from the created person are needed, the mutation can be executed without a response query. The payload still includes mutation-level values such as `ClientMutationId`.
+
+```csharp
+PersonCreateInput input = new()
+{
+    Name = "John Smith",
+    PrimaryEmail = "john.smith@company.com",
+    EmployeeID = "123",
+    OrganizationId = "NG1lLnFhL1blanNvbk8zMjMkSjIv",
+    TimeFormat24h = true,
+    TimeZone = "Brussels",
+    DoNotTranslateLanguages = ["en", "nl"],
+    CustomFields =
+    [
+        new CustomField() { Id = "hire_date", Value = DateTime.Now.ToJsonElement() },
+        new CustomField() { Id = "employee_reference", Value = "internal employee reference".ToJsonElement() }
+    ],
+    ClientMutationId = "create-person-001"
+};
+
+try
+{
+    PersonCreatePayload result = await client.PersonCreateAsync(input);
+    Console.WriteLine(result.ClientMutationId);
+}
+catch (XurrentExecutionException ex)
+{
+}
+```
+
+### Create a New Person and Return Selected Fields
+
+Use a response query when your application needs data from the created object. Returning the fields directly from the mutation avoids performing a separate query afterwards.
 
 ```csharp
 PersonCreateInput input = new()
@@ -623,17 +661,19 @@ PersonQuery response = new PersonQuery()
 
 try
 {
-    PersonCreatePayload result = await client.MutationAsync(input, response);
+    PersonCreatePayload result = await client.PersonCreateAsync(input, response);
 
-    DateTime? hireDate = result.Person?.CustomFields?["hire_date"].Value.GetValue<DateTime>();
+    if (result.Person?.CustomFields?.TryGetValue("hire_date", out DateTime hireDate) is true)
+    {
+    }
 }
 catch (XurrentExecutionException ex)
-{ 
+{
 }
 ```
 
-Custom fields are supplied using the `CustomField` type, where the `Value` property accepts a `JsonObject`.
-To simplify working with common types, the SDK provides extension methods such as `.ToJsonElement()` and `.GetValue<T>()`.
+Custom fields are supplied using the `CustomField` type.
+The SDK provides extension methods such as `.ToJsonElement()` and `.TryGetValue<T>()` to simplify working with common value types.
 
 These methods require:
 
@@ -646,11 +686,33 @@ using Works4me.Xurrent.GraphQL.Extensions;
 This example demonstrates how to update an existing person using the `PersonUpdateInput` class.
 The record is identified by its unique `Id`, and specific fields such as `Name`, `PrimaryEmail`, and a custom field are updated.
 
-A corresponding `PersonQuery` defines the fields to return after the update, including the person's identifier and custom fields.
-The example shows how to retrieve a custom field value using `.GetValue<T>()`.
+When no data from the updated person is needed, the mutation can be executed without a response query.
 
-Errors are handled with a `try/catch` block for `XurrentExecutionException`.
+```csharp
+PersonUpdateInput input = new()
+{
+    Id = "NG1lLnFhL1blcnNvbi8yMjMxSjIx",
+    Name = "John Doe",
+    PrimaryEmail = "john.doe@company.com",
+    CustomFields =
+    [
+        new CustomField() { Id = "employee_reference", Value = "a new reference".ToJsonElement() }
+    ]
+};
 
+try
+{
+    PersonUpdatePayload result = await client.PersonUpdateAsync(input);
+}
+catch (XurrentExecutionException ex)
+{
+}
+```
+
+
+### Update an Existing Person and Return Selected Fields
+
+Use a response query when your application needs data from the updated object. Returning the fields directly from the mutation avoids performing a separate query afterwards.
 
 ```csharp
 PersonUpdateInput input = new()
@@ -669,10 +731,11 @@ PersonQuery response = new PersonQuery()
 
 try
 {
-    PersonUpdatePayload result = await client.MutationAsync(input, response);
+    PersonUpdatePayload result = await client.PersonUpdateAsync(input, response);
 
-    DateTime? hireDate = result.Person?.CustomFields?["hire_date"].Value.GetValue<DateTime>();
-    string? employeeReference = result.Person?.CustomFields?["employee_reference"].Value.GetValue<string>();
+    if (result.Person?.CustomFields?.TryGetValue("employee_reference", out string? employeeReference) is true)
+    {
+    }
 }
 catch (XurrentExecutionException ex)
 {
@@ -696,7 +759,7 @@ NoteCreateInput input = new()
             
 try
 {
-    NoteCreatePayload response = await client.MutationAsync(input, new NoteQuery().Select(NoteField.Internal));
+    NoteCreatePayload response = await client.NoteCreateAsync(input);
 }
 catch (XurrentExecutionException ex)
 {
@@ -721,11 +784,16 @@ PersonUpdateInput input = new PersonUpdateInput()
             
 try
 {
-    PersonUpdatePayload response = await client.MutationAsync(
+    PersonUpdatePayload response = await client.PersonUpdateAsync(
         input,
         new PersonQuery()
             .Select(PersonField.Id, PersonField.Information)
             .SelectInformationAttachments(new AttachmentQuery()));
+
+    if (response.Person is not null)
+    {
+        Console.WriteLine($"Person with identifier {response.Person.Id} successfully updated.");
+    }
 }
 catch (XurrentExecutionException ex)
 {

@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="data">The input data for the success mutation.</param>
         internal GoldenSetItemDeleteMutation(GoldenSetItemDeleteMutationInput data)
-            : base("goldenSetItemDelete", "GoldenSetItemDeleteMutationInput!", data, new MutationResponseQuery().SelectAll())
+            : base("goldenSetItemDelete", "GoldenSetItemDeleteMutationInput!", data, new GoldenSetItemDeleteMutationPayloadQuery())
         {
         }
     }

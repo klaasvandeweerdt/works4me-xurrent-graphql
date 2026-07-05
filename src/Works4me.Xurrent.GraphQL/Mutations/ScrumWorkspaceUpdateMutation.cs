@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the scrum workspace mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal ScrumWorkspaceUpdateMutation(ScrumWorkspaceUpdateInput data, ScrumWorkspaceQuery query)
-            : base("scrumWorkspaceUpdate", "ScrumWorkspaceUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "scrumWorkspace")))
+        internal ScrumWorkspaceUpdateMutation(ScrumWorkspaceUpdateInput data, ScrumWorkspaceQuery? query)
+            : base("scrumWorkspaceUpdate", "ScrumWorkspaceUpdateInput!", data, query is null ? new ScrumWorkspaceUpdatePayloadQuery() : new ScrumWorkspaceUpdatePayloadQuery().Select(UpdateQuery(query, "scrumWorkspace")))
         {
         }
     }

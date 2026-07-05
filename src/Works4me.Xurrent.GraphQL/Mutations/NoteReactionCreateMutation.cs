@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the note reaction mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal NoteReactionCreateMutation(NoteReactionCreateInput data, NoteReactionQuery query)
-            : base("noteReactionCreate", "NoteReactionCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "noteReaction")))
+        internal NoteReactionCreateMutation(NoteReactionCreateInput data, NoteReactionQuery? query)
+            : base("noteReactionCreate", "NoteReactionCreateInput!", data, query is null ? new NoteReactionCreatePayloadQuery() : new NoteReactionCreatePayloadQuery().Select(UpdateQuery(query, "noteReaction")))
         {
         }
     }

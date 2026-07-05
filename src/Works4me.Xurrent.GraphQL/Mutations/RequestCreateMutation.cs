@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the request mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal RequestCreateMutation(RequestCreateInput data, RequestQuery query)
-            : base("requestCreate", "RequestCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "request")))
+        internal RequestCreateMutation(RequestCreateInput data, RequestQuery? query)
+            : base("requestCreate", "RequestCreateInput!", data, query is null ? new RequestCreatePayloadQuery() : new RequestCreatePayloadQuery().Select(UpdateQuery(query, "request")))
         {
         }
     }

@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the timesheet setting mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal TimesheetSettingCreateMutation(TimesheetSettingCreateInput data, TimesheetSettingQuery query)
-            : base("timesheetSettingCreate", "TimesheetSettingCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "timesheetSetting")))
+        internal TimesheetSettingCreateMutation(TimesheetSettingCreateInput data, TimesheetSettingQuery? query)
+            : base("timesheetSettingCreate", "TimesheetSettingCreateInput!", data, query is null ? new TimesheetSettingCreatePayloadQuery() : new TimesheetSettingCreatePayloadQuery().Select(UpdateQuery(query, "timesheetSetting")))
         {
         }
     }

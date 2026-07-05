@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the golden set item mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal GoldenSetItemUpdateMutation(GoldenSetItemUpdateInput data, GoldenSetItemQuery query)
-            : base("goldenSetItemUpdate", "GoldenSetItemUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "goldenSetItem")))
+        internal GoldenSetItemUpdateMutation(GoldenSetItemUpdateInput data, GoldenSetItemQuery? query)
+            : base("goldenSetItemUpdate", "GoldenSetItemUpdateInput!", data, query is null ? new GoldenSetItemUpdatePayloadQuery() : new GoldenSetItemUpdatePayloadQuery().Select(UpdateQuery(query, "goldenSetItem")))
         {
         }
     }

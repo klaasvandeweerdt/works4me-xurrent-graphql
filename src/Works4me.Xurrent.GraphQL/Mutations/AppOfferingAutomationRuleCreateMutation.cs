@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the app offering automation rule mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal AppOfferingAutomationRuleCreateMutation(AppOfferingAutomationRuleCreateInput data, AppOfferingAutomationRuleQuery query)
-            : base("appOfferingAutomationRuleCreate", "AppOfferingAutomationRuleCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "appOfferingAutomationRule")))
+        internal AppOfferingAutomationRuleCreateMutation(AppOfferingAutomationRuleCreateInput data, AppOfferingAutomationRuleQuery? query)
+            : base("appOfferingAutomationRuleCreate", "AppOfferingAutomationRuleCreateInput!", data, query is null ? new AppOfferingAutomationRuleCreatePayloadQuery() : new AppOfferingAutomationRuleCreatePayloadQuery().Select(UpdateQuery(query, "appOfferingAutomationRule")))
         {
         }
     }

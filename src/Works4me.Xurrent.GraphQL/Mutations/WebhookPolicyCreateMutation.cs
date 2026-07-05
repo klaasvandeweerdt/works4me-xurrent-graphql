@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the webhook policy mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal WebhookPolicyCreateMutation(WebhookPolicyCreateInput data, WebhookPolicyCreateResponseQuery query)
-            : base("webhookPolicyCreate", "WebhookPolicyCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "webhookPolicy")))
+        internal WebhookPolicyCreateMutation(WebhookPolicyCreateInput data, WebhookPolicyCreateResponseQuery? query)
+            : base("webhookPolicyCreate", "WebhookPolicyCreateInput!", data, query is null ? new WebhookPolicyCreatePayloadQuery() : new WebhookPolicyCreatePayloadQuery().Select(UpdateQuery(query, "webhookPolicy")))
         {
         }
     }

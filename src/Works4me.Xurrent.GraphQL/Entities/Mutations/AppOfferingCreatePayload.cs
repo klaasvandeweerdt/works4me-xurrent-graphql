@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("appOffering", IsDefaultQueryProperty = true)]
+        [XurrentField("appOffering")]
         public AppOffering? AppOffering { get; internal set; }
     }
 }

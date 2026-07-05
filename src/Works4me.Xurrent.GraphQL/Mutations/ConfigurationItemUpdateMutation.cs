@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the configuration item mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal ConfigurationItemUpdateMutation(ConfigurationItemUpdateInput data, ConfigurationItemQuery query)
-            : base("configurationItemUpdate", "ConfigurationItemUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "configurationItem")))
+        internal ConfigurationItemUpdateMutation(ConfigurationItemUpdateInput data, ConfigurationItemQuery? query)
+            : base("configurationItemUpdate", "ConfigurationItemUpdateInput!", data, query is null ? new ConfigurationItemUpdatePayloadQuery() : new ConfigurationItemUpdatePayloadQuery().Select(UpdateQuery(query, "configurationItem")))
         {
         }
     }

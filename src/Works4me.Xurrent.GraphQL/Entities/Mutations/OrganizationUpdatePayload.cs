@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("organization", IsDefaultQueryProperty = true)]
+        [XurrentField("organization")]
         public Organization? Organization { get; internal set; }
     }
 }

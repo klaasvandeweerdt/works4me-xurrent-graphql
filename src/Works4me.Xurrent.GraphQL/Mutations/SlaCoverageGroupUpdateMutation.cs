@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the sla coverage group mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal SlaCoverageGroupUpdateMutation(SlaCoverageGroupUpdateInput data, SlaCoverageGroupQuery query)
-            : base("slaCoverageGroupUpdate", "SlaCoverageGroupUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "slaCoverageGroup")))
+        internal SlaCoverageGroupUpdateMutation(SlaCoverageGroupUpdateInput data, SlaCoverageGroupQuery? query)
+            : base("slaCoverageGroupUpdate", "SlaCoverageGroupUpdateInput!", data, query is null ? new SlaCoverageGroupUpdatePayloadQuery() : new SlaCoverageGroupUpdatePayloadQuery().Select(UpdateQuery(query, "slaCoverageGroup")))
         {
         }
     }

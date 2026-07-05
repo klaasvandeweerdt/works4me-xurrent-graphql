@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="data">The input data for the success mutation.</param>
         internal OutOfOfficePeriodDeleteMutation(OutOfOfficePeriodDeleteMutationInput data)
-            : base("outOfOfficePeriodDelete", "OutOfOfficePeriodDeleteMutationInput!", data, new MutationResponseQuery().SelectAll())
+            : base("outOfOfficePeriodDelete", "OutOfOfficePeriodDeleteMutationInput!", data, new OutOfOfficePeriodDeleteMutationPayloadQuery())
         {
         }
     }

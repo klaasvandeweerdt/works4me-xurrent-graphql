@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("translation", IsDefaultQueryProperty = true)]
+        [XurrentField("translation")]
         public Translation? Translation { get; internal set; }
     }
 }

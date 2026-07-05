@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("requestTemplate", IsDefaultQueryProperty = true)]
+        [XurrentField("requestTemplate")]
         public RequestTemplate? RequestTemplate { get; internal set; }
     }
 }

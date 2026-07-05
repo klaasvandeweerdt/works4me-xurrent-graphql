@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the service offering mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal ServiceOfferingCreateMutation(ServiceOfferingCreateInput data, ServiceOfferingQuery query)
-            : base("serviceOfferingCreate", "ServiceOfferingCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "serviceOffering")))
+        internal ServiceOfferingCreateMutation(ServiceOfferingCreateInput data, ServiceOfferingQuery? query)
+            : base("serviceOfferingCreate", "ServiceOfferingCreateInput!", data, query is null ? new ServiceOfferingCreatePayloadQuery() : new ServiceOfferingCreatePayloadQuery().Select(UpdateQuery(query, "serviceOffering")))
         {
         }
     }

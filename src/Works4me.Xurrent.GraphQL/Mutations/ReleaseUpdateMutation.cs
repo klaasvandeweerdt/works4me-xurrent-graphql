@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the release mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal ReleaseUpdateMutation(ReleaseUpdateInput data, ReleaseQuery query)
-            : base("releaseUpdate", "ReleaseUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "release")))
+        internal ReleaseUpdateMutation(ReleaseUpdateInput data, ReleaseQuery? query)
+            : base("releaseUpdate", "ReleaseUpdateInput!", data, query is null ? new ReleaseUpdatePayloadQuery() : new ReleaseUpdatePayloadQuery().Select(UpdateQuery(query, "release")))
         {
         }
     }

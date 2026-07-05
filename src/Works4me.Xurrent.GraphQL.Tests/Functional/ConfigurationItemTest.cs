@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Works4me.Xurrent.GraphQL.Mutations;
 using Works4me.Xurrent.GraphQL.Tests.Extensions;
@@ -51,6 +52,8 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
         [Fact]
         public async Task UpdateStatus()
         {
+            string clientMutationId = Guid.NewGuid().ToString("N");
+
             ConfigurationItemQuery ciQuery = new ConfigurationItemQuery()
                 .WithId(Client.GetConfigValue("CiTest.Id"))
                 .Select(ConfigurationItemField.Id, ConfigurationItemField.Status);
@@ -67,16 +70,47 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 _ => CiStatus.Installed,
             };
 
-            ConfigurationItemUpdatePayload result = await _client.MutationAsync(new ConfigurationItemUpdateInput() 
+            ConfigurationItemUpdatePayload result = await _client.ConfigurationItemUpdateAsync(new ConfigurationItemUpdateInput() 
             {
+                ClientMutationId = clientMutationId,
                 Id = ci.Id,
                 Status = newStatus,
             }, new ConfigurationItemQuery().Select(ConfigurationItemField.Status), TestContext.Current.CancellationToken);
             
             Assert.NotNull(result);
             Assert.NotNull(result.ConfigurationItem);
+            Assert.Equal(clientMutationId, result.ClientMutationId);
             Assert.Equal(newStatus, result.ConfigurationItem.Status);
+        }
 
+        [Fact]
+        public async Task UpdateWithoutReturnObject()
+        {
+            ConfigurationItemQuery ciQuery = new ConfigurationItemQuery()
+                .WithId(Client.GetConfigValue("CiTest.Id"))
+                .Select(ConfigurationItemField.Id, ConfigurationItemField.Status);
+
+            ReadOnlyDataCollection<ConfigurationItem> cis = await _client.GetAsync(ciQuery, TestContext.Current.CancellationToken);
+
+            Assert.Single(cis);
+
+            ConfigurationItem ci = cis.First();
+
+            CiStatus newStatus = ci.Status switch
+            {
+                CiStatus.Installed => CiStatus.InStock,
+                _ => CiStatus.Installed,
+            };
+
+            ConfigurationItemUpdatePayload result = await _client.MutationAsync(new ConfigurationItemUpdateInput()
+            {
+                Id = ci.Id,
+                Status = newStatus,
+            }, TestContext.Current.CancellationToken);
+
+            Assert.NotNull(result);
+            Assert.Null(result.ConfigurationItem);
+            Assert.Null(result.ClientMutationId);
         }
     }
 }

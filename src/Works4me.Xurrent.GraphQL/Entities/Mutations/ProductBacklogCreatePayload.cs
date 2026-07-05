@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("productBacklog", IsDefaultQueryProperty = true)]
+        [XurrentField("productBacklog")]
         public ProductBacklog? ProductBacklog { get; internal set; }
     }
 }

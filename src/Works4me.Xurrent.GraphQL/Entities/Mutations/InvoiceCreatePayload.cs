@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("invoice", IsDefaultQueryProperty = true)]
+        [XurrentField("invoice")]
         public Invoice? Invoice { get; internal set; }
     }
 }

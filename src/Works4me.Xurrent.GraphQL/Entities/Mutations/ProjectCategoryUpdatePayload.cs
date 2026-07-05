@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("projectCategory", IsDefaultQueryProperty = true)]
+        [XurrentField("projectCategory")]
         public ProjectCategory? ProjectCategory { get; internal set; }
     }
 }

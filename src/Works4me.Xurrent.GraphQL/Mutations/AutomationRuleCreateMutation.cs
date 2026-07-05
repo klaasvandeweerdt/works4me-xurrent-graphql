@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the automation rule mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal AutomationRuleCreateMutation(AutomationRuleCreateInput data, AutomationRuleQuery query)
-            : base("automationRuleCreate", "AutomationRuleCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "automationRule")))
+        internal AutomationRuleCreateMutation(AutomationRuleCreateInput data, AutomationRuleQuery? query)
+            : base("automationRuleCreate", "AutomationRuleCreateInput!", data, query is null ? new AutomationRuleCreatePayloadQuery() : new AutomationRuleCreatePayloadQuery().Select(UpdateQuery(query, "automationRule")))
         {
         }
     }

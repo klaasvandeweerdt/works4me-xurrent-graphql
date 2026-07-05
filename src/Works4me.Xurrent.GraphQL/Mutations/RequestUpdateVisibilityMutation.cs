@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="data">The input data for the success mutation.</param>
         internal RequestUpdateVisibilityMutation(RequestUpdateVisibilityInput data)
-            : base("requestUpdateVisibility", "RequestUpdateVisibilityInput!", data, new MutationResponseQuery().SelectAll())
+            : base("requestUpdateVisibility", "RequestUpdateVisibilityInput!", data, new RequestUpdateVisibilityPayloadQuery())
         {
         }
     }

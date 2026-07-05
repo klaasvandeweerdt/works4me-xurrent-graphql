@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the out of office period mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal OutOfOfficePeriodCreateMutation(OutOfOfficePeriodCreateInput data, OutOfOfficePeriodQuery query)
-            : base("outOfOfficePeriodCreate", "OutOfOfficePeriodCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "outOfOfficePeriod")))
+        internal OutOfOfficePeriodCreateMutation(OutOfOfficePeriodCreateInput data, OutOfOfficePeriodQuery? query)
+            : base("outOfOfficePeriodCreate", "OutOfOfficePeriodCreateInput!", data, query is null ? new OutOfOfficePeriodCreatePayloadQuery() : new OutOfOfficePeriodCreatePayloadQuery().Select(UpdateQuery(query, "outOfOfficePeriod")))
         {
         }
     }

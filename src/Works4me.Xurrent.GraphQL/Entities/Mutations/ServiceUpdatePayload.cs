@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("service", IsDefaultQueryProperty = true)]
+        [XurrentField("service")]
         public Service? Service { get; internal set; }
     }
 }

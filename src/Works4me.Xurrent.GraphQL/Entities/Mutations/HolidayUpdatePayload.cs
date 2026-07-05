@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("holiday", IsDefaultQueryProperty = true)]
+        [XurrentField("holiday")]
         public Holiday? Holiday { get; internal set; }
     }
 }

@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the workflow type mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal WorkflowTypeUpdateMutation(WorkflowTypeUpdateInput data, WorkflowTypeQuery query)
-            : base("workflowTypeUpdate", "WorkflowTypeUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "workflowType")))
+        internal WorkflowTypeUpdateMutation(WorkflowTypeUpdateInput data, WorkflowTypeQuery? query)
+            : base("workflowTypeUpdate", "WorkflowTypeUpdateInput!", data, query is null ? new WorkflowTypeUpdatePayloadQuery() : new WorkflowTypeUpdatePayloadQuery().Select(UpdateQuery(query, "workflowType")))
         {
         }
     }

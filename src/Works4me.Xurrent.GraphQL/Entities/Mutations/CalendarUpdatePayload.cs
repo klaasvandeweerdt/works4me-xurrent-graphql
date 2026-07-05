@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("calendar", IsDefaultQueryProperty = true)]
+        [XurrentField("calendar")]
         public Calendar? Calendar { get; internal set; }
     }
 }

@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("slaNotificationScheme", IsDefaultQueryProperty = true)]
+        [XurrentField("slaNotificationScheme")]
         public SlaNotificationScheme? SlaNotificationScheme { get; internal set; }
     }
 }

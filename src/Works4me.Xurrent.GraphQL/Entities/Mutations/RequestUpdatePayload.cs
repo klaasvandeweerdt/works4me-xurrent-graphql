@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("request", IsDefaultQueryProperty = true)]
+        [XurrentField("request")]
         public Request? Request { get; internal set; }
     }
 }

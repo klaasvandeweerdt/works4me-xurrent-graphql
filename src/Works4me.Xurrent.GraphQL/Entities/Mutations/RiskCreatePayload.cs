@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("risk", IsDefaultQueryProperty = true)]
+        [XurrentField("risk")]
         public Risk? Risk { get; internal set; }
     }
 }

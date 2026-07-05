@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the project task template mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal ProjectTaskTemplateUpdateMutation(ProjectTaskTemplateUpdateInput data, ProjectTaskTemplateQuery query)
-            : base("projectTaskTemplateUpdate", "ProjectTaskTemplateUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "projectTaskTemplate")))
+        internal ProjectTaskTemplateUpdateMutation(ProjectTaskTemplateUpdateInput data, ProjectTaskTemplateQuery? query)
+            : base("projectTaskTemplateUpdate", "ProjectTaskTemplateUpdateInput!", data, query is null ? new ProjectTaskTemplateUpdatePayloadQuery() : new ProjectTaskTemplateUpdatePayloadQuery().Select(UpdateQuery(query, "projectTaskTemplate")))
         {
         }
     }

@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the knowledge article mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal KnowledgeArticleCreateMutation(KnowledgeArticleCreateInput data, KnowledgeArticleQuery query)
-            : base("knowledgeArticleCreate", "KnowledgeArticleCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "knowledgeArticle")))
+        internal KnowledgeArticleCreateMutation(KnowledgeArticleCreateInput data, KnowledgeArticleQuery? query)
+            : base("knowledgeArticleCreate", "KnowledgeArticleCreateInput!", data, query is null ? new KnowledgeArticleCreatePayloadQuery() : new KnowledgeArticleCreatePayloadQuery().Select(UpdateQuery(query, "knowledgeArticle")))
         {
         }
     }

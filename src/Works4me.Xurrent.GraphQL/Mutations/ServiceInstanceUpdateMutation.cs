@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the service instance mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal ServiceInstanceUpdateMutation(ServiceInstanceUpdateInput data, ServiceInstanceQuery query)
-            : base("serviceInstanceUpdate", "ServiceInstanceUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "serviceInstance")))
+        internal ServiceInstanceUpdateMutation(ServiceInstanceUpdateInput data, ServiceInstanceQuery? query)
+            : base("serviceInstanceUpdate", "ServiceInstanceUpdateInput!", data, query is null ? new ServiceInstanceUpdatePayloadQuery() : new ServiceInstanceUpdatePayloadQuery().Select(UpdateQuery(query, "serviceInstance")))
         {
         }
     }

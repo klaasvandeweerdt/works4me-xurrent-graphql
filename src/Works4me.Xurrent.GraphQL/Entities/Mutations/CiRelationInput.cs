@@ -12,6 +12,8 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private string? _id;
         private CiRelationRelationType? _relationType;
         private string? _configurationItemId;
+        private string? _configurationItemSource;
+        private string? _configurationItemSourceID;
         private string? _source;
 
         /// <summary>
@@ -48,6 +50,32 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _configurationItemId;
             set => _configurationItemId = Set("configurationItemId", value);
+        }
+
+        /// <summary>
+        /// An identifier for the external system that owns the related configuration item, used.<br />
+        /// together with <c>configurationItemSourceID</c> to address a target by its external identity.<br />
+        /// rather than by <c>configurationItemId</c>. <c>configurationItemId</c> takes precedence when both.<br />
+        /// are supplied. On a reconciliation-enabled account, a target that does not exist yet is.<br />
+        /// deferred and linked automatically once it is imported; otherwise an unresolved target.<br />
+        /// is rejected.<br />
+        /// </summary>
+        [XurrentField("configurationItemSource")]
+        public string? ConfigurationItemSource
+        {
+            get => _configurationItemSource;
+            set => _configurationItemSource = Set("configurationItemSource", value);
+        }
+
+        /// <summary>
+        /// The unique identifier of the related configuration item in the external system named by.<br />
+        /// <c>configurationItemSource</c>. Both must be provided together.<br />
+        /// </summary>
+        [XurrentField("configurationItemSourceID")]
+        public string? ConfigurationItemSourceID
+        {
+            get => _configurationItemSourceID;
+            set => _configurationItemSourceID = Set("configurationItemSourceID", value);
         }
 
         /// <summary>

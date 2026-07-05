@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the person mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal PersonUpdateMutation(PersonUpdateInput data, PersonQuery query)
-            : base("personUpdate", "PersonUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "person")))
+        internal PersonUpdateMutation(PersonUpdateInput data, PersonQuery? query)
+            : base("personUpdate", "PersonUpdateInput!", data, query is null ? new PersonUpdatePayloadQuery() : new PersonUpdatePayloadQuery().Select(UpdateQuery(query, "person")))
         {
         }
     }

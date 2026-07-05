@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the shop article mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal ShopArticleCreateMutation(ShopArticleCreateInput data, ShopArticleQuery query)
-            : base("shopArticleCreate", "ShopArticleCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "shopArticle")))
+        internal ShopArticleCreateMutation(ShopArticleCreateInput data, ShopArticleQuery? query)
+            : base("shopArticleCreate", "ShopArticleCreateInput!", data, query is null ? new ShopArticleCreatePayloadQuery() : new ShopArticleCreatePayloadQuery().Select(UpdateQuery(query, "shopArticle")))
         {
         }
     }

@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("broadcast", IsDefaultQueryProperty = true)]
+        [XurrentField("broadcast")]
         public Broadcast? Broadcast { get; internal set; }
     }
 }

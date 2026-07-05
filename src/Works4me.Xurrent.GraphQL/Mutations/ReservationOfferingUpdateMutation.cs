@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the reservation offering mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal ReservationOfferingUpdateMutation(ReservationOfferingUpdateInput data, ReservationOfferingQuery query)
-            : base("reservationOfferingUpdate", "ReservationOfferingUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "reservationOffering")))
+        internal ReservationOfferingUpdateMutation(ReservationOfferingUpdateInput data, ReservationOfferingQuery? query)
+            : base("reservationOfferingUpdate", "ReservationOfferingUpdateInput!", data, query is null ? new ReservationOfferingUpdatePayloadQuery() : new ReservationOfferingUpdatePayloadQuery().Select(UpdateQuery(query, "reservationOffering")))
         {
         }
     }

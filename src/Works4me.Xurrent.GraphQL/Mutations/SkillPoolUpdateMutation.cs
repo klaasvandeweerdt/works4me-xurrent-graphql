@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the skill pool mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal SkillPoolUpdateMutation(SkillPoolUpdateInput data, SkillPoolQuery query)
-            : base("skillPoolUpdate", "SkillPoolUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "skillPool")))
+        internal SkillPoolUpdateMutation(SkillPoolUpdateInput data, SkillPoolQuery? query)
+            : base("skillPoolUpdate", "SkillPoolUpdateInput!", data, query is null ? new SkillPoolUpdatePayloadQuery() : new SkillPoolUpdatePayloadQuery().Select(UpdateQuery(query, "skillPool")))
         {
         }
     }

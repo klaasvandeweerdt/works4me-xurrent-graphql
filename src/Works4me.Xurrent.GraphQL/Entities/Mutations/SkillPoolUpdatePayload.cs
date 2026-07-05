@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("skillPool", IsDefaultQueryProperty = true)]
+        [XurrentField("skillPool")]
         public SkillPool? SkillPool { get; internal set; }
     }
 }

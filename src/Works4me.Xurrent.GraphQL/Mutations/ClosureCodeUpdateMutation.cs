@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the closure code mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal ClosureCodeUpdateMutation(ClosureCodeUpdateInput data, ClosureCodeQuery query)
-            : base("closureCodeUpdate", "ClosureCodeUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "closureCode")))
+        internal ClosureCodeUpdateMutation(ClosureCodeUpdateInput data, ClosureCodeQuery? query)
+            : base("closureCodeUpdate", "ClosureCodeUpdateInput!", data, query is null ? new ClosureCodeUpdatePayloadQuery() : new ClosureCodeUpdatePayloadQuery().Select(UpdateQuery(query, "closureCode")))
         {
         }
     }

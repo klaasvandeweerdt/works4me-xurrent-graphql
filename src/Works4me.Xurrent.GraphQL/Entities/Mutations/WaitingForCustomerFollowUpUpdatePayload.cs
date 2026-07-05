@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("waitingForCustomerFollowUp", IsDefaultQueryProperty = true)]
+        [XurrentField("waitingForCustomerFollowUp")]
         public WaitingForCustomerFollowUp? WaitingForCustomerFollowUp { get; internal set; }
     }
 }

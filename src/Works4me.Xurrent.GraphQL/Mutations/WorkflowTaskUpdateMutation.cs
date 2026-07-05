@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the task mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal WorkflowTaskUpdateMutation(WorkflowTaskUpdateInput data, WorkflowTaskQuery query)
-            : base("taskUpdate", "TaskUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "task")))
+        internal WorkflowTaskUpdateMutation(WorkflowTaskUpdateInput data, WorkflowTaskQuery? query)
+            : base("taskUpdate", "TaskUpdateInput!", data, query is null ? new WorkflowTaskUpdatePayloadQuery() : new WorkflowTaskUpdatePayloadQuery().Select(UpdateQuery(query, "task")))
         {
         }
     }

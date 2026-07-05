@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the site mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal SiteUpdateMutation(SiteUpdateInput data, SiteQuery query)
-            : base("siteUpdate", "SiteUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "site")))
+        internal SiteUpdateMutation(SiteUpdateInput data, SiteQuery? query)
+            : base("siteUpdate", "SiteUpdateInput!", data, query is null ? new SiteUpdatePayloadQuery() : new SiteUpdatePayloadQuery().Select(UpdateQuery(query, "site")))
         {
         }
     }

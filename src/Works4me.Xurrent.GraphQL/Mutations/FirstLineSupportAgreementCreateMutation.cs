@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the first line support agreement mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal FirstLineSupportAgreementCreateMutation(FirstLineSupportAgreementCreateInput data, FirstLineSupportAgreementQuery query)
-            : base("firstLineSupportAgreementCreate", "FirstLineSupportAgreementCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "firstLineSupportAgreement")))
+        internal FirstLineSupportAgreementCreateMutation(FirstLineSupportAgreementCreateInput data, FirstLineSupportAgreementQuery? query)
+            : base("firstLineSupportAgreementCreate", "FirstLineSupportAgreementCreateInput!", data, query is null ? new FirstLineSupportAgreementCreatePayloadQuery() : new FirstLineSupportAgreementCreatePayloadQuery().Select(UpdateQuery(query, "firstLineSupportAgreement")))
         {
         }
     }

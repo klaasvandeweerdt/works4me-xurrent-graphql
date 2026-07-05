@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the custom collection element mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal CustomCollectionElementCreateMutation(CustomCollectionElementCreateInput data, CustomCollectionElementQuery query)
-            : base("customCollectionElementCreate", "CustomCollectionElementCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "customCollectionElement")))
+        internal CustomCollectionElementCreateMutation(CustomCollectionElementCreateInput data, CustomCollectionElementQuery? query)
+            : base("customCollectionElementCreate", "CustomCollectionElementCreateInput!", data, query is null ? new CustomCollectionElementCreatePayloadQuery() : new CustomCollectionElementCreatePayloadQuery().Select(UpdateQuery(query, "customCollectionElement")))
         {
         }
     }

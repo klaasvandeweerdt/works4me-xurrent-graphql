@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="data">The input data for the success mutation.</param>
         internal AppOfferingAutomationRuleDeleteMutation(AppOfferingAutomationRuleDeleteMutationInput data)
-            : base("appOfferingAutomationRuleDelete", "AppOfferingAutomationRuleDeleteMutationInput!", data, new MutationResponseQuery().SelectAll())
+            : base("appOfferingAutomationRuleDelete", "AppOfferingAutomationRuleDeleteMutationInput!", data, new AppOfferingAutomationRuleDeleteMutationPayloadQuery())
         {
         }
     }

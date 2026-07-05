@@ -50,6 +50,12 @@ namespace Works4me.Xurrent.GraphQL
         Id,
 
         /// <summary>
+        /// Include only if Is bundle matches supplied value.
+        /// </summary>
+        [XurrentEnum("isBundle")]
+        IsBundle,
+
+        /// <summary>
         /// Filter on Max. quantity.
         /// </summary>
         [XurrentEnum("maxQuantity")]

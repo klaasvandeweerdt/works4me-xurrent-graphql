@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the broadcast mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal BroadcastUpdateMutation(BroadcastUpdateInput data, BroadcastQuery query)
-            : base("broadcastUpdate", "BroadcastUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "broadcast")))
+        internal BroadcastUpdateMutation(BroadcastUpdateInput data, BroadcastQuery? query)
+            : base("broadcastUpdate", "BroadcastUpdateInput!", data, query is null ? new BroadcastUpdatePayloadQuery() : new BroadcastUpdatePayloadQuery().Select(UpdateQuery(query, "broadcast")))
         {
         }
     }

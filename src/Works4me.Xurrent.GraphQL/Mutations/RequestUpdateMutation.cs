@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the request mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal RequestUpdateMutation(RequestUpdateInput data, RequestQuery query)
-            : base("requestUpdate", "RequestUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "request")))
+        internal RequestUpdateMutation(RequestUpdateInput data, RequestQuery? query)
+            : base("requestUpdate", "RequestUpdateInput!", data, query is null ? new RequestUpdatePayloadQuery() : new RequestUpdatePayloadQuery().Select(UpdateQuery(query, "request")))
         {
         }
     }

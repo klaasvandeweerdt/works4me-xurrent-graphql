@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the calendar mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal CalendarUpdateMutation(CalendarUpdateInput data, CalendarQuery query)
-            : base("calendarUpdate", "CalendarUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "calendar")))
+        internal CalendarUpdateMutation(CalendarUpdateInput data, CalendarQuery? query)
+            : base("calendarUpdate", "CalendarUpdateInput!", data, query is null ? new CalendarUpdatePayloadQuery() : new CalendarUpdatePayloadQuery().Select(UpdateQuery(query, "calendar")))
         {
         }
     }

@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the contract mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal ContractUpdateMutation(ContractUpdateInput data, ContractQuery query)
-            : base("contractUpdate", "ContractUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "contract")))
+        internal ContractUpdateMutation(ContractUpdateInput data, ContractQuery? query)
+            : base("contractUpdate", "ContractUpdateInput!", data, query is null ? new ContractUpdatePayloadQuery() : new ContractUpdatePayloadQuery().Select(UpdateQuery(query, "contract")))
         {
         }
     }

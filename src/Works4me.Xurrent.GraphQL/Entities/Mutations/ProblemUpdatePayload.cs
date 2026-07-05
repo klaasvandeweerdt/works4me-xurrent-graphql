@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("problem", IsDefaultQueryProperty = true)]
+        [XurrentField("problem")]
         public Problem? Problem { get; internal set; }
     }
 }

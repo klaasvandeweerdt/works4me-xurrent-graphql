@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("customCollectionElement", IsDefaultQueryProperty = true)]
+        [XurrentField("customCollectionElement")]
         public CustomCollectionElement? CustomCollectionElement { get; internal set; }
     }
 }

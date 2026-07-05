@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the sprint mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal SprintUpdateMutation(SprintUpdateInput data, SprintQuery query)
-            : base("sprintUpdate", "SprintUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "sprint")))
+        internal SprintUpdateMutation(SprintUpdateInput data, SprintQuery? query)
+            : base("sprintUpdate", "SprintUpdateInput!", data, query is null ? new SprintUpdatePayloadQuery() : new SprintUpdatePayloadQuery().Select(UpdateQuery(query, "sprint")))
         {
         }
     }

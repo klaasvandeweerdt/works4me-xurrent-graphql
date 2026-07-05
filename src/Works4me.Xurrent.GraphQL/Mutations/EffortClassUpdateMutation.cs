@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the effort class mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal EffortClassUpdateMutation(EffortClassUpdateInput data, EffortClassQuery query)
-            : base("effortClassUpdate", "EffortClassUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "effortClass")))
+        internal EffortClassUpdateMutation(EffortClassUpdateInput data, EffortClassQuery? query)
+            : base("effortClassUpdate", "EffortClassUpdateInput!", data, query is null ? new EffortClassUpdatePayloadQuery() : new EffortClassUpdatePayloadQuery().Select(UpdateQuery(query, "effortClass")))
         {
         }
     }

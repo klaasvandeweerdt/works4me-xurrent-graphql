@@ -10,7 +10,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         /// <summary>
         /// Record after mutation.
         /// </summary>
-        [XurrentField("timeEntry", IsDefaultQueryProperty = true)]
+        [XurrentField("timeEntry")]
         public TimeEntry? TimeEntry { get; internal set; }
     }
 }

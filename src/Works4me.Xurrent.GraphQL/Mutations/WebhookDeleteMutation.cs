@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="data">The input data for the success mutation.</param>
         internal WebhookDeleteMutation(WebhookDeleteMutationInput data)
-            : base("webhookDelete", "WebhookDeleteMutationInput!", data, new MutationResponseQuery().SelectAll())
+            : base("webhookDelete", "WebhookDeleteMutationInput!", data, new WebhookDeleteMutationPayloadQuery())
         {
         }
     }

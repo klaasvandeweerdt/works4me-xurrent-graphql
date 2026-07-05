@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the risk mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal RiskUpdateMutation(RiskUpdateInput data, RiskQuery query)
-            : base("riskUpdate", "RiskUpdateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "risk")))
+        internal RiskUpdateMutation(RiskUpdateInput data, RiskQuery? query)
+            : base("riskUpdate", "RiskUpdateInput!", data, query is null ? new RiskUpdatePayloadQuery() : new RiskUpdatePayloadQuery().Select(UpdateQuery(query, "risk")))
         {
         }
     }

@@ -10,8 +10,8 @@
         /// </summary>
         /// <param name="data">The input data for the ui extension mutation.</param>
         /// <param name="query">The query specifying which fields to return in the response.</param>
-        internal UiExtensionCreateMutation(UiExtensionCreateInput data, UiExtensionQuery query)
-            : base("uiExtensionCreate", "UiExtensionCreateInput!", data, new MutationResponseQuery().Select(UpdateQuery(query, "uiExtension")))
+        internal UiExtensionCreateMutation(UiExtensionCreateInput data, UiExtensionQuery? query)
+            : base("uiExtensionCreate", "UiExtensionCreateInput!", data, query is null ? new UiExtensionCreatePayloadQuery() : new UiExtensionCreatePayloadQuery().Select(UpdateQuery(query, "uiExtension")))
         {
         }
     }
