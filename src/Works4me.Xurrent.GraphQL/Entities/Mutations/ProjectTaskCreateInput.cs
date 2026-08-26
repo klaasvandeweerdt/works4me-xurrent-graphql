@@ -40,6 +40,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private Collection<string>? _predecessorIds;
         private Collection<string>? _successorIds;
         private Collection<ProjectTaskAssignmentInput>? _newAssignments;
+        private Collection<TagInput>? _newTags;
         private string _projectId;
         private string _phaseId;
         private ProjectTaskCategory _category;
@@ -354,6 +355,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _newAssignments;
             set => _newAssignments = Set("newAssignments", value);
+        }
+
+        /// <summary>
+        /// Tags to be added to the project task.
+        /// </summary>
+        [XurrentField("newTags")]
+        public Collection<TagInput>? NewTags
+        {
+            get => _newTags;
+            set => _newTags = Set("newTags", value);
         }
 
         /// <summary>

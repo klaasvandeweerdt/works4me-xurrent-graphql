@@ -271,6 +271,13 @@ namespace Works4me.Xurrent.GraphQL
         [XurrentField("supplierRequestID")]
         public string? SupplierRequestID { get; internal set; }
 
+        [XurrentField("tags")]
+        internal PagedResponse<Tag>? TagsCollection { get; set; }
+        /// <summary>
+        /// Tags applied to the project task.
+        /// </summary>
+        public ReadOnlyDataCollection<Tag>? Tags { get => TagsCollection?.Data is null ? null : new ReadOnlyDataCollection<Tag>(TagsCollection.Data); }
+
         /// <summary>
         /// The team to which the project task is to be assigned.
         /// </summary>
@@ -340,6 +347,7 @@ namespace Works4me.Xurrent.GraphQL
                 PredecessorsCollection?.Data?.AddRange(projectTask.Predecessors);
                 SprintBacklogItemsCollection?.Data?.AddRange(projectTask.SprintBacklogItems);
                 SuccessorsCollection?.Data?.AddRange(projectTask.Successors);
+                TagsCollection?.Data?.AddRange(projectTask.Tags);
                 TimeEntriesCollection?.Data?.AddRange(projectTask.TimeEntries);
             }
         }
@@ -381,6 +389,10 @@ namespace Works4me.Xurrent.GraphQL
 
             if (SuccessorsCollection is not null)
                 foreach (ExecutionPageInfo pageInfo in SuccessorsCollection.GetPageInfo("successors", depth))
+                    yield return pageInfo;
+
+            if (TagsCollection is not null)
+                foreach (ExecutionPageInfo pageInfo in TagsCollection.GetPageInfo("tags", depth))
                     yield return pageInfo;
 
             if (TimeEntriesCollection is not null)

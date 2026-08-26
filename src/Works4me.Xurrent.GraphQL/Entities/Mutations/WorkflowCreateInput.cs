@@ -30,6 +30,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private bool? _preventRequestCompletion;
         private Collection<string>? _requestIds;
         private Collection<string>? _problemIds;
+        private Collection<TagInput>? _newTags;
 
         /// <summary>
         /// A unique identifier for the client performing the mutation.
@@ -239,6 +240,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _problemIds;
             set => _problemIds = Set("problemIds", value);
+        }
+
+        /// <summary>
+        /// Tags to be added to the workflow.
+        /// </summary>
+        [XurrentField("newTags")]
+        public Collection<TagInput>? NewTags
+        {
+            get => _newTags;
+            set => _newTags = Set("newTags", value);
         }
     }
 }

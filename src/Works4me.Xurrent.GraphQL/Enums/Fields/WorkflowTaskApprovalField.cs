@@ -3,9 +3,9 @@
 namespace Works4me.Xurrent.GraphQL
 {
     /// <summary>
-    /// The <see cref="TaskApproval">TaskApproval</see> fields.
+    /// The <see cref="WorkflowTaskApproval">WorkflowTaskApproval</see> fields.
     /// </summary>
-    public enum TaskApprovalField
+    public enum WorkflowTaskApprovalField
     {
         /// <summary>
         /// The approver field.
@@ -42,6 +42,12 @@ namespace Works4me.Xurrent.GraphQL
         /// </summary>
         [XurrentEnum("status")]
         Status,
+
+        /// <summary>
+        /// The task field.
+        /// </summary>
+        [XurrentEnum("task")]
+        Task,
 
         /// <summary>
         /// The updated at field.

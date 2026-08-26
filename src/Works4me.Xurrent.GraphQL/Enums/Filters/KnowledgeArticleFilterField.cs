@@ -68,6 +68,12 @@ namespace Works4me.Xurrent.GraphQL
         KnowledgeManager,
 
         /// <summary>
+        /// Filter on Language.
+        /// </summary>
+        [XurrentEnum("language")]
+        Language,
+
+        /// <summary>
         /// Include only if Public matches supplied value.
         /// </summary>
         [XurrentEnum("public")]
@@ -114,6 +120,18 @@ namespace Works4me.Xurrent.GraphQL
         /// </summary>
         [XurrentEnum("template")]
         Template,
+
+        /// <summary>
+        /// Filter on Times applied.
+        /// </summary>
+        [XurrentEnum("timesApplied")]
+        TimesApplied,
+
+        /// <summary>
+        /// Filter on Times viewed.
+        /// </summary>
+        [XurrentEnum("timesViewed")]
+        TimesViewed,
 
         /// <summary>
         /// Updated in supplied range.

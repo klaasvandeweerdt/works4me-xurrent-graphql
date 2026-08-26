@@ -16,6 +16,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private string _name;
         private DiscoveredCiRelationInput? _ciRelations;
         private string? _service;
+        private string? _locationHint;
         private CiStatus? _status;
 #if NET6_0_OR_GREATER
         private DateOnly? _endOfSupportDate;
@@ -115,6 +116,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _service;
             set => _service = Set("service", value);
+        }
+
+        /// <summary>
+        /// Free-text "as discovered" physical-location string from the source protocol (e.g. SNMP <c>sysLocation</c>, vCenter folder path, AWS tag). Stored verbatim for operator reference. Use <c>location</c> for authoritative Site assignment.
+        /// </summary>
+        [XurrentField("locationHint")]
+        public string? LocationHint
+        {
+            get => _locationHint;
+            set => _locationHint = Set("locationHint", value);
         }
 
         /// <summary>

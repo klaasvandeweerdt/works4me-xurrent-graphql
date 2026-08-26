@@ -25,6 +25,8 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                     .SelectAll())
                 .SelectServiceInstances(new ServiceInstanceQuery()
                     .SelectAll())
+                .SelectTranslationProvenance(new TranslationProvenanceQuery()
+                    .SelectAll())
                 .SelectTranslations(new TranslationQuery()
                     .SelectAll()
                     .SelectOwner(new KnowledgeArticleQuery()

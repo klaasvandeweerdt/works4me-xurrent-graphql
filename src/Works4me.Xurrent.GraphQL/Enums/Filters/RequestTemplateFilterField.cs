@@ -92,6 +92,12 @@ namespace Works4me.Xurrent.GraphQL
         Team,
 
         /// <summary>
+        /// Filter on Times applied.
+        /// </summary>
+        [XurrentEnum("timesApplied")]
+        TimesApplied,
+
+        /// <summary>
         /// Filter on UI extension.
         /// </summary>
         [XurrentEnum("uiExtension")]

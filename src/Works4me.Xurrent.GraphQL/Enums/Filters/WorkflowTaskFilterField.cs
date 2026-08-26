@@ -164,6 +164,12 @@ namespace Works4me.Xurrent.GraphQL
         SupplierRequestID,
 
         /// <summary>
+        /// Filter on Tag.
+        /// </summary>
+        [XurrentEnum("tag")]
+        Tag,
+
+        /// <summary>
         /// Filter on record ID as displayed in UI.
         /// </summary>
         [XurrentEnum("taskId")]

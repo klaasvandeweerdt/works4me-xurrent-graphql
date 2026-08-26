@@ -134,6 +134,12 @@ namespace Works4me.Xurrent.GraphQL
         Subject,
 
         /// <summary>
+        /// Filter on Tag.
+        /// </summary>
+        [XurrentEnum("tag")]
+        Tag,
+
+        /// <summary>
         /// Updated in supplied range.
         /// </summary>
         [XurrentEnum("updatedAt")]

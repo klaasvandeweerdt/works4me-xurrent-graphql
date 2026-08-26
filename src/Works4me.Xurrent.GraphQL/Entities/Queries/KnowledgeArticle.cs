@@ -128,6 +128,13 @@ namespace Works4me.Xurrent.GraphQL
         public string? Keywords { get; internal set; }
 
         /// <summary>
+        /// The source language the knowledge article is authored in.<br />
+        /// The list with possible values is available on the <a href="https://developer.xurrent.com/graphql/scalar/language/">Xurrent developer site</a>.<br />
+        /// </summary>
+        [XurrentField("language")]
+        public string? Language { get; internal set; }
+
+        /// <summary>
         /// Whether the knowledge article needs to be available to anyone, including people without access to Xurrent.
         /// </summary>
         [XurrentField("public")]
@@ -182,6 +189,18 @@ namespace Works4me.Xurrent.GraphQL
         /// </summary>
         [XurrentField("template")]
         public KnowledgeArticleTemplate? Template { get; internal set; }
+
+        /// <summary>
+        /// The total number of times the knowledge article has been applied to a request, over the entire lifetime of the article.
+        /// </summary>
+        [XurrentField("timesApplied")]
+        public long? TimesApplied { get; internal set; }
+
+        /// <summary>
+        /// Per-field translation provenance for the current locale.
+        /// </summary>
+        [XurrentField("translationProvenance")]
+        public IReadOnlyList<TranslationProvenance>? TranslationProvenance { get; internal set; }
 
         [XurrentField("translations")]
         internal PagedResponse<Translation>? TranslationsCollection { get; set; }

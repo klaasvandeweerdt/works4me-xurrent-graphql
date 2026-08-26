@@ -19,6 +19,8 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                     .SelectAll())
                 .SelectCustomFieldsAttachments(new AttachmentQuery()
                     .SelectAll())
+                .SelectTags(new TagQuery()
+                    .SelectAll())
                 .SelectNotes(new NoteQuery()
                     .SelectAll())
                 .SelectRequests(new RequestQuery()

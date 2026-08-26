@@ -172,6 +172,19 @@ namespace Works4me.Xurrent.GraphQL
         }
 
         /// <summary>
+        /// Tags applied to the project.
+        /// </summary>
+        /// <param name="query">The tags query.</param>
+        /// <returns>The same <see cref="ProjectQuery"/>, updated to include the "Tags" sub-query.</returns>
+        public ProjectQuery SelectTags(TagQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return Select("tags", query, true);
+        }
+
+        /// <summary>
         /// Tasks of the project.
         /// </summary>
         /// <param name="query">The tasks query.</param>

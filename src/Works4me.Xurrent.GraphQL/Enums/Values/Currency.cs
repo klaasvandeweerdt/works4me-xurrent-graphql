@@ -164,6 +164,12 @@ namespace Works4me.Xurrent.GraphQL
         MXN,
 
         /// <summary>
+        /// Mozambican metical.
+        /// </summary>
+        [XurrentEnum("mzn")]
+        MZN,
+
+        /// <summary>
         /// Nigerian naira.
         /// </summary>
         [XurrentEnum("ngn")]

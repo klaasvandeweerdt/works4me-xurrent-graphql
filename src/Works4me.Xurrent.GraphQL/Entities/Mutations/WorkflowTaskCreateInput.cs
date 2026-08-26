@@ -53,6 +53,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private Collection<string>? _serviceInstanceIds;
         private Collection<string>? _predecessorIds;
         private Collection<string>? _successorIds;
+        private Collection<TagInput>? _newTags;
         private string _workflowId;
 
         /// <summary>
@@ -493,6 +494,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _successorIds;
             set => _successorIds = Set("successorIds", value);
+        }
+
+        /// <summary>
+        /// Tags to be added to the task.
+        /// </summary>
+        [XurrentField("newTags")]
+        public Collection<TagInput>? NewTags
+        {
+            get => _newTags;
+            set => _newTags = Set("newTags", value);
         }
 
         /// <summary>

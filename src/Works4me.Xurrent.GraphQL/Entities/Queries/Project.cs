@@ -222,6 +222,13 @@ namespace Works4me.Xurrent.GraphQL
         [XurrentField("subject", IsDefaultQueryProperty = true)]
         public string? Subject { get; internal set; }
 
+        [XurrentField("tags")]
+        internal PagedResponse<Tag>? TagsCollection { get; set; }
+        /// <summary>
+        /// Tags applied to the project.
+        /// </summary>
+        public ReadOnlyDataCollection<Tag>? Tags { get => TagsCollection?.Data is null ? null : new ReadOnlyDataCollection<Tag>(TagsCollection.Data); }
+
         [XurrentField("tasks")]
         internal PagedResponse<ProjectTask>? TasksCollection { get; set; }
         /// <summary>
@@ -304,6 +311,7 @@ namespace Works4me.Xurrent.GraphQL
                 ProblemsCollection?.Data?.AddRange(project.Problems);
                 RequestsCollection?.Data?.AddRange(project.Requests);
                 RisksCollection?.Data?.AddRange(project.Risks);
+                TagsCollection?.Data?.AddRange(project.Tags);
                 TasksCollection?.Data?.AddRange(project.Tasks);
                 WorkflowsCollection?.Data?.AddRange(project.Workflows);
             }
@@ -342,6 +350,10 @@ namespace Works4me.Xurrent.GraphQL
 
             if (RisksCollection is not null)
                 foreach (ExecutionPageInfo pageInfo in RisksCollection.GetPageInfo("risks", depth))
+                    yield return pageInfo;
+
+            if (TagsCollection is not null)
+                foreach (ExecutionPageInfo pageInfo in TagsCollection.GetPageInfo("tags", depth))
                     yield return pageInfo;
 
             if (TasksCollection is not null)

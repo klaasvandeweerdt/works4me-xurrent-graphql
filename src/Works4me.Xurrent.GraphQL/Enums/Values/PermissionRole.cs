@@ -131,6 +131,12 @@ namespace Works4me.Xurrent.GraphQL
         /// Workflow manager.
         /// </summary>
         [XurrentEnum("workflow_manager")]
-        WorkflowManager
+        WorkflowManager,
+
+        /// <summary>
+        /// Workflow requestor.
+        /// </summary>
+        [XurrentEnum("workflow_requestor")]
+        WorkflowRequestor
     }
 }

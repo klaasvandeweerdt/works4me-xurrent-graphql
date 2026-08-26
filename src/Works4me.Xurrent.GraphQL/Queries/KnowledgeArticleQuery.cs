@@ -159,6 +159,19 @@ namespace Works4me.Xurrent.GraphQL
         }
 
         /// <summary>
+        /// Per-field translation provenance for the current locale.
+        /// </summary>
+        /// <param name="query">The translation provenance query.</param>
+        /// <returns>The same <see cref="KnowledgeArticleQuery"/>, updated to include the "TranslationProvenance" sub-query.</returns>
+        public KnowledgeArticleQuery SelectTranslationProvenance(TranslationProvenanceQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return Select("translationProvenance", query, false);
+        }
+
+        /// <summary>
         /// Translations associated with this object.
         /// </summary>
         /// <param name="query">The translations query.</param>

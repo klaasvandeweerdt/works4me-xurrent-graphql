@@ -29,6 +29,19 @@ namespace Works4me.Xurrent.GraphQL
         }
 
         /// <summary>
+        /// Request template the virtual agent falls back to when it cannot match a request to a template. When empty, a standard request is created instead.
+        /// </summary>
+        /// <param name="query">The fallback request template query.</param>
+        /// <returns>The same <see cref="SeraAiStudioQuery"/>, updated to include the "FallbackRequestTemplate" sub-query.</returns>
+        public SeraAiStudioQuery SelectFallbackRequestTemplate(RequestTemplateQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return Select("fallbackRequestTemplate", query, false);
+        }
+
+        /// <summary>
         /// Golden set test cases that benchmark the studio's search quality.
         /// </summary>
         /// <param name="query">The golden set items query.</param>

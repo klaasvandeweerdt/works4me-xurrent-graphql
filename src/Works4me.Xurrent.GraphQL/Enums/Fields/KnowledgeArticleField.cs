@@ -86,6 +86,12 @@ namespace Works4me.Xurrent.GraphQL
         Keywords,
 
         /// <summary>
+        /// The language field.
+        /// </summary>
+        [XurrentEnum("language")]
+        Language,
+
+        /// <summary>
         /// The public field.
         /// </summary>
         [XurrentEnum("public")]
@@ -126,6 +132,18 @@ namespace Works4me.Xurrent.GraphQL
         /// </summary>
         [XurrentEnum("template")]
         Template,
+
+        /// <summary>
+        /// The times applied field.
+        /// </summary>
+        [XurrentEnum("timesApplied")]
+        TimesApplied,
+
+        /// <summary>
+        /// The translation provenance field.
+        /// </summary>
+        [XurrentEnum("translationProvenance")]
+        TranslationProvenance,
 
         /// <summary>
         /// The updated at field.

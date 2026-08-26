@@ -50,6 +50,12 @@ namespace Works4me.Xurrent.GraphQL
         CreatedAt,
 
         /// <summary>
+        /// Filter on Created by.
+        /// </summary>
+        [XurrentEnum("createdBy")]
+        CreatedBy,
+
+        /// <summary>
         /// Include only if Created from request matches supplied value.
         /// </summary>
         [XurrentEnum("createdFromRequest")]
@@ -168,6 +174,12 @@ namespace Works4me.Xurrent.GraphQL
         /// </summary>
         [XurrentEnum("subject")]
         Subject,
+
+        /// <summary>
+        /// Filter on Tag.
+        /// </summary>
+        [XurrentEnum("tag")]
+        Tag,
 
         /// <summary>
         /// Filter on Template.

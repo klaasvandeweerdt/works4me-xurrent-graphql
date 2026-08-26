@@ -15,7 +15,7 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
             ReadOnlyDataCollection<WorkflowTask> tasks = await _client.GetAsync(new WorkflowTaskQuery()
                 .View(WorkflowTaskView.All)
                 .SelectAll()
-                .SelectApprovals(new TaskApprovalQuery()
+                .SelectApprovals(new WorkflowTaskApprovalQuery()
                     .SelectAll())
                 .SelectAutomationRules(new AutomationRuleQuery()
                     .SelectAll())
@@ -30,6 +30,8 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .SelectServiceInstances(new ServiceInstanceQuery()
                     .SelectAll())
                 .SelectSprintBacklogItems(new SprintBacklogItemQuery()
+                    .SelectAll())
+                .SelectTags(new TagQuery()
                     .SelectAll())
                 .SelectTimeEntries(new TimeEntryQuery()
                     .SelectAll()), TestContext.Current.CancellationToken);

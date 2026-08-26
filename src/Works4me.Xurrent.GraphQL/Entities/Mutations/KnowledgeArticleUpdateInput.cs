@@ -37,6 +37,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private string? _subject;
         private string? _templateId;
         private string _id;
+        private string? _language;
         private Collection<string>? _translationsToDelete;
 
         /// <summary>
@@ -261,6 +262,17 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _id;
             set => _id = Set("id", value);
+        }
+
+        /// <summary>
+        /// The source language the subject, description, instructions and keywords are authored in. Can only be corrected while the knowledge article has no translations; the source phrases move to the corrected language.<br />
+        /// The list with possible values is available on the <a href="https://developer.xurrent.com/graphql/scalar/language/">Xurrent developer site</a>.<br />
+        /// </summary>
+        [XurrentField("language")]
+        public string? Language
+        {
+            get => _language;
+            set => _language = Set("language", value);
         }
 
         /// <summary>

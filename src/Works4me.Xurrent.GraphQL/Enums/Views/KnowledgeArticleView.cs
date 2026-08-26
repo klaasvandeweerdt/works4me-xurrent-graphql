@@ -41,6 +41,12 @@ namespace Works4me.Xurrent.GraphQL
         /// Knowledge Articles Needing Review.
         /// </summary>
         [XurrentEnum("needs_review")]
-        NeedsReview
+        NeedsReview,
+
+        /// <summary>
+        /// Knowledge Articles Needing Validation.
+        /// </summary>
+        [XurrentEnum("needs_validation")]
+        NeedsValidation
     }
 }

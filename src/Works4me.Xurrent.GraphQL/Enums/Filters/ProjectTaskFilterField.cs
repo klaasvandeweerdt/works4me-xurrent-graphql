@@ -140,6 +140,12 @@ namespace Works4me.Xurrent.GraphQL
         Supplier,
 
         /// <summary>
+        /// Filter on Tag.
+        /// </summary>
+        [XurrentEnum("tag")]
+        Tag,
+
+        /// <summary>
         /// Filter on Team.
         /// </summary>
         [XurrentEnum("team")]

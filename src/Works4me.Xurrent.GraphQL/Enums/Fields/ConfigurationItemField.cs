@@ -98,6 +98,12 @@ namespace Works4me.Xurrent.GraphQL
         Location,
 
         /// <summary>
+        /// The location hint field.
+        /// </summary>
+        [XurrentEnum("locationHint")]
+        LocationHint,
+
+        /// <summary>
         /// The name field.
         /// </summary>
         [XurrentEnum("name")]

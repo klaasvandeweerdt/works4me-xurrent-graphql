@@ -31,6 +31,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private Collection<string>? _serviceInstanceIds;
         private KnowledgeArticleStatus? _status;
         private string? _templateId;
+        private string? _language;
         private string _instructions;
         private string _serviceId;
         private string _subject;
@@ -217,6 +218,17 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _templateId;
             set => _templateId = Set("templateId", value);
+        }
+
+        /// <summary>
+        /// The source language the subject, description, instructions and keywords are authored in. Defaults to the language of the account.<br />
+        /// The list with possible values is available on the <a href="https://developer.xurrent.com/graphql/scalar/language/">Xurrent developer site</a>.<br />
+        /// </summary>
+        [XurrentField("language")]
+        public string? Language
+        {
+            get => _language;
+            set => _language = Set("language", value);
         }
 
         /// <summary>

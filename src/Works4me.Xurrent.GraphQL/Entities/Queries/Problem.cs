@@ -239,6 +239,13 @@ namespace Works4me.Xurrent.GraphQL
         [XurrentField("supplierRequestID")]
         public string? SupplierRequestID { get; internal set; }
 
+        [XurrentField("tags")]
+        internal PagedResponse<Tag>? TagsCollection { get; set; }
+        /// <summary>
+        /// Tags applied to the problem.
+        /// </summary>
+        public ReadOnlyDataCollection<Tag>? Tags { get => TagsCollection?.Data is null ? null : new ReadOnlyDataCollection<Tag>(TagsCollection.Data); }
+
         /// <summary>
         /// The team to which the problem is to be assigned. After a service has been selected in the Service field, the support team of the service is automatically selected in this field.
         /// </summary>
@@ -319,6 +326,7 @@ namespace Works4me.Xurrent.GraphQL
                 RequestsCollection?.Data?.AddRange(problem.Requests);
                 ServiceInstancesCollection?.Data?.AddRange(problem.ServiceInstances);
                 SprintBacklogItemsCollection?.Data?.AddRange(problem.SprintBacklogItems);
+                TagsCollection?.Data?.AddRange(problem.Tags);
                 TimeEntriesCollection?.Data?.AddRange(problem.TimeEntries);
                 WorkaroundAttachmentsCollection?.Data?.AddRange(problem.WorkaroundAttachments);
             }
@@ -353,6 +361,10 @@ namespace Works4me.Xurrent.GraphQL
 
             if (SprintBacklogItemsCollection is not null)
                 foreach (ExecutionPageInfo pageInfo in SprintBacklogItemsCollection.GetPageInfo("sprintBacklogItems", depth))
+                    yield return pageInfo;
+
+            if (TagsCollection is not null)
+                foreach (ExecutionPageInfo pageInfo in TagsCollection.GetPageInfo("tags", depth))
                     yield return pageInfo;
 
             if (TimeEntriesCollection is not null)

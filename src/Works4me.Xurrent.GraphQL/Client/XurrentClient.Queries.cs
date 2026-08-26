@@ -862,6 +862,34 @@ namespace Works4me.Xurrent.GraphQL
         }
 
         /// <summary>
+        /// Executes the specified <see cref="ProjectTaskAssignmentQuery"/> and returns a <see cref="ReadOnlyDataCollection{ProjectTaskAssignment}"/> of results, performing pagination as needed.
+        /// </summary>
+        /// <param name="query">The <see cref="ProjectTaskAssignmentQuery"/> to execute.</param>
+        /// <param name="ct">The <see cref="CancellationToken"/> for request cancellation.</param>
+        /// <returns>A <see cref="Task{ReadOnlyDataCollection}"/> representing the asynchronous operation, containing a <see cref="ReadOnlyDataCollection{ProjectTaskAssignment}"/> of results.</returns>
+        public Task<ReadOnlyDataCollection<ProjectTaskAssignment>> GetAsync(ProjectTaskAssignmentQuery query, CancellationToken ct = default)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return GetAsync<ProjectTaskAssignment>(GetAccountId(), query, _defaultItemsPerRequest, _maxRequestsPerQuery, ct);
+        }
+
+        /// <summary>
+        /// Streams paged results for the specified <see cref="ProjectTaskAssignmentQuery"/>, yielding each <see cref="ReadOnlyDataCollection{ProjectTaskAssignment}"/> page as it arrives.
+        /// </summary>
+        /// <param name="query">The <see cref="ProjectTaskAssignmentQuery"/> to execute.</param>
+        /// <param name="ct">The <see cref="CancellationToken"/> for request cancellation.</param>
+        /// <returns>An <see cref="IAsyncEnumerable{ReadOnlyDataCollection}"/> yielding each <see cref="ReadOnlyDataCollection{ProjectTaskAssignment}"/> page of results.</returns>
+        public IAsyncEnumerable<ProjectTaskAssignment> StreamAsync(ProjectTaskAssignmentQuery query, CancellationToken ct = default)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return StreamAsync<ProjectTaskAssignment>(GetAccountId(), query, _defaultItemsPerRequest, _maxRequestsPerQuery, ct);
+        }
+
+        /// <summary>
         /// Executes the specified <see cref="ProjectTaskTemplateQuery"/> and returns a <see cref="ReadOnlyDataCollection{ProjectTaskTemplate}"/> of results, performing pagination as needed.
         /// </summary>
         /// <param name="query">The <see cref="ProjectTaskTemplateQuery"/> to execute.</param>
@@ -1671,6 +1699,34 @@ namespace Works4me.Xurrent.GraphQL
                 throw new ArgumentNullException(nameof(query));
 
             return StreamAsync<SyncSet>(GetAccountId(), query, _defaultItemsPerRequest, _maxRequestsPerQuery, ct);
+        }
+
+        /// <summary>
+        /// Executes the specified <see cref="WorkflowTaskApprovalQuery"/> and returns a <see cref="ReadOnlyDataCollection{WorkflowTaskApproval}"/> of results, performing pagination as needed.
+        /// </summary>
+        /// <param name="query">The <see cref="WorkflowTaskApprovalQuery"/> to execute.</param>
+        /// <param name="ct">The <see cref="CancellationToken"/> for request cancellation.</param>
+        /// <returns>A <see cref="Task{ReadOnlyDataCollection}"/> representing the asynchronous operation, containing a <see cref="ReadOnlyDataCollection{WorkflowTaskApproval}"/> of results.</returns>
+        public Task<ReadOnlyDataCollection<WorkflowTaskApproval>> GetAsync(WorkflowTaskApprovalQuery query, CancellationToken ct = default)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return GetAsync<WorkflowTaskApproval>(GetAccountId(), query, _defaultItemsPerRequest, _maxRequestsPerQuery, ct);
+        }
+
+        /// <summary>
+        /// Streams paged results for the specified <see cref="WorkflowTaskApprovalQuery"/>, yielding each <see cref="ReadOnlyDataCollection{WorkflowTaskApproval}"/> page as it arrives.
+        /// </summary>
+        /// <param name="query">The <see cref="WorkflowTaskApprovalQuery"/> to execute.</param>
+        /// <param name="ct">The <see cref="CancellationToken"/> for request cancellation.</param>
+        /// <returns>An <see cref="IAsyncEnumerable{ReadOnlyDataCollection}"/> yielding each <see cref="ReadOnlyDataCollection{WorkflowTaskApproval}"/> page of results.</returns>
+        public IAsyncEnumerable<WorkflowTaskApproval> StreamAsync(WorkflowTaskApprovalQuery query, CancellationToken ct = default)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return StreamAsync<WorkflowTaskApproval>(GetAccountId(), query, _defaultItemsPerRequest, _maxRequestsPerQuery, ct);
         }
 
         /// <summary>

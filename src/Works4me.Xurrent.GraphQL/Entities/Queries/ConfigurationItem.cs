@@ -155,6 +155,12 @@ namespace Works4me.Xurrent.GraphQL
         public string? Location { get; internal set; }
 
         /// <summary>
+        /// Free-text "as discovered" physical-location string from the source protocol (e.g. SNMP <c>sysLocation</c>, vCenter folder path, AWS tag). Stored verbatim for operator reference. Use <c>location</c> for authoritative Site assignment.
+        /// </summary>
+        [XurrentField("locationHint")]
+        public string? LocationHint { get; internal set; }
+
+        /// <summary>
         /// The name of the configuration item (CI). When creating a new CI and a value is not specified for this field, it is set to the name of the CI's product.
         /// </summary>
         [XurrentField("name", IsDefaultQueryProperty = true)]

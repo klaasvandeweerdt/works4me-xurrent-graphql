@@ -44,6 +44,12 @@ namespace Works4me.Xurrent.GraphQL
         Language,
 
         /// <summary>
+        /// The machine translated field.
+        /// </summary>
+        [XurrentEnum("machineTranslated")]
+        MachineTranslated,
+
+        /// <summary>
         /// The owner field.
         /// </summary>
         [XurrentEnum("owner")]

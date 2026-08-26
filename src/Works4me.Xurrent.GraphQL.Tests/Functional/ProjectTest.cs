@@ -31,6 +31,8 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                     .SelectAll())
                 .SelectTasks(new ProjectTaskQuery()
                     .SelectAll())
+                .SelectTags(new TagQuery()
+                    .SelectAll())
                 .SelectWorkflows(new WorkflowQuery()
                     .SelectAll()), TestContext.Current.CancellationToken);
 

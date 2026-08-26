@@ -44,11 +44,11 @@ namespace Works4me.Xurrent.GraphQL
         public DateTime? AnticipatedAssignmentAt { get; internal set; }
 
         [XurrentField("approvals")]
-        internal PagedResponse<TaskApproval>? ApprovalsCollection { get; set; }
+        internal PagedResponse<WorkflowTaskApproval>? ApprovalsCollection { get; set; }
         /// <summary>
         /// Approvals of the task.
         /// </summary>
-        public ReadOnlyDataCollection<TaskApproval>? Approvals { get => ApprovalsCollection?.Data is null ? null : new ReadOnlyDataCollection<TaskApproval>(ApprovalsCollection.Data); }
+        public ReadOnlyDataCollection<WorkflowTaskApproval>? Approvals { get => ApprovalsCollection?.Data is null ? null : new ReadOnlyDataCollection<WorkflowTaskApproval>(ApprovalsCollection.Data); }
 
         /// <summary>
         /// Automatically set to the current date and time when the task is assigned.
@@ -313,6 +313,13 @@ namespace Works4me.Xurrent.GraphQL
         [XurrentField("supplierRequestID")]
         public string? SupplierRequestID { get; internal set; }
 
+        [XurrentField("tags")]
+        internal PagedResponse<Tag>? TagsCollection { get; set; }
+        /// <summary>
+        /// Tags applied to the task.
+        /// </summary>
+        public ReadOnlyDataCollection<Tag>? Tags { get => TagsCollection?.Data is null ? null : new ReadOnlyDataCollection<Tag>(TagsCollection.Data); }
+
         /// <summary>
         /// The record ID as displayed in the UI.
         /// </summary>
@@ -394,6 +401,7 @@ namespace Works4me.Xurrent.GraphQL
                 NotesCollection?.Data?.AddRange(workflowTask.Notes);
                 ServiceInstancesCollection?.Data?.AddRange(workflowTask.ServiceInstances);
                 SprintBacklogItemsCollection?.Data?.AddRange(workflowTask.SprintBacklogItems);
+                TagsCollection?.Data?.AddRange(workflowTask.Tags);
                 TimeEntriesCollection?.Data?.AddRange(workflowTask.TimeEntries);
             }
         }
@@ -435,6 +443,10 @@ namespace Works4me.Xurrent.GraphQL
 
             if (SprintBacklogItemsCollection is not null)
                 foreach (ExecutionPageInfo pageInfo in SprintBacklogItemsCollection.GetPageInfo("sprintBacklogItems", depth))
+                    yield return pageInfo;
+
+            if (TagsCollection is not null)
+                foreach (ExecutionPageInfo pageInfo in TagsCollection.GetPageInfo("tags", depth))
                     yield return pageInfo;
 
             if (TimeEntriesCollection is not null)

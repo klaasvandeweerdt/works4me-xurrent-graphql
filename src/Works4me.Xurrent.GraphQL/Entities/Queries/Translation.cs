@@ -52,6 +52,12 @@ namespace Works4me.Xurrent.GraphQL
         public string? Language { get; internal set; }
 
         /// <summary>
+        /// Whether this translation was generated automatically.
+        /// </summary>
+        [XurrentField("machineTranslated")]
+        public bool? MachineTranslated { get; internal set; }
+
+        /// <summary>
         /// The record from which the translation is obtained.
         /// </summary>
         [XurrentField("owner", IsDefaultQueryProperty = true)]

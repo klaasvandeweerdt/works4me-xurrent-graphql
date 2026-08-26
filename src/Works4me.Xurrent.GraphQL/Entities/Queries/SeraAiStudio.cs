@@ -37,6 +37,12 @@ namespace Works4me.Xurrent.GraphQL
         [XurrentField("createdAt")]
         public DateTime? CreatedAt { get; internal set; }
 
+        /// <summary>
+        /// Request template the virtual agent falls back to when it cannot match a request to a template. When empty, a standard request is created instead.
+        /// </summary>
+        [XurrentField("fallbackRequestTemplate")]
+        public RequestTemplate? FallbackRequestTemplate { get; internal set; }
+
         [XurrentField("goldenSetItems")]
         internal PagedResponse<GoldenSetItem>? GoldenSetItemsCollection { get; set; }
         /// <summary>

@@ -237,6 +237,19 @@ namespace Works4me.Xurrent.GraphQL
         }
 
         /// <summary>
+        /// Tags applied to the problem.
+        /// </summary>
+        /// <param name="query">The tags query.</param>
+        /// <returns>The same <see cref="ProblemQuery"/>, updated to include the "Tags" sub-query.</returns>
+        public ProblemQuery SelectTags(TagQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return Select("tags", query, true);
+        }
+
+        /// <summary>
         /// The team to which the problem is to be assigned. After a service has been selected in the Service field, the support team of the service is automatically selected in this field.
         /// </summary>
         /// <param name="query">The team query.</param>

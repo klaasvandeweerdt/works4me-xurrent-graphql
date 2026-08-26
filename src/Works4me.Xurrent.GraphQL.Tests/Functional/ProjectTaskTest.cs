@@ -31,6 +31,8 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                     .SelectAll())
                 .SelectSuccessors(new ProjectTaskQuery()
                     .SelectAll())
+                .SelectTags(new TagQuery()
+                    .SelectAll())
                 .SelectTimeEntries(new TimeEntryQuery()
                     .SelectAll()), TestContext.Current.CancellationToken);
 

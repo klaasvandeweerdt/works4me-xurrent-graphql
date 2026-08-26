@@ -44,6 +44,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private Collection<string>? _configurationItemIds;
         private Collection<string>? _requestIds;
         private Collection<string>? _serviceInstanceIds;
+        private Collection<TagInput>? _newTags;
         private string _subject;
         private string _serviceId;
 
@@ -395,6 +396,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _serviceInstanceIds;
             set => _serviceInstanceIds = Set("serviceInstanceIds", value);
+        }
+
+        /// <summary>
+        /// Tags to be added to the problem.
+        /// </summary>
+        [XurrentField("newTags")]
+        public Collection<TagInput>? NewTags
+        {
+            get => _newTags;
+            set => _newTags = Set("newTags", value);
         }
 
         /// <summary>

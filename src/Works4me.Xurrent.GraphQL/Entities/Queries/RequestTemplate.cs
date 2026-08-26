@@ -282,6 +282,12 @@ namespace Works4me.Xurrent.GraphQL
         public string? TimeZone { get; internal set; }
 
         /// <summary>
+        /// The total number of times a request has been created from this request template, over the entire lifetime of the template.
+        /// </summary>
+        [XurrentField("timesApplied")]
+        public long? TimesApplied { get; internal set; }
+
+        /// <summary>
         /// Whether the subject of requests created from this template is automatically translated to the language of the viewer. When false, the subject is always displayed in its original language.
         /// </summary>
         [XurrentField("translateSubject")]

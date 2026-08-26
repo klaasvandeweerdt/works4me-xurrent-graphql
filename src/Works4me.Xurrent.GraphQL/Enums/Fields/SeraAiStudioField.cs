@@ -32,6 +32,12 @@ namespace Works4me.Xurrent.GraphQL
         CreatedAt,
 
         /// <summary>
+        /// The fallback request template field.
+        /// </summary>
+        [XurrentEnum("fallbackRequestTemplate")]
+        FallbackRequestTemplate,
+
+        /// <summary>
         /// The id field.
         /// </summary>
         [XurrentEnum("id")]

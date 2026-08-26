@@ -8,26 +8,26 @@ using Works4me.Xurrent.GraphQL.Builders;
 namespace Works4me.Xurrent.GraphQL
 {
     /// <summary>
-    /// Represent a <see href="https://developer.xurrent.com/graphql/object/projecttaskassignment/">ProjectTaskAssignment</see> in Xurrent.
+    /// Represent a <see href="https://developer.xurrent.com/graphql/object/taskapproval/">WorkflowTaskApproval</see> in Xurrent.
     /// </summary>
     [DebuggerDisplay("{Id}")]
-    [XurrentEntity("ProjectTaskAssignment")]
-    public sealed class ProjectTaskAssignment : IDataItem, INode
+    [XurrentEntity("TaskApproval")]
+    public sealed class WorkflowTaskApproval : IDataItem, INode
     {
         /// <summary>
-        /// The person who is selected as the assignee for the assignment.
+        /// The person who is selected as the approver for the approval.
         /// </summary>
-        [XurrentField("assignee")]
-        public Person? Assignee { get; internal set; }
+        [XurrentField("approver")]
+        public Person? Approver { get; internal set; }
 
         /// <summary>
-        /// <b>link to Project Summary</b> - The hyperlink to the Project Summary PDF file that was generated for the assignee when the assignment was last set to the status <c>assigned</c> (for project tasks of the category <c>approval</c> only).
+        /// The summary PDF file that was generated for the approver when the approval was last set to the status <c>assigned</c>.
         /// </summary>
         [XurrentField("attachment")]
-        public string? Attachment { get; internal set; }
+        public Attachment? Attachment { get; internal set; }
 
         /// <summary>
-        /// The date and time at which the assignment was created.
+        /// The date and time at which the approval was created.
         /// </summary>
         [XurrentField("createdAt")]
         public DateTime? CreatedAt { get; internal set; }
@@ -39,34 +39,28 @@ namespace Works4me.Xurrent.GraphQL
         public string Id { get; internal set; } = string.Empty;
 
         /// <summary>
-        /// The number of minutes the assignee is expected to spend working on the project task to which the assignment belongs.
+        /// The number of minutes the approver is expected to spend working on the task.
         /// </summary>
         [XurrentField("plannedEffort")]
         public long? PlannedEffort { get; internal set; }
 
         /// <summary>
-        /// The status of the assignment.
+        /// The status of the approval.
         /// </summary>
         [XurrentField("status")]
-        public ProjectTaskStatus? Status { get; internal set; }
+        public WorkflowTaskStatus? Status { get; internal set; }
 
         /// <summary>
-        /// The project task to which the assignment belongs.
+        /// The task to which the approval belongs.
         /// </summary>
         [XurrentField("task")]
-        public ProjectTask? Task { get; internal set; }
+        public WorkflowTask? Task { get; internal set; }
 
         /// <summary>
-        /// The date and time of the last update of the assignment. If the assignment has had no updates it contains the <c>createdAt</c> value.
+        /// The date and time of the last update of the approval. If the approval has had no updates it contains the <c>createdAt</c> value.
         /// </summary>
         [XurrentField("updatedAt")]
         public DateTime? UpdatedAt { get; internal set; }
-
-        /// <summary>
-        /// Used to specify the date and time at which the status of the assignment is to be updated from <c>waiting_for</c> to <c>assigned</c>. This field is available only when the Status field is set to <c>waiting_for</c>.
-        /// </summary>
-        [XurrentField("waitingUntil")]
-        public DateTime? WaitingUntil { get; internal set; }
 
         /// <summary>
         /// <br>Returns a key used internally for merging paged or partial data responses within a <see cref="DataCollection{T}"/>.</br>

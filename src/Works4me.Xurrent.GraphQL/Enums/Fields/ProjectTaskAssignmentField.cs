@@ -44,6 +44,12 @@ namespace Works4me.Xurrent.GraphQL
         Status,
 
         /// <summary>
+        /// The task field.
+        /// </summary>
+        [XurrentEnum("task")]
+        Task,
+
+        /// <summary>
         /// The updated at field.
         /// </summary>
         [XurrentEnum("updatedAt")]

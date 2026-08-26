@@ -212,6 +212,12 @@ namespace Works4me.Xurrent.GraphQL
         TimeZone,
 
         /// <summary>
+        /// The times applied field.
+        /// </summary>
+        [XurrentEnum("timesApplied")]
+        TimesApplied,
+
+        /// <summary>
         /// The translate subject field.
         /// </summary>
         [XurrentEnum("translateSubject")]

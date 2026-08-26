@@ -6,12 +6,12 @@ namespace Works4me.Xurrent.GraphQL
     /// <summary>
     /// The <see cref="ProjectTaskAssignment"/> query class.
     /// </summary>
-    public class ProjectTaskAssignmentQuery : Query<ProjectTaskAssignment, ProjectTaskAssignmentQuery, DefaultView, ProjectTaskAssignmentField, DefaultFilterField, DefaultOrderField>
+    public class ProjectTaskAssignmentQuery : Query<ProjectTaskAssignment, ProjectTaskAssignmentQuery, DefaultView, ProjectTaskAssignmentField, ProjectTaskAssignmentFilterField, DefaultOrderField>
     {
         /// <summary>
         /// Initialize a new <see cref="ProjectTaskAssignmentQuery"/> instance.
         /// </summary>
-        public ProjectTaskAssignmentQuery() : base(string.Empty, true)
+        public ProjectTaskAssignmentQuery() : base("projectTaskAssignments", true)
         {
         }
 
@@ -26,6 +26,19 @@ namespace Works4me.Xurrent.GraphQL
                 throw new ArgumentNullException(nameof(query));
 
             return Select("assignee", query, false);
+        }
+
+        /// <summary>
+        /// The project task to which the assignment belongs.
+        /// </summary>
+        /// <param name="query">The task query.</param>
+        /// <returns>The same <see cref="ProjectTaskAssignmentQuery"/>, updated to include the "Task" sub-query.</returns>
+        public ProjectTaskAssignmentQuery SelectTask(ProjectTaskQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return Select("task", query, false);
         }
     }
 }

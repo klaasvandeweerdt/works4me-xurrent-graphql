@@ -20,6 +20,12 @@ namespace Works4me.Xurrent.GraphQL
         Archive,
 
         /// <summary>
+        /// Workflows Created by Me.
+        /// </summary>
+        [XurrentEnum("created_by_me")]
+        CreatedByMe,
+
+        /// <summary>
         /// All Workflows which account equals the value supplied via the <c>x-xurrent-account</c> header.
         /// </summary>
         [XurrentEnum("current_account")]

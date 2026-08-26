@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using Works4me.Xurrent.GraphQL.Attributes;
 using Works4me.Xurrent.GraphQL.Builders;
@@ -8,53 +8,41 @@ using Works4me.Xurrent.GraphQL.Builders;
 namespace Works4me.Xurrent.GraphQL
 {
     /// <summary>
-    /// Represent a <see href="https://developer.xurrent.com/graphql/object/taskapproval/">TaskApproval</see> in Xurrent.
+    /// Represent a <see href="https://developer.xurrent.com/graphql/object/translationprovenance/">TranslationProvenance</see> in Xurrent.
     /// </summary>
-    [DebuggerDisplay("{Id}")]
-    [XurrentEntity("TaskApproval")]
-    public sealed class TaskApproval : IDataItem, INode
+    [XurrentEntity("TranslationProvenance")]
+    public sealed class TranslationProvenance : IDataItem
     {
         /// <summary>
-        /// The person who is selected as the approver for the approval.
+        /// The translatable field (subject, description, instructions, keywords).
         /// </summary>
-        [XurrentField("approver")]
-        public Person? Approver { get; internal set; }
+        [XurrentField("field", IsDefaultQueryProperty = true)]
+        public string? Field { get; internal set; }
 
         /// <summary>
-        /// The summary PDF file that was generated for the approver when the approval was last set to the status <c>assigned</c>.
+        /// The locale this provenance describes.<br />
+        /// The list with possible values is available on the <a href="https://developer.xurrent.com/graphql/scalar/locale/">Xurrent developer site</a>.<br />
         /// </summary>
-        [XurrentField("attachment")]
-        public Attachment? Attachment { get; internal set; }
+        [XurrentField("locale", IsDefaultQueryProperty = true)]
+        public string? Locale { get; internal set; }
 
         /// <summary>
-        /// The date and time at which the approval was created.
+        /// Whether a manual translation exists for this language but is too old to be served.
         /// </summary>
-        [XurrentField("createdAt")]
-        public DateTime? CreatedAt { get; internal set; }
+        [XurrentField("outdatedManual", IsDefaultQueryProperty = true)]
+        public bool? OutdatedManual { get; internal set; }
 
         /// <summary>
-        /// Unique identifier of the object.
+        /// Where the served content came from.
         /// </summary>
-        [XurrentField("id", IsDefaultQueryProperty = true)]
-        public string Id { get; internal set; } = string.Empty;
+        [XurrentField("source", IsDefaultQueryProperty = true)]
+        public string? Source { get; internal set; }
 
         /// <summary>
-        /// The number of minutes the approver is expected to spend working on the task.
+        /// When the served translation was last updated.
         /// </summary>
-        [XurrentField("plannedEffort")]
-        public long? PlannedEffort { get; internal set; }
-
-        /// <summary>
-        /// The status of the approval.
-        /// </summary>
-        [XurrentField("status")]
-        public WorkflowTaskStatus? Status { get; internal set; }
-
-        /// <summary>
-        /// The date and time of the last update of the approval. If the approval has had no updates it contains the <c>createdAt</c> value.
-        /// </summary>
-        [XurrentField("updatedAt")]
-        public DateTime? UpdatedAt { get; internal set; }
+        [XurrentField("translatedAt", IsDefaultQueryProperty = true)]
+        public DateTime? TranslatedAt { get; internal set; }
 
         /// <summary>
         /// <br>Returns a key used internally for merging paged or partial data responses within a <see cref="DataCollection{T}"/>.</br>
@@ -62,7 +50,7 @@ namespace Works4me.Xurrent.GraphQL
         /// </summary>
         string IDataItem.GetMergeKey()
         {
-            return Id;
+            return GetHashCode().ToString(CultureInfo.InvariantCulture);
         }
 
         /// <summary>

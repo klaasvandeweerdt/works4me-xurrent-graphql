@@ -56,8 +56,10 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private Collection<string>? _serviceInstanceIds;
         private Collection<string>? _predecessorIds;
         private Collection<string>? _successorIds;
+        private Collection<TagInput>? _newTags;
         private string _id;
         private Collection<string>? _approvalsToDelete;
+        private Collection<string>? _tagsToDelete;
 
         /// <summary>
         /// A unique identifier for the client performing the mutation.
@@ -510,6 +512,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         }
 
         /// <summary>
+        /// Tags to be added to the task.
+        /// </summary>
+        [XurrentField("newTags")]
+        public Collection<TagInput>? NewTags
+        {
+            get => _newTags;
+            set => _newTags = Set("newTags", value);
+        }
+
+        /// <summary>
         /// The node ID of the record to update.
         /// </summary>
         [XurrentField("id")]
@@ -527,6 +539,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _approvalsToDelete;
             set => _approvalsToDelete = Set("approvalsToDelete", value);
+        }
+
+        /// <summary>
+        /// Identifiers of tags to delete.
+        /// </summary>
+        [XurrentField("tagsToDelete")]
+        public Collection<string>? TagsToDelete
+        {
+            get => _tagsToDelete;
+            set => _tagsToDelete = Set("tagsToDelete", value);
         }
 
         /// <summary>
