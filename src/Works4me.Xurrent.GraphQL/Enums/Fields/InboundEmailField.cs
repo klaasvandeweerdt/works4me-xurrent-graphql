@@ -68,6 +68,18 @@ namespace Works4me.Xurrent.GraphQL
         Record,
 
         /// <summary>
+        /// The scrubbed at field.
+        /// </summary>
+        [XurrentEnum("scrubbedAt")]
+        ScrubbedAt,
+
+        /// <summary>
+        /// The scrubbed by field.
+        /// </summary>
+        [XurrentEnum("scrubbedBy")]
+        ScrubbedBy,
+
+        /// <summary>
         /// The source uri field.
         /// </summary>
         [XurrentEnum("sourceUri")]

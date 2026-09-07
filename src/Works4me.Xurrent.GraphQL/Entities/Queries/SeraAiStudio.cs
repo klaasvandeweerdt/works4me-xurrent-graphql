@@ -57,6 +57,18 @@ namespace Works4me.Xurrent.GraphQL
         public string Id { get; internal set; } = string.Empty;
 
         /// <summary>
+        /// The agent instructions proposed by the validation service when it kept some directives and dropped others. Present only while <c>validation_status</c> is <c>needs_review</c>, and applied only once the proposed changes are reviewed.
+        /// </summary>
+        [XurrentField("proposedAgentInstructions")]
+        public string? ProposedAgentInstructions { get; internal set; }
+
+        /// <summary>
+        /// The individual passages of the proposed rewrite, one per decision. Each carries the <c>id</c> to accept or reject, the <c>original</c> text, the <c>proposed</c> replacement, and a <c>note</c> explaining the change. Present only while <c>validation_status</c> is <c>needs_review</c>.
+        /// </summary>
+        [XurrentField("proposedChanges")]
+        public IReadOnlyList<SeraAiStudioProposedChange>? ProposedChanges { get; internal set; }
+
+        /// <summary>
         /// Default "Run as" user pre-filled in the user column when adding new golden set rows.
         /// </summary>
         [XurrentField("runAs")]
@@ -69,13 +81,13 @@ namespace Works4me.Xurrent.GraphQL
         public DateTime? UpdatedAt { get; internal set; }
 
         /// <summary>
-        /// The reasoning provided by the validation service when instructions are partially applied or rejected.
+        /// The reasoning provided by the validation service when instructions are partially applied, rejected, awaiting review, or could not be validated.
         /// </summary>
         [XurrentField("validationReasoning")]
         public string? ValidationReasoning { get; internal set; }
 
         /// <summary>
-        /// The validation status of the agent instructions. Valid values are: <c>pending</c>, <c>approved</c>, <c>partially_applied</c>, <c>rejected</c>, <c>error</c>.
+        /// The validation status of the agent instructions. Valid values are: <c>pending</c>, <c>approved</c>, <c>needs_review</c>, <c>rejected</c>, <c>error</c>. <c>partially_applied</c> is no longer set; records validated before per-change review was introduced may still report it.
         /// </summary>
         [XurrentField("validationStatus")]
         public string? ValidationStatus { get; internal set; }

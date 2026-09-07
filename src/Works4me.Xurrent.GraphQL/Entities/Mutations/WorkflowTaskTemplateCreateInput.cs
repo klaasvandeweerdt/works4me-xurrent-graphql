@@ -17,6 +17,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         private bool? _assignToRequesterBusinessUnitManager;
         private bool? _assignToRequesterManager;
         private bool? _assignToServiceOwner;
+        private bool? _autoAssign;
         private bool? _copyNotesToWorkflow;
         private bool? _copyNotesToRequest;
         private bool? _disabled;
@@ -135,6 +136,16 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         {
             get => _assignToServiceOwner;
             set => _assignToServiceOwner = Set("assignToServiceOwner", value);
+        }
+
+        /// <summary>
+        /// Whether a new task that is being created based on the template is to be assigned to an available member of the team that is selected in the Team field. Can only be set on an implementation task template that has a team selected and no member.
+        /// </summary>
+        [XurrentField("autoAssign")]
+        public bool? AutoAssign
+        {
+            get => _autoAssign;
+            set => _autoAssign = Set("autoAssign", value);
         }
 
         /// <summary>

@@ -44,6 +44,18 @@ namespace Works4me.Xurrent.GraphQL
         Id,
 
         /// <summary>
+        /// The proposed agent instructions field.
+        /// </summary>
+        [XurrentEnum("proposedAgentInstructions")]
+        ProposedAgentInstructions,
+
+        /// <summary>
+        /// The proposed changes field.
+        /// </summary>
+        [XurrentEnum("proposedChanges")]
+        ProposedChanges,
+
+        /// <summary>
         /// The run as field.
         /// </summary>
         [XurrentEnum("runAs")]

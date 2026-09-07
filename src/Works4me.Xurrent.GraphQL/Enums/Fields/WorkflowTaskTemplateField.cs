@@ -44,6 +44,12 @@ namespace Works4me.Xurrent.GraphQL
         AssignToWorkflowManager,
 
         /// <summary>
+        /// The auto assign field.
+        /// </summary>
+        [XurrentEnum("autoAssign")]
+        AutoAssign,
+
+        /// <summary>
         /// The category field.
         /// </summary>
         [XurrentEnum("category")]

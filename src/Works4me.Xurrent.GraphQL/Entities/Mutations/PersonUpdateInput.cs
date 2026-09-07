@@ -408,7 +408,7 @@ namespace Works4me.Xurrent.GraphQL.Mutations
         }
 
         /// <summary>
-        /// An enabled OAuth person is mentionable and visible in suggest fields, just like a real person.
+        /// An enabled OAuth person is mentionable and visible in suggest fields, just like a real person. It cannot be selected as an email recipient, because it has no deliverable email address.
         /// </summary>
         [XurrentField("oauthPersonEnablement")]
         public bool? OauthPersonEnablement

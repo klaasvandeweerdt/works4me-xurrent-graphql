@@ -15,6 +15,8 @@ namespace Works4me.Xurrent.GraphQL.Tests.Functional
                 .View(DefaultView.None)
                 .SelectGoldenSetItems(new GoldenSetItemQuery()
                     .SelectAll())
+                .SelectProposedChanges(new SeraAiStudioProposedChangeQuery()
+                    .SelectAll())
                 .SelectAll(), TestContext.Current.CancellationToken);
 
             Assert.NotNull(seraAiStudio);

@@ -56,6 +56,12 @@ namespace Works4me.Xurrent.GraphQL
         [XurrentField("assignToWorkflowManager")]
         public bool? AssignToWorkflowManager { get; internal set; }
 
+        /// <summary>
+        /// Whether a new task that is being created based on the template is to be assigned to an available member of the team that is selected in the Team field. Can only be set on an implementation task template that has a team selected and no member.
+        /// </summary>
+        [XurrentField("autoAssign")]
+        public bool? AutoAssign { get; internal set; }
+
         [XurrentField("automationRules")]
         internal PagedResponse<AutomationRule>? AutomationRulesCollection { get; set; }
         /// <summary>

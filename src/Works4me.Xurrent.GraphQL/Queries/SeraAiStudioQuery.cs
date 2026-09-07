@@ -55,6 +55,19 @@ namespace Works4me.Xurrent.GraphQL
         }
 
         /// <summary>
+        /// The individual passages of the proposed rewrite, one per decision. Each carries the <c>id</c> to accept or reject, the <c>original</c> text, the <c>proposed</c> replacement, and a <c>note</c> explaining the change. Present only while <c>validation_status</c> is <c>needs_review</c>.
+        /// </summary>
+        /// <param name="query">The proposed changes query.</param>
+        /// <returns>The same <see cref="SeraAiStudioQuery"/>, updated to include the "ProposedChanges" sub-query.</returns>
+        public SeraAiStudioQuery SelectProposedChanges(SeraAiStudioProposedChangeQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return Select("proposedChanges", query, false);
+        }
+
+        /// <summary>
         /// Default "Run as" user pre-filled in the user column when adding new golden set rows.
         /// </summary>
         /// <param name="query">The run as query.</param>

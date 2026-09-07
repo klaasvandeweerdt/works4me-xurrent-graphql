@@ -194,5 +194,18 @@ namespace Works4me.Xurrent.GraphQL
 
             return SelectOnType("record", query, false);
         }
+
+        /// <summary>
+        /// The person who redacted the inbound email.
+        /// </summary>
+        /// <param name="query">The scrubbed by query.</param>
+        /// <returns>The same <see cref="InboundEmailQuery"/>, updated to include the "ScrubbedBy" sub-query.</returns>
+        public InboundEmailQuery SelectScrubbedBy(PersonQuery query)
+        {
+            if (query is null)
+                throw new ArgumentNullException(nameof(query));
+
+            return Select("scrubbedBy", query, false);
+        }
     }
 }

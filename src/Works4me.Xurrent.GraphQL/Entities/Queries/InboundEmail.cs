@@ -75,6 +75,18 @@ namespace Works4me.Xurrent.GraphQL
         public IHasNotes? Record { get; internal set; }
 
         /// <summary>
+        /// The date and time at which the inbound email was redacted, or null when it has not been redacted.
+        /// </summary>
+        [XurrentField("scrubbedAt")]
+        public DateTime? ScrubbedAt { get; internal set; }
+
+        /// <summary>
+        /// The person who redacted the inbound email.
+        /// </summary>
+        [XurrentField("scrubbedBy")]
+        public Person? ScrubbedBy { get; internal set; }
+
+        /// <summary>
         /// Expiring URL to download the source of the inbound email.
         /// </summary>
         [XurrentField("sourceUri")]
