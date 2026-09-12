@@ -16,7 +16,7 @@ namespace Works4me.Xurrent.GraphQL
         /// Identifier of this passage within the current review. Pass it as accepted or rejected when resolving the review. Stable only for as long as the review is open.
         /// </summary>
         [XurrentField("id", IsDefaultQueryProperty = true)]
-        public long? Id { get; internal set; }
+        public long Id { get; internal set; }
 
         /// <summary>
         /// Short explanation of why this passage was changed.
@@ -42,7 +42,7 @@ namespace Works4me.Xurrent.GraphQL
         /// </summary>
         string IDataItem.GetMergeKey()
         {
-            return GetHashCode().ToString(CultureInfo.InvariantCulture);
+            return Id.ToString(CultureInfo.InvariantCulture);
         }
 
         /// <summary>

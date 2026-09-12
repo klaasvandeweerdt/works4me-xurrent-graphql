@@ -1,4 +1,5 @@
-﻿using Works4me.Xurrent.GraphQL.Attributes;
+﻿using System;
+using Works4me.Xurrent.GraphQL.Attributes;
 
 namespace Works4me.Xurrent.GraphQL
 {
@@ -47,6 +48,7 @@ namespace Works4me.Xurrent.GraphQL
         /// The machine translated field.
         /// </summary>
         [XurrentEnum("machineTranslated")]
+        [Obsolete("Automatic translations are no longer Translations, so this is always false.")]
         MachineTranslated,
 
         /// <summary>
